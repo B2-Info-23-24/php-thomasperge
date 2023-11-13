@@ -1,5 +1,11 @@
 <?php
+// Twig
+// require_once __DIR__ . '../vendor/autoload.php';
 
+// $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/views/partials');
+// $twig = new \Twig\Environment($loader);
+
+// Router
 $request = $_SERVER['REQUEST_URI'];
 
 switch ($request) {
