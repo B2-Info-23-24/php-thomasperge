@@ -1,43 +1,57 @@
 <?php
-// Twig
-// require_once __DIR__ . '../vendor/autoload.php';
-
-// $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/views/partials');
-// $twig = new \Twig\Environment($loader);
+require_once __DIR__ . '/controllers/home.controller.php';
+require_once __DIR__ . '/controllers/dashboard.controller.php';
+require_once __DIR__ . '/controllers/signin.controller.php';
+require_once __DIR__ . '/controllers/signup.controller.php';
+require_once __DIR__ . '/controllers/vehicle.controller.php';
+require_once __DIR__ . '/controllers/submit.controller.php';
+require_once __DIR__ . '/controllers/book.controller.php';
+require_once __DIR__ . '/controllers/profil.controller.php';
+require_once __DIR__ . '/controllers/404.controller.php';
 
 // Router
 $request = $_SERVER['REQUEST_URI'];
 
 switch ($request) {
   case '/':
-    require __DIR__ . '/views/home.php';
+    $homeController = new HomeController();
+    $homeController->homeRouter();
     break;
   case '/home':
-    require __DIR__ . '/views/home.php';
+    $homeController = new HomeController();
+    $homeController->homeRouter();
     break;
   case '/dashboard':
-    require __DIR__ . '/views/dashboard.php';
+    $dashboardController = new DashboardController();
+    $dashboardController->dashboardRouter();
     break;
   case '/signin':
-    require __DIR__ . '/views/signin.php';
+    $signinController = new SigninController();
+    $signinController->signinRouter();
     break;
   case '/submit':
-    require __DIR__ . '/views/submit.php';
+    $submitController = new SubmitController();
+    $submitController->submitRouter();
     break;
   case '/signup':
-    require __DIR__ . '/views/signup.php';
+    $signupController = new SignupController();
+    $signupController->signupRouter();
     break;
-  case '/post':
-    require __DIR__ . '/views/post.php';
+  case '/vehicle':
+    $vehicleController = new VehicleController();
+    $vehicleController->vehicleRouter();
     break;
   case '/book':
-    require __DIR__ . '/views/book.php';
+    $bookController = new BookController();
+    $bookController->bookRouter();
     break;
   case '/profil':
-    require __DIR__ . '/views/profil.php';
+    $profilController = new ProfilController();
+    $profilController->profilRouter();
     break;
   default:
     http_response_code(404);
-    require __DIR__ . '/views/404.php';
+    $errorController = new ErrorController();
+    $errorController->errorRouter();
     break;
 }
