@@ -10,17 +10,15 @@
 <body>
 
   <?php
-  // home.php
-  require 'vendor/autoload.php'; // ajustez le chemin en conséquence
+  require 'vendor/autoload.php';
 
-  $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/partials'); // ajustez le chemin en conséquence
+  $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../partials');
   $twig = new \Twig\Environment($loader);
 
   // Affichage de la navbar
   echo $twig->render('navbar.twig'); ?>
 
-
-<p>eeee</p>
+  <p>eeee</p>
 </body>
 
 </html>

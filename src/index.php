@@ -1,13 +1,13 @@
 <?php
-require_once __DIR__ . '/controllers/home.controller.php';
-require_once __DIR__ . '/controllers/dashboard.controller.php';
-require_once __DIR__ . '/controllers/signin.controller.php';
-require_once __DIR__ . '/controllers/signup.controller.php';
-require_once __DIR__ . '/controllers/vehicle.controller.php';
-require_once __DIR__ . '/controllers/submit.controller.php';
-require_once __DIR__ . '/controllers/book.controller.php';
-require_once __DIR__ . '/controllers/profil.controller.php';
-require_once __DIR__ . '/controllers/404.controller.php';
+require_once __DIR__ . '/app/controllers/home.controller.php';
+require_once __DIR__ . '/app/controllers/dashboard.controller.php';
+require_once __DIR__ . '/app/controllers/signin.controller.php';
+require_once __DIR__ . '/app/controllers/signup.controller.php';
+require_once __DIR__ . '/app/controllers/vehicle.controller.php';
+require_once __DIR__ . '/app/controllers/submit.controller.php';
+require_once __DIR__ . '/app/controllers/book.controller.php';
+require_once __DIR__ . '/app/controllers/profil.controller.php';
+require_once __DIR__ . '/app/controllers/404.controller.php';
 
 // Router
 $request = $_SERVER['REQUEST_URI'];

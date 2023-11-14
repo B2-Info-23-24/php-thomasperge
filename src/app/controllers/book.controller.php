@@ -4,6 +4,6 @@ class BookController
 {
   public function bookRouter()
   {
-    require_once __DIR__ . '/../views/book.php';
+    require_once __DIR__ . '/../views/pages/book.php';
   }
 }
