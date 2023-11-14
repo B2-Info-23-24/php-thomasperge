@@ -1,9 +1,18 @@
 <?php
+require 'vendor/autoload.php';
+
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class DashboardController
 {
+  private $twig;
+
   public function dashboardRouter()
   {
-    require_once __DIR__ . '/../views/pages/dashboard.php';
+    $loader = new FilesystemLoader(__DIR__ . '/../views');
+    $this->twig = new Environment($loader);
+
+    echo $this->twig->render('/pages/dashboard.twig');
   }
 }

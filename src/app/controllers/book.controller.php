@@ -1,9 +1,18 @@
 <?php
+require 'vendor/autoload.php';
+
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class BookController
 {
+  private $twig;
+
   public function bookRouter()
   {
-    require_once __DIR__ . '/../views/pages/book.php';
+    $loader = new FilesystemLoader(__DIR__ . '/../views');
+    $this->twig = new Environment($loader);
+
+    echo $this->twig->render('/pages/book.twig');
   }
 }

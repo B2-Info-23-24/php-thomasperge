@@ -6,13 +6,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
 			{% block title %}{% endblock %}
-			- My Webpage</title>
+			- My Webpage
+		</title>
 	</head>
 
 	<body>
 
+		{% block navbar %}
+			{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil'} %}
+		{% endblock %}
+
 		<div id="content"> {% block content %}{% endblock %}
 			</div>
-			<div id="footer">sexrdctfvygbhnj</div>
+
+			{% include '/templates/components/footer.twig' %}
 		</body>
+
 	</html>
