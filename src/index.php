@@ -9,49 +9,31 @@ require_once __DIR__ . '/app/controllers/book.controller.php';
 require_once __DIR__ . '/app/controllers/profil.controller.php';
 require_once __DIR__ . '/app/controllers/404.controller.php';
 
+// Définir les routes
+$routes = [
+  '/'         => ['controller' => 'HomeController', 'method' => 'homeRouter'],
+  '/home'     => ['controller' => 'HomeController', 'method' => 'homeRouter'],
+  '/dashboard' => ['controller' => 'DashboardController', 'method' => 'dashboardRouter'],
+  '/signin'   => ['controller' => 'SigninController', 'method' => 'signinRouter'],
+  '/submit'   => ['controller' => 'SubmitController', 'method' => 'submitRouter'],
+  '/signup'   => ['controller' => 'SignupController', 'method' => 'signupRouter'],
+  '/vehicle'  => ['controller' => 'VehicleController', 'method' => 'vehicleRouter'],
+  '/book'     => ['controller' => 'BookController', 'method' => 'bookRouter'],
+  '/profil'   => ['controller' => 'ProfilController', 'method' => 'profilRouter'],
+];
+
 // Router
 $request = $_SERVER['REQUEST_URI'];
 
-switch ($request) {
-  case '/':
-    $homeController = new HomeController();
-    $homeController->homeRouter();
-    break;
-  case '/home':
-    $homeController = new HomeController();
-    $homeController->homeRouter();
-    break;
-  case '/dashboard':
-    $dashboardController = new DashboardController();
-    $dashboardController->dashboardRouter();
-    break;
-  case '/signin':
-    $signinController = new SigninController();
-    $signinController->signinRouter();
-    break;
-  case '/submit':
-    $submitController = new SubmitController();
-    $submitController->submitRouter();
-    break;
-  case '/signup':
-    $signupController = new SignupController();
-    $signupController->signupRouter();
-    break;
-  case '/vehicle':
-    $vehicleController = new VehicleController();
-    $vehicleController->vehicleRouter();
-    break;
-  case '/book':
-    $bookController = new BookController();
-    $bookController->bookRouter();
-    break;
-  case '/profil':
-    $profilController = new ProfilController();
-    $profilController->profilRouter();
-    break;
-  default:
-    http_response_code(404);
-    $errorController = new ErrorController();
-    $errorController->errorRouter();
-    break;
+// Vérifier si la route existe dans le tableau
+if (array_key_exists($request, $routes)) {
+  $route = $routes[$request];
+  $controller = new $route['controller']();
+  $method = $route['method'];
+  $controller->$method();
+} else {
+  // Route existe pas = envoyer une erreur 404
+  http_response_code(404);
+  $errorController = new ErrorController();
+  $errorController->errorRouter();
 }
