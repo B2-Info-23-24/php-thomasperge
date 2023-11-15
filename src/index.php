@@ -8,6 +8,7 @@ require_once __DIR__ . '/app/controllers/submit.controller.php';
 require_once __DIR__ . '/app/controllers/book.controller.php';
 require_once __DIR__ . '/app/controllers/profil.controller.php';
 require_once __DIR__ . '/app/controllers/404.controller.php';
+require_once __DIR__ . '/app/controllers/cars.controller.php';
 
 // Définir les routes
 $routes = [
@@ -18,6 +19,7 @@ $routes = [
   '/submit'   => ['controller' => 'SubmitController', 'method' => 'submitRouter'],
   '/signup'   => ['controller' => 'SignupController', 'method' => 'signupRouter'],
   '/vehicle'  => ['controller' => 'VehicleController', 'method' => 'vehicleRouter'],
+  '/cars'     => ['controller' => 'CarsController', 'method' => 'carsRouter'],
   '/book'     => ['controller' => 'BookController', 'method' => 'bookRouter'],
   '/profil'   => ['controller' => 'ProfilController', 'method' => 'profilRouter'],
 ];

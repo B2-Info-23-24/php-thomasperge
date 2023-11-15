@@ -7,14 +7,45 @@
         <div class="title">All cars</div>
       </div>
 
-      <div class="see-all-col">See All Collection ></div>
+      <a class="see-all-col" href="/cars">See All Collection ></a>
     </div>
 
     {# 3 popular car #}
     <div class="all-cars-area">
-      {% include '/templates/components/popular-card.twig' with {'model': 'Porsche 911', 'version': 'Turbo S - 2021', 'logo': 'public/assets/svg/porsche.svg', 'modelImage': 'public/assets/car-model/porsche-model.png', 'available': 'Available', 'name_owner': 'Thomas Kft', 'price': '950', 'nameBackground': 'PORSHE'} %}
-      {% include '/templates/components/popular-card.twig' with {'model': 'Ferrari Pista', 'version': 'Ferrari 488 GTB', 'logo': 'public/assets/svg/ferrari.svg', 'modelImage': 'public/assets/car-model/ferrari.png', 'available': 'Available', 'name_owner': 'Siweil Mng', 'price': '450', 'nameBackground': 'FERRARI'} %}
-      {% include '/templates/components/popular-card.twig' with {'model': 'Mclaren 765LT', 'version': '"LT" (Longtail)', 'logo': 'public/assets/svg/mclaren.svg', 'modelImage': 'public/assets/car-model/mclaren.png', 'available': 'Available', 'name_owner': 'Thomas kft', 'price': '750', 'nameBackground': 'MCLAREN'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'Ferrari SF90', 'model': 'Ferrari 488 GTB', 'logo': 'public/assets/svg/ferrari.svg', 'modelImage': 'public/assets/car-model/ferrari1.png', 'seats': 4, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '450'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'Ferrari SF90', 'model': 'Ferrari 488 GTB', 'logo': 'public/assets/svg/ferrari.svg', 'modelImage': 'public/assets/car-model/ferrari2.png', 'seats': 4, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '450'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'Ferrari SF90', 'model': 'Ferrari 488 GTB', 'logo': 'public/assets/svg/ferrari.svg', 'modelImage': 'public/assets/car-model/ferrari3.png', 'seats': 4, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '450'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'Ferrari SF90', 'model': 'Ferrari 488 GTB', 'logo': 'public/assets/svg/ferrari.svg', 'modelImage': 'public/assets/car-model/ferrari4.png', 'seats': 4, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '450'} %}
+      
+      {% include '/templates/components/vehicle.twig' with {'brand': 'Ferrari SF90', 'model': 'Ferrari 488 GTB', 'logo': 'public/assets/svg/hyundai.svg', 'modelImage': 'public/assets/car-model/hyundai1.png', 'seats': 4, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '450'} %}
+      
+      {% include '/templates/components/vehicle.twig' with {'brand': 'Mclaren 765LT', 'model': '"LT" (Longtail)', 'logo': 'public/assets/svg/mclaren.svg', 'modelImage': 'public/assets/car-model/mclaren1.png', 'seats': 2, 'petrol': 'Ethanol', 'gear': 'Automatique', 'price': '750'} %}
+      
+      {% include '/templates/components/vehicle.twig' with {'brand': 'Porsche 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/nissan.svg', 'modelImage': 'public/assets/car-model/nissan1.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/nissan.svg', 'modelImage': 'public/assets/car-model/nissan2.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/nissan.svg', 'modelImage': 'public/assets/car-model/nissan3.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/peugeot.svg', 'modelImage': 'public/assets/car-model/peugeot1.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/peugeot.svg', 'modelImage': 'public/assets/car-model/peugeot2.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/peugeot.svg', 'modelImage': 'public/assets/car-model/peugeot3.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/porsche.svg', 'modelImage': 'public/assets/car-model/porsche1.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/porsche.svg', 'modelImage': 'public/assets/car-model/porsche2.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/renault.svg', 'modelImage': 'public/assets/car-model/renault1.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/renault.svg', 'modelImage': 'public/assets/car-model/renault2.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/renault.svg', 'modelImage': 'public/assets/car-model/renault3.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/tesla.svg', 'modelImage': 'public/assets/car-model/tesla1.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/tesla.svg', 'modelImage': 'public/assets/car-model/tesla2.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/volvo.svg', 'modelImage': 'public/assets/car-model/volvo1.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/volvo.svg', 'modelImage': 'public/assets/car-model/volvo2.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/volvo.svg', 'modelImage': 'public/assets/car-model/volvo3.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/volvwagen.svg', 'modelImage': 'public/assets/car-model/volvwagen1.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/volvwagen.svg', 'modelImage': 'public/assets/car-model/volvwagen2.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
+      {% include '/templates/components/vehicle.twig' with {'brand': 'nissan 911', 'model': 'Turbo S - 2021', 'logo': 'public/assets/svg/volvwagen.svg', 'modelImage': 'public/assets/car-model/volvwagen3.png', 'seats': 2, 'petrol': 'Diesel', 'gear': 'Manual', 'price': '950'} %}
     </div>
   </div>
 {% endblock %}

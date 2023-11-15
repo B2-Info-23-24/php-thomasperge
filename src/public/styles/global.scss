@@ -25,6 +25,10 @@ body {
   background-color: #060b20;
 }
 
+a {
+  text-decoration: none;
+}
+
 .flexbox {
   display: flex;
   align-items: center;
@@ -85,7 +89,7 @@ body {
 
 /* === Filter ===*/
 .filter-container {
-  padding: 2.2rem;
+  padding: 2.2rem 2.2rem 1rem 2.2rem;
 
   .filter-title {
     font-size: 1.6rem;
@@ -123,7 +127,7 @@ body {
 
 /* === Popular Cars ===*/
 .popular-cars-container {
-  padding: 2.2rem 2.2rem 0 2.2rem;
+  padding: 2.2rem 2.2rem 2.2rem 2.2rem;
 
   .popular-cars-title {
     display: flex;
@@ -170,7 +174,7 @@ body {
   width: 100%;
 
   .car-container {
-    background-color: #eef1fa;
+    // background-color: #eef1fa;
 
     .car-info {
       display: flex;
@@ -268,7 +272,7 @@ body {
 
 /* === All cars ===*/
 .all-cars-container {
-  padding: 2.2rem 2.2rem 0 2.2rem;
+  padding: 2.2rem 2.2rem 2.2rem 2.2rem;
 
   .all-cars-title {
     display: flex;
@@ -303,10 +307,87 @@ body {
     justify-content: space-between;
     padding: 1rem 0 0 0;
     gap: 1.5rem;
+    flex-wrap: wrap;
   }
 }
 
 /* === All cars - Card ===*/
-.all-cards.container {
-  
+.vehicle-container {
+  display: block;
+  flex-direction: column;
+  border-radius: 1.65rem;
+  overflow: hidden;
+  width: 100%;
+  flex: 0 0 calc(25% - 20px);
+  box-sizing: border-box;
+  cursor: pointer;
+
+  .car-container {
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #f5f7ff;
+
+    .infos-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; 
+
+      .name-container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+
+        .brand {
+          font-size: 1.5rem;
+          font-family: "MornDemiBold";
+        }
+
+        .model {
+          font-size: 1rem;
+          font-family: "MornRegular";
+        }
+      }
+    }
+
+    .car-img-container {
+      padding: 1rem;
+      height: 8rem;
+      width: 100%;
+    
+      .car-img {
+        width: 90%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .stats-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // flex-wrap: wrap;
+    padding: 1rem;
+    background-color: #eeeeee;
+
+    .stats {
+      gap: 1rem;
+
+      .stats-items {
+        gap: 0.3rem
+      }
+    }
+
+    .price-container {
+      .price {
+        font-size: 1.2rem;
+        font-family: "MornBold";
+      }
+
+      .day {
+        font-size: 0.9rem;
+        font-family: "MornRegular";
+      }
+    }
+  }
 }
