@@ -162,6 +162,102 @@ body {
       text-decoration: underline;
     }
   }
+
+  .popular-cars-area {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0 1rem 0;
+    gap: 1.5rem;
+  }
 }
 
 /* === Popular Card ===*/
+.popular-card-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  // width: fit-content;
+  width: 100%;
+
+  .car-container {
+    background-color: #eef1fa;
+
+    .car-info {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      justify-content: space-between;
+
+      .name-container {
+        .model-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: start;
+          padding: 0.45rem;
+
+          .model {
+            font-size: 1.25rem;
+            font-family: "MornBold";
+          }
+
+          .Smodel {
+            font-size: 1rem;
+            font-family: "MornRegular";
+          }
+        }
+      }
+
+      .is-available {
+        padding: 0.2rem 0.4rem;
+        background-color: rgb(175, 255, 175);
+        font-size: 1rem;
+        border-radius: 0.875rem;
+      }
+    }
+
+    .car-picture {
+      padding: 1rem;
+    }
+  }
+
+  .owner-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e6e9f3;
+    padding: 0.75rem 1.2rem;
+
+    .owner-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      .user-pricture {
+        width: 30px;
+        height: 30px;
+      }
+
+      .name {
+        font-size: 1.05rem;
+        font-family: "MornDemiBold";
+      }
+    }
+
+    .price-container {
+      .price {
+        font-size: 1.15rem;
+        font-family: "MornBold";
+      }
+
+      .day {
+        font-size: 0.8rem;
+        font-family: "MornRegular";
+      }
+    }
+  }
+}
