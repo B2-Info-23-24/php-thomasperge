@@ -1,19 +1,20 @@
 <?php
 
-require 'vendor/autoload.php';
-
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+require_once __DIR__ . '/../core/render.php';
 
 class HomeController
 {
-  private $twig;
+  private $renderManager;
+
+  public function __construct()
+  {
+      $this->renderManager = new RenderManager();
+  }
 
   public function homeRouter()
   {
-    $loader = new FilesystemLoader(__DIR__ . '/../views');
-    $this->twig = new Environment($loader);
+    $currentRoute = $_SERVER['REQUEST_URI'];
 
-    echo $this->twig->render('/pages/home.twig');
+    $this->renderManager->render('/pages/home.twig', ['currentRoute' => $currentRoute]);
   }
 }
