@@ -88,7 +88,7 @@ body {
   padding: 2.2rem;
 
   .filter-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-family: "MornDemiBold";
   }
 
@@ -96,7 +96,7 @@ body {
     display: flex;
     width: auto;
     gap: 1rem;
-    padding: 1rem 2rem;
+    padding: 1rem 0;
     justify-content: end;
 
     .brand-filter {
@@ -215,7 +215,7 @@ body {
         position: absolute;
         font-size: 6.2rem;
         font-size: "MornBold";
-        background: -webkit-linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 0%, rgba(255,255,255, 0.1) 100%);
+        background: -webkit-linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         z-index: 10;
@@ -223,7 +223,7 @@ body {
 
       .car-img {
         width: 80%;
-        object-fit: contain   ;
+        object-fit: contain;
         z-index: 11;
       }
     }
