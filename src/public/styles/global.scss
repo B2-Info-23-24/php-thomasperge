@@ -118,18 +118,6 @@ body {
         background-color: rgb(242, 242, 242);
       }
     }
-
-    .search-filter {
-      display: flex;
-      align-items: center;
-      width: fit-content;
-      gap: 1rem;
-      padding: 1rem 2.5rem;
-      border-radius: 1.2rem;
-      color: white;
-      cursor: pointer;
-      background-color: #415ff2;
-    }
   }
 }
 
@@ -195,8 +183,6 @@ body {
         .model-container {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          justify-content: start;
           padding: 0.45rem;
 
           .model {
@@ -220,7 +206,26 @@ body {
     }
 
     .car-picture {
+      position: relative;
       padding: 1rem;
+      height: 8rem;
+      width: 100%;
+
+      .opacity-title {
+        position: absolute;
+        font-size: 6.2rem;
+        font-size: "MornBold";
+        background: -webkit-linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 0%, rgba(255,255,255, 0.1) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        z-index: 10;
+      }
+
+      .car-img {
+        width: 80%;
+        object-fit: contain   ;
+        z-index: 11;
+      }
     }
   }
 

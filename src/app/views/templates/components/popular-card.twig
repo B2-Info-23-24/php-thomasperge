@@ -4,18 +4,17 @@
     <div class="car-container">
       <div class="car-info">
         <div class="name-container flexbox">
-          <img src="public/assets/svg/porsche.svg" alt="">
+          <img src="{{ logo }}" alt="">
           <div class="model-container">
-            <div class="model">Porsche 911</div>
+            <div class="model">{{ model }}</div>
             <div class="Smodel">Turbo S - 2021</div>
           </div>
         </div>
-        <div class="is-available">
-          Available
-        </div>
+        <div class="is-available">{{ available }}</div>
       </div>
       <div class="car-picture flexbox">
-        <img src="public/assets/car-model/porsche-model.png" alt="">
+        <div class="opacity-title">{{ nameBackground }}</div>
+        <img src="{{ modelImage }}" class="car-img" alt="">
       </div>
     </div>
 
@@ -23,11 +22,11 @@
     <div class="owner-container">
       <div class="owner-info">
         <img src="public/assets/user.png" class="user-pricture" alt="">
-        <div class="name">Leslie Alexander</div>
+        <div class="name">{{ name_owner }}</div>
       </div>
 
       <div class="price-container flexbox">
-        <div class="price">$950</div>
+        <div class="price">${{ price }}</div>
         <div class="day">/day</div>
       </div>
     </div>
