@@ -216,6 +216,7 @@ a {
 
       .opacity-title {
         position: absolute;
+        transform: translateY(-25px);
         font-size: 6.2rem;
         font-size: "MornBold";
         background: -webkit-linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
@@ -304,7 +305,6 @@ a {
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
     padding: 1rem 0 0 0;
     gap: 1.5rem;
     flex-wrap: wrap;
@@ -325,7 +325,7 @@ a {
   .car-container {
     flex-direction: column;
     padding: 1rem;
-    background-color: #f5f7ff;
+    background-color: #eceff8db;
 
     .infos-container {
       display: flex;
