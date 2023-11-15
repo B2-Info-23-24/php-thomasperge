@@ -1,0 +1,17 @@
+{% block popular_cars %}
+  <div class="popular-cars-container">
+    {# Title #}
+    <div class="popular-cars-title">
+
+      <div class="title-container flexbox">
+        <img src="public/assets/svg/fire.svg" alt="">
+        <div class="title">Popular cars</div>
+      </div>
+
+      <div class="see-all-col">See All Collection ></div>
+    </div>
+
+    {# 3 popular car #}
+    {% include '/templates/components/popular-card.twig' %}
+  </div>
+{% endblock %}

@@ -8,18 +8,27 @@
 			{% block title %}{% endblock %}
 			- My Webpage
 		</title>
+		<link rel="stylesheet" href="/../../../../public/styles/global.scss">
 	</head>
 
 	<body>
+		{# === NavBar === #}
+		{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil'} %}
+		
+		{# === Content === #}
+		<div id="content">
+			{# Filter #}
+			{% include '/templates/components/filter.twig' %}
 
-		{% block navbar %}
-			{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil'} %}
-		{% endblock %}
+			{# Popular Cars #}
+			{% include '/templates/components/popular-cars.twig' %}
 
-		<div id="content"> {% block content %}{% endblock %}
-			</div>
+			{# Content #}
+			{% block content %}{% endblock %}
+		</div>
 
-			{% include '/templates/components/footer.twig' %}
-		</body>
-
-	</html>
+		{# === Footer === #}
+		{% include '/templates/components/footer.twig' %}
+		<p class="test">Hello</p>
+	</body>
+</html>

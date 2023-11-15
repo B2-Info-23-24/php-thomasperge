@@ -1,0 +1,167 @@
+@font-face {
+  font-family: "MornBold";
+  src: url("../font/Morn-Bold.ttf")
+}
+
+@font-face {
+  font-family: "MornDemiBold";
+  src: url("../font/Morn-DemiBold.ttf")
+}
+
+@font-face {
+  font-family: "MornMedium";
+  src: url("../font/Morn-Medium.ttf")
+}
+
+@font-face {
+  font-family: "MornRegular";
+  src: url("../font/Morn-Regular.ttf")
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "MornMedium";
+  background-color: #060b20;
+}
+
+.flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#content {
+  background-color: white;
+  border-radius: 1.2rem 1.2rem 0 0;
+}
+
+/* === NavBar ===*/
+.navbar-container {
+  display: flex;
+  width: auto;
+  height: auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2rem;
+  background-color: #060b20;
+
+  .website-logo {
+    width: 3.4rem;
+
+    .logo {
+      width: 100%;
+    }
+  }
+
+  .navigation-container {
+    gap: 1.4rem;
+
+    .nav-area-selected {
+      cursor: pointer;
+      width: fit-content;
+      gap: 0.5rem;
+      background-color: white;
+      padding: 0.55rem 0.85rem;
+      border-radius: 1.2rem;
+    }
+
+    .nav-area-unselected {
+      cursor: pointer;
+      width: fit-content;
+      gap: 0.5rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: 1.2rem;
+      color: white;
+      fill: white;
+    }
+  }
+
+  .notification-container,
+  .profile-container {
+    cursor: pointer;
+  }
+}
+
+/* === Filter ===*/
+.filter-container {
+  padding: 2.2rem;
+
+  .filter-title {
+    font-size: 1.5rem;
+    font-family: "MornDemiBold";
+  }
+
+  .filter-input-container {
+    display: flex;
+    width: auto;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    justify-content: end;
+
+    .brand-filter {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      .brand-item {
+        cursor: pointer;
+        padding: 0.5rem 2.4rem;
+        border: 2px rgb(231, 231, 231) solid;
+        border-radius: 1.2rem;
+        background-color: rgb(248, 248, 248);
+      }
+
+      .brand-item:hover {
+        background-color: rgb(242, 242, 242);
+      }
+    }
+
+    .search-filter {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+      gap: 1rem;
+      padding: 1rem 2.5rem;
+      border-radius: 1.2rem;
+      color: white;
+      cursor: pointer;
+      background-color: #415ff2;
+    }
+  }
+}
+
+/* === Popular Cars ===*/
+.popular-cars-container {
+  padding: 2.2rem;
+
+  .popular-cars-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title-container {
+      gap: 0.5rem;
+
+      .title {
+        font-size: 1.65rem;
+        font-family: "MornDemiBold";
+      }
+    }
+
+    .see-all-col {
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: blue;
+      font-family: "MornDemiBold";
+    }
+
+    .see-all-col:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* === Popular Card ===*/
