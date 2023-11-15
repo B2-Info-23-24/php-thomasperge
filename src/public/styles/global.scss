@@ -123,7 +123,7 @@ body {
 
 /* === Popular Cars ===*/
 .popular-cars-container {
-  padding: 2.2rem;
+  padding: 2.2rem 2.2rem 0 2.2rem;
 
   .popular-cars-title {
     display: flex;
@@ -156,7 +156,7 @@ body {
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 0 1rem 0;
+    padding: 1rem 0 0 0;
     gap: 1.5rem;
   }
 }
@@ -167,7 +167,6 @@ body {
   flex-direction: column;
   border-radius: 1.2rem;
   overflow: hidden;
-  // width: fit-content;
   width: 100%;
 
   .car-container {
@@ -265,4 +264,49 @@ body {
       }
     }
   }
+}
+
+/* === All cars ===*/
+.all-cars-container {
+  padding: 2.2rem 2.2rem 0 2.2rem;
+
+  .all-cars-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title-container {
+      gap: 0.5rem;
+
+      .title {
+        font-size: 1.65rem;
+        font-family: "MornDemiBold";
+      }
+    }
+
+    .see-all-col {
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: blue;
+      font-family: "MornDemiBold";
+    }
+
+    .see-all-col:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .all-cars-area {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0 0 0;
+    gap: 1.5rem;
+  }
+}
+
+/* === All cars - Card ===*/
+.all-cards.container {
+  
 }

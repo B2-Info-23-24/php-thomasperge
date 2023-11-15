@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block content %}
-	<h1>TEST CONTENT</h1>
-	<h1>TEST CONTENT 2</h1>
+
+	{# Filter #}
+	{% include '/templates/components/filter.twig' %}
+
+	{# Popular Cars #}
+	{% include '/templates/components/popular-cars.twig' %}
+
+	{# All Cars #}
+	{% include '/templates/components/all-cars.twig' %}
 {% endblock %}
