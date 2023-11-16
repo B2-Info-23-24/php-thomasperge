@@ -68,6 +68,8 @@ a {
       gap: 0.5rem;
       background-color: white;
       padding: 0.55rem 0.85rem;
+      border-radius: 1.2rem;
+      font-size: .97rem;
     }
 
     .nav-area-unselected {
@@ -78,6 +80,7 @@ a {
       border-radius: 1.2rem;
       color: white;
       fill: white;
+      font-size: .97rem;
     }
   }
 
@@ -417,11 +420,15 @@ a {
       }
 
       .brand-path {
-        padding: .2rem .4rem .2rem .4rem;
+        padding: .2rem .5rem .2rem .5rem;
         border-radius: 2rem;
         background-color: #e5f3fa;
         color: #214ddf;
       }
+    }
+
+    .path-container > a:hover {
+      text-decoration: underline;
     }
 
     .booking-container {
@@ -440,7 +447,7 @@ a {
           gap: .6rem;
           width: 50%;
 
-          #startDate {
+          #startDate, #returnDate {
             padding: .5rem 1.2rem;
             outline: none;
             border: rgb(196, 196, 196) 1.5px solid;
@@ -515,6 +522,16 @@ a {
         }
       }
     }
+  }
+
+  .reserve-now-container {
+    width: 100%;
+    background-color: blue;
+    color: white;
+    padding: 1rem 0;
+    border-radius: 15px;
+    font-size: .95rem;
+    cursor: pointer;
   }
 
 }
