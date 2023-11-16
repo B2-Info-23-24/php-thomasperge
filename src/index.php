@@ -26,16 +26,17 @@ $routes = [
 ];
 
 // Router
-$request = $_SERVER['REQUEST_URI'];
+$request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// Vérifier si la route existe dans le tableau
 if (array_key_exists($request, $routes)) {
   $route = $routes[$request];
+  $query = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
+  $params = [];
+  parse_str($query, $params);
   $controller = new $route['controller']();
   $method = $route['method'];
-  $controller->$method();
+  $controller->$method($params);
 } else {
-  // Route existe pas = envoyer une erreur 404
   http_response_code(404);
   $errorController = new ErrorController();
   $errorController->errorRouter();

@@ -1,18 +1,18 @@
 <?php
-require 'vendor/autoload.php';
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+require_once __DIR__ . '/../core/render.php';
 
 class ProfilController
 {
-  private $twig;
+  private $renderManager;
+
+  public function __construct()
+  {
+    $this->renderManager = new RenderManager();
+  }
 
   public function profilRouter()
   {
-    $loader = new FilesystemLoader(__DIR__ . '/../views');
-    $this->twig = new Environment($loader);
-
-    echo $this->twig->render('/pages/profil.twig');
+    $this->renderManager->render('/pages/profil.twig');
   }
 }

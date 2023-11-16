@@ -1,18 +1,18 @@
 <?php
-require 'vendor/autoload.php';
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+require_once __DIR__ . '/../core/render.php';
 
 class SigninController
 {
-  private $twig;
+  private $renderManager;
+
+  public function __construct()
+  {
+    $this->renderManager = new RenderManager();
+  }
 
   public function signinRouter()
   {
-    $loader = new FilesystemLoader(__DIR__ . '/../views');
-    $this->twig = new Environment($loader);
-
-    echo $this->twig->render('/pages/signin.twig');
+    $this->renderManager->render('/pages/signin.twig');
   }
 }

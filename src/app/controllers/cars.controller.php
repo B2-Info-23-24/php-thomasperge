@@ -16,11 +16,11 @@ class CarsController
     $this->renderManager = new RenderManager();
   }
 
-  public function carsRouter()
+  public function carsRouter($params)
   {
     $currentRoute = $_SERVER['REQUEST_URI'];
     $vehicles = $this->vehicleModel->getAllVehicles();
 
-    $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehicles]);
+    $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'params' => $params['id'] ?? null, 'vehicles' => $vehicles]);
   }
 }

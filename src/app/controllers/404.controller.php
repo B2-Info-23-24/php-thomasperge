@@ -1,18 +1,18 @@
 <?php
-require 'vendor/autoload.php';
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+require_once __DIR__ . '/../core/render.php';
 
 class ErrorController
 {
-  private $twig;
+  private $renderManager;
+
+  public function __construct()
+  {
+    $this->renderManager = new RenderManager();
+  }
 
   public function errorRouter()
   {
-    $loader = new FilesystemLoader(__DIR__ . '/../views');
-    $this->twig = new Environment($loader);
-
-    echo $this->twig->render('/pages/404.twig');
+    $this->renderManager->render('/pages/404.twig');
   }
 }

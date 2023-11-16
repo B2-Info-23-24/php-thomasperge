@@ -1,28 +1,17 @@
 <?php
-require 'vendor/autoload.php';
-require_once __DIR__ . '/../models/vehicle.model.php';
-
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+require_once __DIR__ . '/../core/render.php';
 
 class VehicleController
 {
-  private $twig;
-  private $vehicleModel;
+  private $renderManager;
 
   public function __construct()
   {
-    global $conn;
-    $this->vehicleModel = new VehicleModel($conn);
-
-    $loader = new FilesystemLoader(__DIR__ . '/../views');
-    $this->twig = new Environment($loader);
+    $this->renderManager = new RenderManager();
   }
 
   public function vehicleRouter()
   {
-    $vehicles = $this->vehicleModel->getAllVehicles();
-
-    echo $this->twig->render('/pages/vehicle.twig', ['vehicle' => $vehicles]);
+    $this->renderManager->render('/pages/vehicle.twig');
   }
 }
