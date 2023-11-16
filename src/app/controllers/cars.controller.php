@@ -21,6 +21,6 @@ class CarsController
     $currentRoute = $_SERVER['REQUEST_URI'];
     $vehicles = $this->vehicleModel->getAllVehicles();
 
-    $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'params' => $params['id'] ?? null, 'vehicles' => $vehicles]);
+    $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehicles]);
   }
 }
