@@ -10,8 +10,8 @@ class VehicleController
     $this->renderManager = new RenderManager();
   }
 
-  public function vehicleRouter()
+  public function vehicleRouter($params)
   {
-    $this->renderManager->render('/pages/vehicle.twig');
+    $this->renderManager->render('/pages/vehicle.twig', ['params' => $params['id'] ?? null]);
   }
 }
