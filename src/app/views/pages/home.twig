@@ -13,5 +13,5 @@
 	{% include '/templates/components/popular-cars.twig' %}
 
 	{# All Cars #}
-	{% include '/templates/components/all-cars.twig' %}
+	{% include '/templates/components/all-cars.twig' with {'data': vehicles } %}
 {% endblock %}

@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block content %}
-
 	{# All Cars #}
-	{% include '/templates/components/all-cars.twig' %}
+	{% include '/templates/components/all-cars.twig' with {'data': vehicles } %}
 {% endblock %}
