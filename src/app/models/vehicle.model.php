@@ -35,7 +35,21 @@ class VehicleModel
             }
         }
 
-        $this->addUser("test", "test", "test@test.com", "test", "test");
+        return $vehicles;
+    }
+
+    public function getAllVehicleFromBrand($brand)
+    {
+        $brand = mysqli_real_escape_string($this->conn, $brand);
+        $sql = "SELECT * FROM vehicle WHERE LOWER(brand) = LOWER('$brand')";
+        $result = $this->conn->query($sql);
+
+        $vehicles = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $vehicles[] = $row;
+            }
+        }
 
         return $vehicles;
     }

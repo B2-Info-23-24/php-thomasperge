@@ -19,8 +19,17 @@ class CarsController
   public function carsRouter($params)
   {
     $currentRoute = $_SERVER['REQUEST_URI'];
-    $vehicles = $this->vehicleModel->getAllVehicles();
+    $brand = $params['brand'] ?? null;
 
-    $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehicles]);
+    $vehicles = $this->vehicleModel->getAllVehicles();
+    $vehiclesFilterByBrand = $this->vehicleModel->getAllVehicleFromBrand($brand);
+
+    if ($vehicles !== null && $brand === null) {
+        $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehicles]);
+    } elseif ($vehiclesFilterByBrand !== null) {
+        $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehiclesFilterByBrand]);
+    } else {
+        $this->renderManager->render('/pages/404.twig', ['currentRoute' => $currentRoute]);
+    }
   }
 }

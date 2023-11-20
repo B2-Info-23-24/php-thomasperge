@@ -24,10 +24,15 @@ class VehicleController
 
   public function vehicleRouter($params)
   {
-    $vehicles = $this->vehicleModel->getUniqueVehicle($params['id']);
-    $garage = $this->garageModel->getGarageDataFromId($vehicles[0]['id_owner_garage']);
-    $rating = $this->ratingModel->getAllRatingFromVehicleId($params['id']);
+    $vehicles = $this->vehicleModel->getUniqueVehicle($params['id'] ?? null);
+    $garage = $this->garageModel->getGarageDataFromId($vehicles[0]['id_owner_garage'] ?? null);
+    $rating = $this->ratingModel->getAllRatingFromVehicleId($params['id'] ?? null);
 
-    $this->renderManager->render('/pages/vehicle.twig', ['params' => $params['id'] ?? null, 'vehicle' => $vehicles, 'garage' => $garage, 'rating' => $rating]);
+    if ($vehicles) {
+      $this->renderManager->render('/pages/vehicle.twig', ['params' => $params['id'] ?? null, 'vehicle' => $vehicles, 'garage' => $garage, 'rating' => $rating]);
+    } else {
+      $this->renderManager->render('/pages/404.twig');
+
+    }
   }
 }
