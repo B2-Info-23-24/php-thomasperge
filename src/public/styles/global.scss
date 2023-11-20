@@ -36,6 +36,11 @@ a {
   justify-content: center;
 }
 
+.spacebox {
+  display: flex;
+  flex-direction: column;
+}
+
 #content {
   background-color: white;
   border-radius: 1.2rem 1.2rem 0 0;
@@ -52,7 +57,7 @@ a {
   background-color: #060b20;
 
   .website-logo {
-    width: 3.4rem;
+    width: 3.5rem;
 
     .logo {
       width: 100%;
@@ -177,8 +182,6 @@ a {
   width: 100%;
 
   .car-container {
-    // background-color: #eef1fa;
-
     .car-info {
       display: flex;
       align-items: center;
@@ -338,7 +341,7 @@ a {
     .infos-container {
       display: flex;
       align-items: center;
-      justify-content: space-between; 
+      justify-content: space-between;
 
       .name-container {
         display: flex;
@@ -362,7 +365,7 @@ a {
       padding: 1rem;
       height: 8rem;
       width: 100%;
-    
+
       .car-img {
         width: 90%;
         object-fit: contain;
@@ -404,11 +407,12 @@ a {
 .detail-container {
   display: flex;
   padding: 2rem;
+  gap: 2rem;
 
   .book-container {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 32%;
     gap: 2rem;
 
     .path-container {
@@ -427,7 +431,7 @@ a {
       }
     }
 
-    .path-container > a:hover {
+    .path-container>a:hover {
       text-decoration: underline;
     }
 
@@ -447,7 +451,8 @@ a {
           gap: .6rem;
           width: 50%;
 
-          #startDate, #returnDate {
+          #startDate,
+          #returnDate {
             padding: .5rem 1.2rem;
             outline: none;
             border: rgb(196, 196, 196) 1.5px solid;
@@ -457,83 +462,227 @@ a {
         }
       }
     }
-  }
 
-  .car-container {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-  }
-
-  .rental-box {
-    display: flex;
-    flex-direction: column;
-    gap: .7rem;
-
-    .rental-container {
+    .rental-box {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: .7rem;
 
-      .rental-title {
-        font-size: 1.2rem;
-        font-family: "MornDemiBold"
-      }
+      .rental-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
 
-      .rental-data-container {
-        width: 100%;
-
-        .rental-data-area hr {
-          width: 100%;
-          margin: .72rem 0;
+        .rental-title {
+          font-size: 1.2rem;
+          font-family: "MornDemiBold"
         }
 
-        .rental-data-area {
-          display: flex;
-          flex-direction: column;
-          gap: .25rem;
-          width: 95%;
-          background-color: #edf2f9;
-          border-radius: 16px 16px 0 0;
-          padding: 1rem;
+        .rental-data-container {
+          width: 100%;
 
-          .rent-per-day-container {
+          .rental-data-area hr {
             width: 100%;
+            margin: .72rem 0;
+          }
+
+          .rental-data-area {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: .25rem;
+            width: 95%;
+            background-color: #edf2f9;
+            border-radius: 16px 16px 0 0;
+            padding: 1rem;
 
-            .rent-per {
-              font-size: .92rem;
-              color: rgb(115, 115, 115);
-            }
+            .rent-per-day-container {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
 
-            .price {
-              font-size: .96rem;
-              color: black;
-              font-family: "MornDemiBold";
+              .rent-per {
+                font-size: .92rem;
+                color: rgb(115, 115, 115);
+              }
+
+              .price {
+                font-size: .96rem;
+                color: black;
+                font-family: "MornDemiBold";
+              }
             }
           }
-        }
 
-        .rental-user-area {
-          background-color: #edf2f9;
-          border-radius: 0 0 16px 16px;
+          .rental-user-area {
+            background-color: #edf2f9;
+            border-radius: 0 0 16px 16px;
+          }
         }
+      }
+
+      .reserve-now-container {
+        width: 100%;
+        background-color: blue;
+        color: white;
+        padding: 1rem 0;
+        border-radius: 15px;
+        font-size: .95rem;
+        cursor: pointer;
       }
     }
   }
 
-  .reserve-now-container {
+  .information-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
     width: 100%;
-    background-color: blue;
-    color: white;
-    padding: 1rem 0;
-    border-radius: 15px;
-    font-size: .95rem;
-    cursor: pointer;
-  }
+    height: fit-content;
 
+    .car-stats-container {
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.65rem;
+      overflow: hidden;
+      box-sizing: border-box;
+      height: fit-content;
+
+      .car-container {
+        flex-direction: column;
+        padding: 1rem 1rem 1rem 1rem;
+        border-radius: 1.65rem;
+        background-color: #eceff8db;
+
+        .infos-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+
+          .name-container {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+
+            .brand {
+              font-size: 1.5rem;
+              font-family: "MornDemiBold";
+            }
+
+            .model {
+              font-size: 1rem;
+              font-family: "MornRegular";
+            }
+          }
+        }
+
+        .car-img-container {
+          height: auto;
+          max-height: 12rem;
+          width: 70%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+
+          .backgroundTitle {
+            position: absolute;
+            display: flex;
+            align-items: start;
+            white-space: nowrap;
+            justify-content: start;
+            transform: translateY(-25px) translateX(10px);
+            font-size: 7rem;
+            font-size: "MornBold";
+            background: -webkit-linear-gradient(-90deg, rgba(0, 0, 0, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 5;
+          }
+
+          .car-img {
+            width: 95%;
+            object-fit: contain;
+            z-index: 6;
+            margin: 0 0 0 1.6rem;
+          }
+        }
+      }
+    }
+
+    .car-information-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1rem;
+      width: 60%;
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(156, 83, 224);
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        color: white;
+        font-size: 1.35rem;
+      }
+
+      .garagetitle {
+        font-family: "MornDemiBold";
+        font-size: 1.2rem;
+      }
+
+    }
+
+    .all-information-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      gap: 2rem;
+
+      .info-area {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        .title {
+          font-family: "MornBold";
+          font-size: 1.6rem;
+        }
+
+        .information {
+          text-wrap: wrap;
+          font-family: "MornRegular";
+          font-family: 1rem;
+        }
+      }
+
+      .stats-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        .stats-item {
+          width: 25%;
+          padding: 1rem;
+          background-color: rgb(235, 237, 255);
+          border-radius: 1.2rem;
+          gap: .5rem;
+
+          .svg-container {
+            .icon {
+              padding: .35rem;
+              border-radius: 2rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 /* === Footer ===*/
