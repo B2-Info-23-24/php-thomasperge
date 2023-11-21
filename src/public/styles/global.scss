@@ -986,13 +986,13 @@ a {
           display: flex;
           flex-wrap: wrap;
           gap: 1rem;
-  
+
           .editing-item {
             .label {
               font-family: "MornMedium";
               font-size: 1.15rem;
             }
-  
+
             .input {
               font-family: "MornRegular";
               font-size: 1.05rem;
@@ -1018,6 +1018,94 @@ a {
         font-size: .95rem;
         cursor: pointer;
       }
+    }
+  }
+}
+
+/* === Submit new Vehicle ===*/
+.submit-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+
+  .path-container {
+    display: flex;
+    gap: .6rem;
+
+    >a:hover {
+      text-decoration: underline;
+    }
+
+    .path {
+      font-size: .95rem;
+    }
+
+    .brand-path {
+      padding: .2rem .5rem .2rem .5rem;
+      border-radius: 2rem;
+      background-color: #e5f3fa;
+      color: #214ddf;
+    }
+  }
+
+
+
+  .all-information-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 2rem;
+
+    .info-area {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+
+      .title {
+        font-family: "MornBold";
+        font-size: 1.6rem;
+      }
+    }
+
+    .form-editing-container {
+      gap: 1.1rem;
+
+      .editing-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .editing-item {
+          .label {
+            font-family: "MornMedium";
+            font-size: 1.15rem;
+          }
+
+          .input {
+            font-family: "MornRegular";
+            font-size: 1.05rem;
+            outline: none;
+            border: none;
+            border-radius: .8rem;
+            border: 2px solid rgba(194, 194, 194, 0.336);
+            padding: .3rem .7rem;
+          }
+        }
+      }
+    }
+
+    .button-submit {
+      width: fit-content;
+      background-color: blue;
+      border: none;
+      outline: none;
+      color: white;
+      font-family: "MornDemiBold";
+      padding: 1rem 1.5rem;
+      border-radius: 15px;
+      font-size: .95rem;
+      cursor: pointer;
     }
   }
 }

@@ -90,4 +90,25 @@ class VehicleModel
     $stmt->close();
     return true;
   }
+
+
+  public function addVehicle($id_garage, $brand, $model, $price, $url_picture, $petrol, $nb_seats, $color, $gearbox, $brand_logo, $information)
+  {
+    $stmt = $this->conn->prepare('INSERT INTO vehicle (id_garage, brand, model, price, url_picture, petrol, nb_seats, colors, gearbox, brand_logo, information) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+
+    if ($stmt === false) {
+      throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
+      return false;
+    }
+
+    $stmt->bind_param('sssssssssss', $id_garage, $brand, $model, $price, $url_picture, $petrol, $nb_seats, $color, $gearbox, $brand_logo, $information);
+
+    if (!$stmt->execute()) {
+      throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
+      return false;
+    }
+
+    $stmt->close();
+    return true;
+  }
 }
