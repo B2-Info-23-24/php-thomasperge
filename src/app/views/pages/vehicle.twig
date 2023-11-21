@@ -194,6 +194,28 @@
 					</div>
 				</div>
 			</div>
+
+			{# Booking Container #}
+			<div class="all-booking-container">
+				<div class="info-area">
+					<div class="title">Last Booking & Reviews</div>
+				</div>
+
+				<div class="all-reviews-container">
+					{% if rating is empty %}
+						<p>Aucun avis disponible pour le moment</p>
+					{% else %}
+						{% for review in rating %}
+							<div class="review-container">
+								<div class="flexbox" style="width: fit-content;">
+									{% include '/templates/components/rating.twig' with {'average': review.rating} %}
+								</div>
+								{{review.description}}
+							</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
 		</div>
 	</div>
 

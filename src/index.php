@@ -10,6 +10,7 @@ require_once __DIR__ . '/app/controllers/book.controller.php';
 require_once __DIR__ . '/app/controllers/profil.controller.php';
 require_once __DIR__ . '/app/controllers/404.controller.php';
 require_once __DIR__ . '/app/controllers/cars.controller.php';
+require_once __DIR__ . '/app/controllers/sucess.controller.php';
 require_once __DIR__ . '/config.php';
 
 // Définir les routes
@@ -25,6 +26,7 @@ $routes = [
   '/cars'     => ['controller' => 'CarsController', 'method' => 'carsRouter'],
   '/book'     => ['controller' => 'BookController', 'method' => 'bookRouter'],
   '/profil'   => ['controller' => 'ProfilController', 'method' => 'profilRouter'],
+  '/sucess'   => ['controller' => 'SucessController', 'method' => 'sucessRouter'],
 ];
 
 // Manage coockies

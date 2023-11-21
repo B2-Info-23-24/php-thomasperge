@@ -31,7 +31,7 @@ class SignupController
       $adduser = $this->userModel->addUser($firstname, $lastname, $email, $phone, $password, $isOwner, $nameGarage, $adressGarage);
 
       if ($adduser) {
-        header('Location: /home');
+        header('Location: /sucess');
         exit;
       } else {
         echo "Erreur dans le formulaire...";

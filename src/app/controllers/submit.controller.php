@@ -37,7 +37,7 @@ class SubmitController
       $updateVehicle = $this->vehicleModel->addVehicle($garageData[0]['id'], $brand, $model, $price, $image, $petrol, $nb_seats, $color, $gearbox, $brandlogo, $information);
 
       if ($updateVehicle) {
-        header('Location: /dashboard');
+        header('Location: /sucess');
         exit;
       } else {
         echo "Erreur dans le formulaire...";

@@ -35,7 +35,7 @@ class VehicleController
       $addBooking = $this->bookingModel->addBooking($params['id'], $_COOKIE['userId'], $startDate, $endDate, $price);
 
       if ($addBooking) {
-        header('Location: /home');
+        header('Location: /sucess');
         exit;
       } else {
         echo "Erreur dans le formulaire...";
