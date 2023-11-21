@@ -527,8 +527,11 @@ a {
         color: white;
         padding: 1rem 0;
         border-radius: 15px;
-        font-size: .95rem;
+        font-family: "MornMedium";
+        font-size: 1rem;
         cursor: pointer;
+        outline: none;
+        border: none;
       }
     }
   }
@@ -1048,8 +1051,6 @@ a {
       color: #214ddf;
     }
   }
-
-
 
   .all-information-container {
     display: flex;

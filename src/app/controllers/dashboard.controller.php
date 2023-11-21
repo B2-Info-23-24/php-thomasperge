@@ -30,6 +30,6 @@ class DashboardController
     $garageData = $this->garageModel->getGarageDataFromUserId($userId);
     $allVehicleFromGarage = $this->vehicleModel->getAllVehicleFromGarageID($garageData[0]['id']);
 
-    $this->renderManager->render('/pages/dashboard.twig', ['userData' => $userData, 'garageData' => $garageData, 'vehicles' => $allVehicleFromGarage ]);
+    $this->renderManager->render('/pages/dashboard.twig', ['userData' => $userData, 'garageData' => $garageData, 'vehicles' => $allVehicleFromGarage]);
   }
 }

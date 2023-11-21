@@ -22,5 +22,4 @@ class RatingModel
         }
         return $data;
     }
-
 }

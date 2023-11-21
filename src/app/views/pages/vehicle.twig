@@ -7,7 +7,7 @@
 {% block content %}
 	<div class="detail-container">
 		{# Book Container #}
-		<div class="book-container">
+		<form class="book-container" method="post" action"/vehicle?id={{ vehicle[0]['id'] }}">
 			{# Path Container #}
 			<div class="path-container">
 				<a href="/home">
@@ -84,17 +84,18 @@
 							<div class="rent-per-day-container">
 								<div class="price">In-Total</div>
 								<div class="price" id="total">${{ (vehicle[0]['price'] * 1) + 40 }}</div>
+								<input type="number" name="price" id="input-price" value="{{ (vehicle[0]['price'] * 1) + 40 }}" style="display: none">
 							</div>	
 						</div>
 					</div>
 				</div>
 
 				{# Reserve Now #}
-				<div class="reserve-now-container flexbox">
+				<button class="reserve-now-container flexbox" type="submit">
 					Reserve now
-				</div>
+				</button>
 			</div>
-		</div>
+		</form>
 
 		{# Car Detail Container #}
 		<div class="information-container">
@@ -215,6 +216,7 @@
 
 				document.getElementById('totalPrice').innerHTML = '$' + totalPrice;
 				document.getElementById('total').innerHTML = '$' + (totalPrice + 40);
+				document.getElementById('input-price').value = (totalPrice + 40);
 			}
 		}
 	</script>

@@ -25,11 +25,11 @@ class CarsController
     $vehiclesFilterByBrand = $this->vehicleModel->getAllVehicleFromBrand($brand);
 
     if ($vehicles !== null && $brand === null) {
-        $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehicles]);
+      $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehicles]);
     } elseif ($vehiclesFilterByBrand !== null) {
-        $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehiclesFilterByBrand]);
+      $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehiclesFilterByBrand]);
     } else {
-        $this->renderManager->render('/pages/404.twig', ['currentRoute' => $currentRoute]);
+      $this->renderManager->render('/pages/404.twig', ['currentRoute' => $currentRoute]);
     }
   }
 }
