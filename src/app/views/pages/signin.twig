@@ -5,5 +5,27 @@
 {% endblock %}
 
 {% block content %}
-	
+  <div class="signin-container spacebox">
+		{# User Form #}
+		<div class="user-container-form spacebox">
+			<form action="signin" method="post" class="user-form spacebox">
+				<div class="spacebox">
+					<label class="title" for="email">Email</label>
+					<input type="text" class="input" name="email" id="">
+				</div>
+
+				<div class="spacebox">
+					<label class="title" for="password">Password</label>
+					<input type="password" class="input" name="password" id="">
+				</div>
+
+				<button type="submit" class="button-submit">Signin</button>
+			</form>
+		</div>
+
+		{# Owner Form #}
+		<div class="owner-container-form">
+		
+		</div>
+	</div>
 {% endblock %}

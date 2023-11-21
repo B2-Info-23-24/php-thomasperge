@@ -9,6 +9,58 @@ class UserModel
     $this->conn = $conn;
   }
 
+  public function signinUser($email, $password)
+  {
+    $userId = null;
+    $hashedPassword = '';
+    $isOwner = null;
+
+    $stmt = $this->conn->prepare('SELECT id, password, is_garage_owner FROM users WHERE email = ?');
+
+    if ($stmt === false) {
+      throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
+      return false;
+    }
+
+    $stmt->bind_param('s', $email);
+
+    if (!$stmt->execute()) {
+      throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
+      return false;
+    }
+
+    $stmt->store_result();
+
+    if ($stmt->num_rows === 0) {
+      return false;
+    }
+
+    $stmt->bind_result($userId, $hashedPassword, $isOwner);
+
+    $stmt->fetch();
+
+    if (password_verify($password, $hashedPassword)) {
+      // Mot de passe correct
+      setcookie('userId', $userId, time() + (86400 * 30), "/");
+      setcookie('admin', $isOwner ? 'true' : 'false', time() + (86400 * 30), "/");
+
+      if ($isOwner) {
+        header('Location: /dashboard');
+        exit;
+      } else {
+        header('Location: /home');
+        exit;
+      }
+
+      $stmt->close();
+      return true;
+    } else {
+      // Mot de passe incorrect
+      $stmt->close();
+      return false;
+    }
+  }
+
   public function addUser($firstname, $lastname, $email, $phone, $password, $isOwner, $garageName, $garageAdress)
   {
     if (empty($firstname) || empty($lastname) || empty($email) || empty($phone) || empty($password)) {
@@ -34,16 +86,16 @@ class UserModel
       throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
       return false;
     }
-    
+
     $newUserId = $stmt->insert_id;
 
     setcookie('userId', $newUserId, time() + (86400 * 30), "/");
     setcookie('admin', $isOwner ? 'true' : 'false', time() + (86400 * 30), "/");
-    
+
     if ($isOwner) {
       $this->addGarage($newUserId, $garageName, $garageAdress);
     }
-    
+
     $stmt->close();
     return true;
   }
