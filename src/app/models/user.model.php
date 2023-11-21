@@ -100,6 +100,36 @@ class UserModel
     return true;
   }
 
+  public function updateUser($userId, $firstname, $lastname, $email, $phone, $password)
+  {
+    if (empty($firstname) || empty($lastname) || empty($email) || empty($phone) || empty($password)) {
+      throw new Exception("Tous les champs sont obligatoires.");
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      throw new Exception("Adresse e-mail non valide.");
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $stmt = $this->conn->prepare('UPDATE users SET firstname=?, lastname=?, email=?, phone=?, password=? WHERE id=?');
+
+    if ($stmt === false) {
+      throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
+      return false;
+    }
+
+    $stmt->bind_param('sssssi', $firstname, $lastname, $email, $phone, $hashedPassword, $userId);
+
+    if (!$stmt->execute()) {
+      throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
+      return false;
+    }
+
+    $stmt->close();
+    return true;
+  }
+
   public function addGarage($id_owner, $name, $adress)
   {
     if (empty($id_owner) || empty($name) || empty($adress)) {

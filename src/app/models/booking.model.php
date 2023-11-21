@@ -75,4 +75,43 @@ class BookingModel
 
     return $bookingData;
   }
+
+  public function getAllBookingFromUserId($userId)
+  {
+    $stmt = $this->conn->prepare('
+        SELECT
+            b.id AS booking_id,
+            b.start_date,
+            b.end_date,
+            b.price AS booking_price,
+            v.id AS vehicle_id,
+            v.brand,
+            v.model,
+            v.url_picture,
+            v.brand_logo
+        FROM
+            booking b
+        JOIN
+            vehicle v ON b.id_vehicle = v.id
+        WHERE
+            b.id_user = ?
+    ');
+
+    if ($stmt === false) {
+      throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
+    }
+
+    $stmt->bind_param('s', $userId);
+
+    if (!$stmt->execute()) {
+      throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
+    }
+
+    $result = $stmt->get_result();
+    $bookingData = $result->fetch_all(MYSQLI_ASSOC);
+
+    $stmt->close();
+
+    return $bookingData;
+  }
 }
