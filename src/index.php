@@ -4,6 +4,7 @@ require_once __DIR__ . '/app/controllers/dashboard.controller.php';
 require_once __DIR__ . '/app/controllers/signin.controller.php';
 require_once __DIR__ . '/app/controllers/signup.controller.php';
 require_once __DIR__ . '/app/controllers/vehicle.controller.php';
+require_once __DIR__ . '/app/controllers/vehicle-editing.controller.php';
 require_once __DIR__ . '/app/controllers/submit.controller.php';
 require_once __DIR__ . '/app/controllers/book.controller.php';
 require_once __DIR__ . '/app/controllers/profil.controller.php';
@@ -20,6 +21,7 @@ $routes = [
   '/submit'   => ['controller' => 'SubmitController', 'method' => 'submitRouter'],
   '/signup'   => ['controller' => 'SignupController', 'method' => 'signupRouter'],
   '/vehicle'  => ['controller' => 'VehicleController', 'method' => 'vehicleRouter'],
+  '/vehicle-editing'  => ['controller' => 'VehicleEditingController', 'method' => 'vehicleEditingRouter'],
   '/cars'     => ['controller' => 'CarsController', 'method' => 'carsRouter'],
   '/book'     => ['controller' => 'BookController', 'method' => 'bookRouter'],
   '/profil'   => ['controller' => 'ProfilController', 'method' => 'profilRouter'],
@@ -30,19 +32,19 @@ $isAdmin = isset($_COOKIE['admin']) ? filter_var($_COOKIE['admin'], FILTER_VALID
 $currentRoute = $_SERVER['REQUEST_URI'];
 
 if ($isAdmin) {
-    $restrictedRoutes = ['/home', '/vehicle', '/cars', '/book', '/profil'];
+  $restrictedRoutes = ['/home', '/vehicle', '/cars', '/book', '/profil'];
 
-    if (in_array($currentRoute, $restrictedRoutes)) {
-        header('Location: /dashboard');
-        exit;
-    }
+  if (in_array($currentRoute, $restrictedRoutes)) {
+    header('Location: /dashboard');
+    exit;
+  }
 } else {
-    $restrictedRoutes = ['/dashboard', '/submit'];
+  $restrictedRoutes = ['/dashboard', '/submit', '/vehicle-editing'];
 
-    if (in_array($currentRoute, $restrictedRoutes)) {
-        header('Location: /home');
-        exit;
-    }
+  if (in_array($currentRoute, $restrictedRoutes)) {
+    header('Location: /home');
+    exit;
+  }
 }
 
 // Router

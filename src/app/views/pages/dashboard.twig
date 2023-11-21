@@ -5,11 +5,27 @@
 {% endblock %}
 
 {% block content %}
-	<div class="dasboard-container">
+	<div class="dasboard-container spacebox">
 		{# Good Morning #}
-		<div class="good-morning-container">
-			<div class="title">Good Morning,</div>
-			<div class="username">Thomas</div>
+		<div class="editor-container">
+			<div class="spacebox">
+				<div class="title">Good Morning,</div>
+				<div class="username">{{ userData[0]['firstname'] }} {{ userData[0]['lastname'] }}</div>
+			</div>
+
+			<div class="spacebox">
+				<a href="/submit" class="submit-button">Submit new car</a>
+			</div>
+		</div>
+
+		{# All Collections #}
+		<div class="all-cars">
+			<div class="all-cars-title">🔥 All your cars {{count}}</div>
+			<div class="all-cars-area">
+				{% for vehicle in vehicles %}
+					{% include '/templates/components/card-vehicle-editing.twig' with {'id': vehicle.id, 'brand': vehicle.brand, 'model': vehicle.model, 'logo': vehicle.brand_logo, 'modelImage': vehicle.url_picture, 'seats': vehicle.nb_seats, 'petrol': vehicle.petrol, 'gear': vehicle.gearbox, 'price': vehicle.price} %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 {% endblock %}

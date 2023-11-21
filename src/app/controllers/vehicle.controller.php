@@ -25,7 +25,7 @@ class VehicleController
   public function vehicleRouter($params)
   {
     $vehicles = $this->vehicleModel->getUniqueVehicle($params['id'] ?? null);
-    $garage = $this->garageModel->getGarageDataFromId($vehicles[0]['id_owner_garage'] ?? null);
+    $garage = $this->garageModel->getGarageDataFromId($vehicles[0]['id_garage'] ?? null);
     $rating = $this->ratingModel->getAllRatingFromVehicleId($params['id'] ?? null);
 
     if ($vehicles) {

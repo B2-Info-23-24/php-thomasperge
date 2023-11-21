@@ -24,13 +24,12 @@ class DashboardController
 
   public function dashboardRouter()
   {
-    $userId = 3;
-    $garageId = 3;
+    $userId = $_COOKIE['userId'];
 
     $userData = $this->userModel->getUserDataFromId($userId);
     $garageData = $this->garageModel->getGarageDataFromUserId($userId);
-    $allVehicleFromGarage = $this->vehicleModel->getAllVehicleFromGarageID($garageId);
+    $allVehicleFromGarage = $this->vehicleModel->getAllVehicleFromGarageID($garageData[0]['id']);
 
-    $this->renderManager->render('/pages/dashboard.twig');
+    $this->renderManager->render('/pages/dashboard.twig', ['userData' => $userData, 'garageData' => $garageData, 'vehicles' => $allVehicleFromGarage ]);
   }
 }

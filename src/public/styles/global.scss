@@ -794,7 +794,232 @@ a {
 }
 
 /* === Dasboard ===*/
-.dasboard-container{
+.dasboard-container {
+  padding: 1.5rem;
+  gap: 2rem;
+
+  .editor-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    >.spacebox>.title {
+      font-size: 1.2rem;
+      font-family: "MornRegular";
+    }
+
+    >.spacebox>.username {
+      font-size: 1.55rem;
+      font-family: "MornBold";
+    }
+
+    .submit-button {
+      background-color: blue;
+      border: none;
+      outline: none;
+      color: white;
+      font-family: "MornDemiBold";
+      padding: 1rem 1.5rem;
+      border-radius: 15px;
+      font-size: .95rem;
+      cursor: pointer;
+    }
+  }
+
+  .all-cars-title {
+    font-size: 1.6rem;
+    font-family: "MornDemiBold";
+  }
+
+  .all-cars {
+
+    .all-cars-area {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: start;
+      padding: 1rem 0 0 0;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+  }
+
+
+}
+
+/* === Vehicle detail ===*/
+.editing-vehicle-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+
+  .path-container {
+    display: flex;
+    gap: .6rem;
+
+    >a:hover {
+      text-decoration: underline;
+    }
+
+    .path {
+      font-size: .95rem;
+    }
+
+    .brand-path {
+      padding: .2rem .5rem .2rem .5rem;
+      border-radius: 2rem;
+      background-color: #e5f3fa;
+      color: #214ddf;
+    }
+  }
+
+  .information-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    width: 100%;
+    height: fit-content;
+
+    .car-stats-container {
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.65rem;
+      overflow: hidden;
+      box-sizing: border-box;
+      height: fit-content;
+
+      .car-container {
+        flex-direction: column;
+        padding: 1rem 1rem 1rem 1rem;
+        border-radius: 1.65rem;
+        background-color: #eceff8db;
+
+        .infos-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+
+          .name-container {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+
+            .brand {
+              font-size: 1.5rem;
+              font-family: "MornDemiBold";
+            }
+
+            .model {
+              font-size: 1rem;
+              font-family: "MornRegular";
+            }
+          }
+        }
+
+        .car-img-container {
+          height: auto;
+          max-height: 12rem;
+          width: 70%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+
+          .backgroundTitle {
+            position: absolute;
+            display: flex;
+            align-items: start;
+            white-space: nowrap;
+            justify-content: start;
+            transform: translateY(-25px) translateX(10px);
+            font-size: 7rem;
+            font-size: "MornBold";
+            background: -webkit-linear-gradient(-90deg, rgba(0, 0, 0, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 5;
+          }
+
+          .car-img {
+            width: 95%;
+            object-fit: contain;
+            z-index: 6;
+            margin: 0 0 0 1.6rem;
+          }
+        }
+      }
+    }
+
+    .car-information-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1rem;
+      width: 60%;
+    }
+
+    .all-information-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      gap: 2rem;
+
+      .info-area {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        .title {
+          font-family: "MornBold";
+          font-size: 1.6rem;
+        }
+      }
+
+      .form-editing-container {
+        gap: 1.1rem;
+
+        .editing-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+  
+          .editing-item {
+            .label {
+              font-family: "MornMedium";
+              font-size: 1.15rem;
+            }
+  
+            .input {
+              font-family: "MornRegular";
+              font-size: 1.05rem;
+              outline: none;
+              border: none;
+              border-radius: .8rem;
+              border: 2px solid rgba(194, 194, 194, 0.336);
+              padding: .3rem .7rem;
+            }
+          }
+        }
+      }
+
+      .button-submit {
+        width: fit-content;
+        background-color: blue;
+        border: none;
+        outline: none;
+        color: white;
+        font-family: "MornDemiBold";
+        padding: 1rem 1.5rem;
+        border-radius: 15px;
+        font-size: .95rem;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 /* === Footer ===*/
