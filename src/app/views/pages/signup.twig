@@ -5,5 +5,72 @@
 {% endblock %}
 
 {% block content %}
-	<h1>Signup CONTENT</h1>
+	<div class="signup-container spacebox">
+		{# User Form #}
+		<div class="user-container-form spacebox">
+			<form action="signup" method="post" class="user-form spacebox">
+				<div class="spacebox">
+					<label class="title" for="form">Firstname</label>
+					<input type="text" class="input" name="form" id="">
+				</div>
+
+				<div class="spacebox">
+					<label class="title" for="lastname">Lastname</label>
+					<input type="text" class="input" name="lastname" id="">
+				</div>
+
+				<div class="spacebox">
+					<label class="title" for="email">Email</label>
+					<input type="text" class="input" name="email" id="">
+				</div>
+
+				<div class="spacebox">
+					<label class="title" for="phone">Phone</label>
+					<input type="text" class="input" name="phone" id="">
+				</div>
+
+				<div class="spacebox">
+					<label class="title" for="password">Password</label>
+					<input type="password" class="input" name="password" id="">
+				</div>
+
+				<div class="flexbox" style="gap: .3rem">
+					<label class="title" for="isowner">Garage Owner ?</label>
+					<input type="checkbox" class="input" name="isowner" id="isowner" onclick="toggleGarageFields()">
+				</div>
+
+				<div class="spacebox" id="nameGarageField" style="display: none;">
+					<label class="title" for="nameGarage">Name of Garage</label>
+					<input type="text" class="input" name="nameGarage" id="nameGarage">
+				</div>
+
+				<div class="spacebox" id="adressGarageField" style="display: none;">
+					<label class="title" for="adressGarage">Address of Garage</label>
+					<input type="text" class="input" name="adressGarage" id="adressGarage">
+				</div>
+
+				<button type="submit" class="button-submit">Get started</button>
+			</form>
+
+			<script>
+				function toggleGarageFields() {
+					let nameGarageField = document.getElementById('nameGarageField');
+					let adressGarageField = document.getElementById('adressGarageField');
+
+					if (document.getElementById('isowner').checked) {
+						nameGarageField.style.display = 'flex';
+						adressGarageField.style.display = 'flex';
+					} else {
+						nameGarageField.style.display = 'none';
+						adressGarageField.style.display = 'none';
+					}
+				}
+			</script>
+		</div>
+
+		{# Owner Form #}
+		<div class="owner-container-form">
+		
+		</div>
+	</div>
 {% endblock %}

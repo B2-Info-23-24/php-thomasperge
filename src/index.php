@@ -25,6 +25,26 @@ $routes = [
   '/profil'   => ['controller' => 'ProfilController', 'method' => 'profilRouter'],
 ];
 
+// Manage coockies
+$isAdmin = isset($_COOKIE['admin']) ? filter_var($_COOKIE['admin'], FILTER_VALIDATE_BOOLEAN) : false;
+$currentRoute = $_SERVER['REQUEST_URI'];
+
+if ($isAdmin) {
+    $restrictedRoutes = ['/home', '/vehicle', '/cars', '/book', '/profil'];
+
+    if (in_array($currentRoute, $restrictedRoutes)) {
+        header('Location: /dashboard');
+        exit;
+    }
+} else {
+    $restrictedRoutes = ['/dashboard', '/submit'];
+
+    if (in_array($currentRoute, $restrictedRoutes)) {
+        header('Location: /home');
+        exit;
+    }
+}
+
 // Router
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
