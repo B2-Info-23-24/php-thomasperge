@@ -20,10 +20,20 @@
 
 		{# All Collections #}
 		<div class="all-cars">
-			<div class="all-cars-title">🔥 All your cars {{count}}</div>
+			<div class="all-cars-title">🔥 All your cars</div>
 			<div class="all-cars-area">
 				{% for vehicle in vehicles %}
 					{% include '/templates/components/card-vehicle-editing.twig' with {'id': vehicle.id, 'brand': vehicle.brand, 'model': vehicle.model, 'logo': vehicle.brand_logo, 'modelImage': vehicle.url_picture, 'seats': vehicle.nb_seats, 'petrol': vehicle.petrol, 'gear': vehicle.gearbox, 'price': vehicle.price} %}
+				{% endfor %}
+			</div>
+		</div>
+
+		{# All Booking #}
+		<div class="all-cars">
+			<div class="all-cars-title">🎫 All your booking</div>
+			<div class="all-cars-area">
+				{% for booking in allBooking %}
+					{% include '/templates/components/booking-car-card.twig' with {'bookingData': booking} %}
 				{% endfor %}
 			</div>
 		</div>
