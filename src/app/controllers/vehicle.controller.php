@@ -32,7 +32,6 @@ class VehicleController
       $this->renderManager->render('/pages/vehicle.twig', ['params' => $params['id'] ?? null, 'vehicle' => $vehicles, 'garage' => $garage, 'rating' => $rating]);
     } else {
       $this->renderManager->render('/pages/404.twig');
-
     }
   }
 }
