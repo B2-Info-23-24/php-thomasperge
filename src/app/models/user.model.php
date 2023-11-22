@@ -1,5 +1,9 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
+use Ramsey\Uuid\Uuid;
+
 class UserModel
 {
   private $conn;
@@ -7,6 +11,13 @@ class UserModel
   public function __construct($conn)
   {
     $this->conn = $conn;
+  }
+
+  public function generateUUID16()
+  {
+    $uuid = Uuid::uuid4();
+    $uuid16 = str_replace('-', '', $uuid->toString());
+    return substr($uuid16, 0, 16);
   }
 
   public function signinUser($email, $password)
@@ -62,7 +73,9 @@ class UserModel
 
   public function addUser($firstname, $lastname, $email, $phone, $password, $isOwner, $garageName, $garageAdress)
   {
-    if (empty($firstname) || empty($lastname) || empty($email) || empty($phone) || empty($password)) {
+    $id = $this->generateUUID16();
+
+    if (empty($id) || empty($firstname) || empty($lastname) || empty($email) || empty($phone) || empty($password)) {
       throw new Exception("Tous les champs sont obligatoires.");
     }
 
@@ -72,7 +85,7 @@ class UserModel
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $this->conn->prepare('INSERT INTO users (firstname, lastname, email, phone, password, is_garage_owner) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt = $this->conn->prepare('INSERT INTO users ($id, firstname, lastname, email, phone, password, is_garage_owner) VALUES (?, ?, ?, ?, ?, ?)');
 
     if ($stmt === false) {
       throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
