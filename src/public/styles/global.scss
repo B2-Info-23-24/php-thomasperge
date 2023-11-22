@@ -1060,6 +1060,26 @@ a {
       }
     }
   }
+
+  .all-rating-container {
+    display: flex;
+    gap: 1rem;
+
+    .review-container {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      gap: .6rem;
+      padding: .8rem;
+      background-color: #ebedff;
+      border-radius: 1.2rem;
+    }
+  }
+
+  .title {
+    font-size: 1.6rem;
+    font-family: "MornBold"
+  }
 }
 
 /* === Submit new Vehicle ===*/
@@ -1175,7 +1195,7 @@ a {
 
   .welcome-title {
     padding: 1rem 0;
-    font-size: 1.2rem;
+    font-size: 1.55rem;
     gap: .35rem;
     font-family: "MornDemiBold";
   }
@@ -1234,13 +1254,29 @@ a {
       gap: 1rem;
 
       .title {
-        font-size: 1.36rem;
+        font-size: 1.7rem;
         font-family: "MornDemiBold";
+        transform: translateX(-6px);
       }
 
+
       .all-cars {
+        .past-booking {
+          margin-top: 2rem;
+        }
+
+        .time-title {
+          font-size: 1.4rem;
+          font-family: "MornDemiBold";
+        }
+
+        .time-title:hover {
+          text-decoration: underline;
+        }
+
         .booking-area {
           gap: 1rem;
+
 
           .cars-area {
             display: flex;

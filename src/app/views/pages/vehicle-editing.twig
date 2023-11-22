@@ -75,7 +75,7 @@
 			<div class="all-information-container">
 				{# Information #}
 				<div class="info-area">
-					<div class="title">Edit Vehicle Information</div>
+					<div class="title">📝 Edit Vehicle Information</div>
 				</div>
 
 				{# Editing #}
@@ -144,6 +144,23 @@
           <button type="submit" class="button-submit">Edit vehicle</button>
         </form>
 			</div>
+		</div>
+
+		{# All rating #}
+		<div class="title">⭐ All Review</div>
+		<div class="all-rating-container">
+			{% if rating is empty %}
+				<p>Ce véhicules n'as actuellement pas d'avis</p>
+			{% else %}
+				{% for review in rating %}
+					<div class="review-container">
+						<div class="flexbox" style="width: fit-content;">
+							{% include '/templates/components/rating.twig' with {'average': review.rating} %}
+						</div>
+						{{review.description}}
+					</div>
+				{% endfor %}
+			{% endif %}
 		</div>
 	</div>
 

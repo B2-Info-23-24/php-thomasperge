@@ -29,25 +29,28 @@ $routes = [
   '/sucess'   => ['controller' => 'SucessController', 'method' => 'sucessRouter'],
 ];
 
-// Manage coockies
+// Manage cookies
 $isAdmin = isset($_COOKIE['admin']) ? filter_var($_COOKIE['admin'], FILTER_VALIDATE_BOOLEAN) : false;
-$currentRoute = $_SERVER['REQUEST_URI'];
+$currentUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$parsedUrl = parse_url($currentUrl);
+$currentPath = $parsedUrl['path'];
 
 if ($isAdmin) {
-  $restrictedRoutes = ['/home', '/vehicle', '/cars', '/book', '/profil'];
+  $restrictedRoutes = ['/', '/home', '/vehicle', '/cars', '/book', '/profil'];
 
-  if (in_array($currentRoute, $restrictedRoutes)) {
+  if (in_array($currentPath, $restrictedRoutes)) {
     header('Location: /dashboard');
     exit;
   }
 } else {
   $restrictedRoutes = ['/dashboard', '/submit', '/vehicle-editing'];
 
-  if (in_array($currentRoute, $restrictedRoutes)) {
+  if (in_array($currentPath, $restrictedRoutes)) {
     header('Location: /home');
     exit;
   }
 }
+
 
 // Router
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
