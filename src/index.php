@@ -30,10 +30,15 @@ $routes = [
 ];
 
 // Manage cookies
-$isAdmin = isset($_COOKIE['admin']) ? filter_var($_COOKIE['admin'], FILTER_VALIDATE_BOOLEAN) : false;
+$userId = $_COOKIE['userId'];
 $currentUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $parsedUrl = parse_url($currentUrl);
 $currentPath = $parsedUrl['path'];
+
+$userModel;
+global $conn;
+$userModel = new UserModel($conn);
+$isAdmin = $userModel->isUserAdmin($userId);
 
 if ($isAdmin) {
   $restrictedRoutes = ['/', '/home', '/vehicle', '/cars', '/book', '/profil'];
@@ -50,7 +55,6 @@ if ($isAdmin) {
     exit;
   }
 }
-
 
 // Router
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
