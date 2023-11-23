@@ -1,4 +1,5 @@
 <?php
+require '/vendor/autoload.php';
 require_once __DIR__ . '/app/controllers/home.controller.php';
 require_once __DIR__ . '/app/controllers/dashboard.controller.php';
 require_once __DIR__ . '/app/controllers/signin.controller.php';

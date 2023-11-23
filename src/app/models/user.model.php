@@ -42,7 +42,6 @@ class UserModel
     if (password_verify($password, $hashedPassword)) {
       // Mot de passe correct
       setcookie('userId', $userId, time() + (86400 * 30), "/");
-      setcookie('admin', $isOwner ? 'true' : 'false', time() + (86400 * 30), "/");
 
       if ($isOwner) {
         header('Location: /dashboard');
@@ -73,14 +72,16 @@ class UserModel
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $this->conn->prepare('INSERT INTO users (firstname, lastname, email, phone, password, is_garage_owner) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt = $this->conn->prepare('INSERT INTO users (id, firstname, lastname, email, phone, password, is_garage_owner) VALUES (?, ?, ?, ?, ?, ?, ?)');
 
     if ($stmt === false) {
       throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
       return false;
     }
 
-    $stmt->bind_param('sssssi', $firstname, $lastname, $email, $phone, $hashedPassword, $isOwner);
+    $id = "1";
+
+    $stmt->bind_param('ssssssi', $id, $firstname, $lastname, $email, $phone, $hashedPassword, $isOwner);
 
     if (!$stmt->execute()) {
       throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
@@ -90,7 +91,6 @@ class UserModel
     $newUserId = $stmt->insert_id;
 
     setcookie('userId', $newUserId, time() + (86400 * 30), "/");
-    setcookie('admin', $isOwner ? 'true' : 'false', time() + (86400 * 30), "/");
 
     if ($isOwner) {
       $this->addGarage($newUserId, $garageName, $garageAdress);
@@ -166,5 +166,18 @@ class UserModel
       }
     }
     return $data;
+  }
+
+  public function isUserAdmin($userId)
+  {
+    $sql = "SELECT is_garage_owner FROM users WHERE id = $userId";
+    $result = $this->conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      return $row['is_garage_owner'] == 1;
+    }
+
+    return false;
   }
 }

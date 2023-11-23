@@ -1,5 +1,4 @@
 <?php
-require 'vendor/autoload.php';
 
 class RenderManager
 {
@@ -7,7 +6,7 @@ class RenderManager
 
     public function __construct()
     {
-        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
+        $loader = new Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
         $this->twig = new \Twig\Environment($loader, [
             'debug' => true,
         ]);
