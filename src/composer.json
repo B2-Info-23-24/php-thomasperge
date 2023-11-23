@@ -1,6 +1,6 @@
 {
     "require": {
         "twig/twig": "^3.8",
-        "ramsey/uuid": "^4.7"
+        "ramsey/uuid": "4.2.0"
     }
 }

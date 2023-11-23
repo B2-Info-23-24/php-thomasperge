@@ -56,7 +56,7 @@ class VehicleModel
 
   public function getAllVehicleFromGarageID($garageId)
   {
-    $sql = "SELECT * FROM vehicle WHERE id_garage = $garageId";
+    $sql = "SELECT * FROM vehicle WHERE id_garage = CAST('$garageId' AS CHAR)";
     $result = $this->conn->query($sql);
 
     $data = [];

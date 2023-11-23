@@ -11,7 +11,7 @@ class GarageModel
 
     public function getGarageDataFromId($id)
     {
-        $sql = "SELECT * FROM garage WHERE id = $id";
+        $sql = "SELECT * FROM garage WHERE id = CAST('$id' AS CHAR)";
         $result = $this->conn->query($sql);
 
         $data = [];
@@ -25,7 +25,7 @@ class GarageModel
 
     public function getGarageDataFromUserId($userIdOwner)
     {
-        $sql = "SELECT * FROM garage WHERE id_owner = $userIdOwner";
+        $sql = "SELECT * FROM garage WHERE id_owner = CAST('$userIdOwner' AS CHAR)";
         $result = $this->conn->query($sql);
 
         $data = [];
