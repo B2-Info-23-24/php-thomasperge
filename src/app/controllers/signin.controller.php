@@ -1,12 +1,14 @@
 <?php
 
 require_once __DIR__ . '/../core/render.php';
+require_once __DIR__ . '/../core/admin.php';
 require_once __DIR__ . '/../models/user.model.php';
 
 class SigninController
 {
   private $renderManager;
   private $userModel;
+  private $adminManager;
 
   public function __construct()
   {
@@ -31,7 +33,9 @@ class SigninController
         echo "Erreur dans le formulaire...";
       }
     } else {
-      $this->renderManager->render('/pages/signin.twig');
-    }
+      $isAdmin = $this->adminManager->isAdmin();
+
+      $this->renderManager->render('/pages/signin.twig', ['isAdmin' => $isAdmin]);
+      }
   }
 }

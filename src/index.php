@@ -31,7 +31,11 @@ $routes = [
 ];
 
 // Manage cookies
+<<<<<<< HEAD
 $userId = $_COOKIE['userId'];
+=======
+$userId = $_COOKIE['userId'] ?? null;
+>>>>>>> fix-cookie
 $currentUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $parsedUrl = parse_url($currentUrl);
 $currentPath = $parsedUrl['path'];
@@ -39,7 +43,11 @@ $currentPath = $parsedUrl['path'];
 $userModel;
 global $conn;
 $userModel = new UserModel($conn);
+<<<<<<< HEAD
 $isAdmin = $userModel->isUserAdmin($userId);
+=======
+$isAdmin = $userModel->isUserAdmin($userId) ?? null;
+>>>>>>> fix-cookie
 
 if ($isAdmin) {
   $restrictedRoutes = ['/', '/home', '/vehicle', '/cars', '/book', '/profil'];

@@ -1,12 +1,14 @@
 <?php
 
 require_once __DIR__ . '/../core/render.php';
+require_once __DIR__ . '/../core/admin.php';
 require_once __DIR__ . '/../models/vehicle.model.php';
 require_once __DIR__ . '/../models/garage.model.php';
 
 class SubmitController
 {
   private $renderManager;
+  private $adminManager;
   private $garageModel;
   private $vehicleModel;
 
@@ -16,6 +18,7 @@ class SubmitController
     $this->garageModel = new GarageModel($conn);
     $this->vehicleModel = new VehicleModel($conn);
 
+    $this->adminManager = new AdminManager();
     $this->renderManager = new RenderManager();
   }
 
@@ -43,7 +46,8 @@ class SubmitController
         echo "Erreur dans le formulaire...";
       }
     } else {
-      $this->renderManager->render('/pages/submit.twig');
+      $isAdmin = $this->adminManager->isAdmin();
+      $this->renderManager->render('/pages/submit.twig', ['isAdmin' => $isAdmin]);
     }
   }
 }

@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
+	{# NavBar #}
+	{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil', 'isAdmin': isAdmin} %}
+
 	<div class="signup-container spacebox">
 		{# User Form #}
 		<div class="user-container-form spacebox">

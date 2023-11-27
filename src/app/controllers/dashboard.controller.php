@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../core/render.php';
+require_once __DIR__ . '/../core/admin.php';
 require_once __DIR__ . '/../models/vehicle.model.php';
 require_once __DIR__ . '/../models/garage.model.php';
 require_once __DIR__ . '/../models/user.model.php';
@@ -13,6 +14,7 @@ class DashboardController
   private $garageModel;
   private $userModel;
   private $bookingModel;
+  private $adminManager;
 
   public function __construct()
   {
@@ -22,6 +24,7 @@ class DashboardController
     $this->vehicleModel = new VehicleModel($conn);
     $this->bookingModel = new BookingModel($conn);
 
+    $this->adminManager = new AdminManager();
     $this->renderManager = new RenderManager();
   }
 
@@ -34,6 +37,8 @@ class DashboardController
     $allVehicleFromGarage = $this->vehicleModel->getAllVehicleFromGarageID($garageData[0]['id']);
     $allBooking = $this->bookingModel->getAllBookingFromGarage($garageData[0]['id']);
 
-    $this->renderManager->render('/pages/dashboard.twig', ['userData' => $userData, 'garageData' => $garageData, 'vehicles' => $allVehicleFromGarage, 'allBooking' => $allBooking]);
+    $isAdmin = $this->adminManager->isAdmin();
+
+    $this->renderManager->render('/pages/dashboard.twig', ['userData' => $userData, 'garageData' => $garageData, 'vehicles' => $allVehicleFromGarage, 'allBooking' => $allBooking, 'isAdmin' => $isAdmin]);
   }
 }

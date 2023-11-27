@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../core/render.php';
+require_once __DIR__ . '/../core/admin.php';
 require_once __DIR__ . '/../models/vehicle.model.php';
 require_once __DIR__ . '/../models/garage.model.php';
 require_once __DIR__ . '/../models/rating.model.php';
@@ -8,6 +9,7 @@ require_once __DIR__ . '/../models/booking.model.php';
 
 class VehicleController
 {
+  private $adminManager;
   private $renderManager;
   private $vehicleModel;
   private $garageModel;
@@ -22,6 +24,7 @@ class VehicleController
     $this->ratingModel = new RatingModel($conn);
     $this->bookingModel = new BookingModel($conn);
 
+    $this->adminManager = new AdminManager();
     $this->renderManager = new RenderManager();
   }
 
@@ -45,8 +48,11 @@ class VehicleController
       $garage = $this->garageModel->getGarageDataFromId($vehicles[0]['id_garage'] ?? null);
       $rating = $this->ratingModel->getAllRatingFromVehicleId($params['id'] ?? null);
 
+      $isAdmin = $this->adminManager->isAdmin();
+
       if ($vehicles) {
-        $this->renderManager->render('/pages/vehicle.twig', ['params' => $params['id'] ?? null, 'vehicle' => $vehicles, 'garage' => $garage, 'rating' => $rating]);
+        $isAdmin = $this->adminManager->isAdmin();
+        $this->renderManager->render('/pages/vehicle.twig', ['params' => $params['id'] ?? null, 'vehicle' => $vehicles, 'garage' => $garage, 'rating' => $rating, 'isAdmin' => $isAdmin]);
       } else {
         $this->renderManager->render('/pages/404.twig');
       }

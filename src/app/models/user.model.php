@@ -1,5 +1,9 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
+use Ramsey\Uuid\Uuid;
+
 class UserModel
 {
   private $conn;
@@ -7,6 +11,13 @@ class UserModel
   public function __construct($conn)
   {
     $this->conn = $conn;
+  }
+
+  public function generateUUID16()
+  {
+    $uuid = Uuid::uuid4();
+    $uuid16 = str_replace('-', '', $uuid->toString());
+    return substr($uuid16, 0, 16);
   }
 
   public function signinUser($email, $password)
@@ -41,7 +52,11 @@ class UserModel
 
     if (password_verify($password, $hashedPassword)) {
       // Mot de passe correct
+<<<<<<< HEAD
       setcookie('userId', $userId, time() + (86400 * 30), "/");
+=======
+      setcookie('userId', $userId);
+>>>>>>> fix-cookie
 
       if ($isOwner) {
         header('Location: /dashboard');
@@ -62,7 +77,9 @@ class UserModel
 
   public function addUser($firstname, $lastname, $email, $phone, $password, $isOwner, $garageName, $garageAdress)
   {
-    if (empty($firstname) || empty($lastname) || empty($email) || empty($phone) || empty($password)) {
+    $id = $this->generateUUID16();
+
+    if (empty($id) || empty($firstname) || empty($lastname) || empty($email) || empty($phone) || empty($password)) {
       throw new Exception("Tous les champs sont obligatoires.");
     }
 
@@ -79,8 +96,11 @@ class UserModel
       return false;
     }
 
+<<<<<<< HEAD
     $id = "1";
 
+=======
+>>>>>>> fix-cookie
     $stmt->bind_param('ssssssi', $id, $firstname, $lastname, $email, $phone, $hashedPassword, $isOwner);
 
     if (!$stmt->execute()) {
@@ -88,12 +108,16 @@ class UserModel
       return false;
     }
 
+<<<<<<< HEAD
     $newUserId = $stmt->insert_id;
 
     setcookie('userId', $newUserId, time() + (86400 * 30), "/");
+=======
+    setcookie('userId', $id);
+>>>>>>> fix-cookie
 
     if ($isOwner) {
-      $this->addGarage($newUserId, $garageName, $garageAdress);
+      $this->addGarage($id, $garageName, $garageAdress);
     }
 
     $stmt->close();
@@ -136,14 +160,16 @@ class UserModel
       throw new Exception("Tous les champs sont obligatoires.");
     }
 
-    $stmt = $this->conn->prepare('INSERT INTO garage (id_owner, name, adress) VALUES (?, ?, ?)');
+    $id = $this->generateUUID16();
+
+    $stmt = $this->conn->prepare('INSERT INTO garage (id, id_owner, name, adress) VALUES (?, ?, ?, ?)');
 
     if ($stmt === false) {
       throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
       return false;
     }
 
-    $stmt->bind_param('sss', $id_owner, $name, $adress);
+    $stmt->bind_param('ssss', $id, $id_owner, $name, $adress);
 
     if (!$stmt->execute()) {
       throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
@@ -156,7 +182,7 @@ class UserModel
 
   public function getUserDataFromId($userId)
   {
-    $sql = "SELECT * FROM users WHERE id = $userId";
+    $sql = "SELECT * FROM users WHERE id = CAST('$userId' AS CHAR)";
     $result = $this->conn->query($sql);
 
     $data = [];
@@ -170,14 +196,27 @@ class UserModel
 
   public function isUserAdmin($userId)
   {
+<<<<<<< HEAD
     $sql = "SELECT is_garage_owner FROM users WHERE id = $userId";
     $result = $this->conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
+=======
+    $sql = "SELECT is_garage_owner FROM users WHERE id = CAST('$userId' AS CHAR)";
+    $result = $this->conn->query($sql);
+
+    if ($userId == null) {
+      return null;
+    } else if ($result && $result->num_rows > 0) {
+>>>>>>> fix-cookie
       $row = $result->fetch_assoc();
       return $row['is_garage_owner'] == 1;
     }
 
+<<<<<<< HEAD
     return false;
+=======
+    return null;
+>>>>>>> fix-cookie
   }
 }

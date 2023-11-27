@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
+	{# NavBar #}
+	{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil', 'isAdmin': isAdmin} %}
+
 	<div class="dasboard-container spacebox">
 		{# Good Morning #}
 		<div class="editor-container">
@@ -22,9 +25,13 @@
 		<div class="all-cars">
 			<div class="all-cars-title">🔥 All your cars - Dashboard</div>
 			<div class="all-cars-area">
-				{% for vehicle in vehicles %}
-					{% include '/templates/components/card-vehicle-editing.twig' with {'id': vehicle.id, 'brand': vehicle.brand, 'model': vehicle.model, 'logo': vehicle.brand_logo, 'modelImage': vehicle.url_picture, 'seats': vehicle.nb_seats, 'petrol': vehicle.petrol, 'gear': vehicle.gearbox, 'price': vehicle.price} %}
-				{% endfor %}
+				{% if vehicles is empty %}
+					<div>Vous n'avez aucun vehicule</div>
+				{% else %}
+					{% for vehicle in vehicles %}
+						{% include '/templates/components/card-vehicle-editing.twig' with {'id': vehicle.id, 'brand': vehicle.brand, 'model': vehicle.model, 'logo': vehicle.brand_logo, 'modelImage': vehicle.url_picture, 'seats': vehicle.nb_seats, 'petrol': vehicle.petrol, 'gear': vehicle.gearbox, 'price': vehicle.price} %}
+					{% endfor %}
+				{% endif %}
 			</div>
 		</div>
 
@@ -32,14 +39,18 @@
 		<div class="all-cars">
 			<div class="all-cars-title">🎫 All your booking - Dashboard</div>
 			<div class="all-cars-area">
-				{% for booking in allBooking %}
-					{% set start_date_obj = booking.start_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
-					{% set finish_date_obj = booking.end_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
-					{% set date_diff = finish_date_obj.diff(start_date_obj) %}
-					{% set days_diff = date_diff.days %}
+				{% if allBooking is empty %}
+					<div>Vous n'avez aucune reservation</div>
+				{% else %}
+					{% for booking in allBooking %}
+						{% set start_date_obj = booking.start_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
+						{% set finish_date_obj = booking.end_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
+						{% set date_diff = finish_date_obj.diff(start_date_obj) %}
+						{% set days_diff = date_diff.days %}
 
-					{% include '/templates/components/booking-car-card.twig' with {'bookingData': booking, 'days_diff': days_diff} %}
-				{% endfor %}
+						{% include '/templates/components/booking-car-card.twig' with {'bookingData': booking, 'days_diff': days_diff} %}
+					{% endfor %}
+				{% endif %}
 			</div>
 		</div>
 	</div>

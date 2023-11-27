@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../core/render.php';
+require_once __DIR__ . '/../core/admin.php';
 require_once __DIR__ . '/../models/user.model.php';
 require_once __DIR__ . '/../models/booking.model.php';
 require_once __DIR__ . '/../models/rating.model.php';
@@ -11,6 +12,7 @@ class ProfilController
   private $userModel;
   private $bookingModel;
   private $ratingModel;
+  private $adminManager;
 
   public function __construct()
   {
@@ -20,6 +22,7 @@ class ProfilController
     $this->ratingModel = new RatingModel($conn);
 
     $this->renderManager = new RenderManager();
+    $this->adminManager = new AdminManager();
   }
 
   public function profilRouter($params)
@@ -62,7 +65,9 @@ class ProfilController
       $userData = $this->userModel->getUserDataFromId($userId);
       $bookingData = $this->bookingModel->getAllBookingFromUserId($userId);
 
-      $this->renderManager->render('/pages/profil.twig', ['userData' => $userData, 'bookingData' => $bookingData, 'currentDate' => $formattedDate]);
+      $isAdmin = $this->adminManager->isAdmin();
+
+      $this->renderManager->render('/pages/profil.twig', ['userData' => $userData, 'bookingData' => $bookingData, 'currentDate' => $formattedDate, 'isAdmin' => $isAdmin]);
     }
   }
 }

@@ -5,59 +5,97 @@
 {% endblock %}
 
 {% block content %}
-<div class="profil-container spacebox">
-	{# Welcome #}
-	<div class="welcome-title">Welcome, <span style="font-family: 'MornRegular'; font-size: 1.15rem">{{userData[0]['firstname']}} {{userData[0]['lastname']}}</span></div>
+	{# NavBar #}
+	{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil', 'isAdmin': isAdmin} %}
 
-	<div class="profile_area">
-		{# Edit Profile Infos #}
-		<div class="editing-container spacebox">
-			<div class="edit-title">Edit profile</div>
-			<form action="/profil" method="post" class="form-container spacebox">
-				<div class="input-container">
-					<label for="firstname">Firstname</label>
-					<input type="text" name="firstname" class="input" value="{{userData[0]['firstname']}}">
+
+	<div class="profil-container spacebox">
+		{# Welcome #}
+		<div class="welcome-title">Welcome, <span style="font-family: 'MornRegular'; font-size: 1.15rem">{{userData[0]['firstname']}} {{userData[0]['lastname']}}</span></div>
+
+		<div class="profile_area">
+			{# Edit Profile Infos #}
+			<div class="editing-container spacebox">
+				<div class="edit-title">Edit profile</div>
+				<form action="/profil" method="post" class="form-container spacebox">
+					<div class="input-container">
+						<label for="firstname">Firstname</label>
+						<input type="text" name="firstname" class="input" value="{{userData[0]['firstname']}}">
+					</div>
+
+					<div class="input-container">
+						<label for="lastname">Lastname</label>
+						<input type="text" name="lastname" class="input" value="{{userData[0]['lastname']}}">
+					</div>
+
+					<div class="input-container">
+						<label for="email">Email</label>
+						<input type="text" name="email" class="input" value="{{userData[0]['email']}}">
+					</div>
+
+					<div class="input-container">
+						<label for="phone">Phone</label>
+						<input type="text" name="phone" class="input" value="{{userData[0]['phone']}}">
+					</div>
+
+					<div class="input-container">
+						<label for="password">Password</label>
+						<input type="password" name="password" class="input" value="{{userData[0]['password']}}">
+					</div>
+
+					<div class="flexbox">
+						<button type="submit" class="button-container">Edit Profile</button>
+					</div>
+				</form>
+			</div>
+
+			{# Display All Booking#}
+			<div class="display-all-booking-container spacebox">
+				{% if bookingData is empty %}
+				<div class="flexbox">Vous n'avez pas encore pris de reservation</div>
+				{% else %}
+				<div class="all-cars">
+					{# Current Booking #}
+					<div class="current-booking spacebox">
+						<a class="time-title">🆕 Current Booking</a>
+						{% set anyVehicleFound = false %}
+
+						{% for vehicle in bookingData %}
+						{% if currentDate < vehicle.end_date %} {% set anyVehicleFound=true %} <div class="booking-area flexbox">
+							<div class="cars-area">
+								{# Déplacer les calculs à l'intérieur de la boucle #}
+								{% set start_date_obj = vehicle.start_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
+								{% set finish_date_obj = vehicle.end_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
+								{% set date_diff = finish_date_obj.diff(start_date_obj) %}
+								{% set days_diff = date_diff.days %}
+
+								{% include '/templates/components/profile-booking-card.twig' with {'bookingData': vehicle, 'userData': userData, 'days_diff': days_diff} %}
+							</div>
+
+							<div class="book-infos spacebox">
+								<div class="date spacebox">
+									<div>Start Date: {{ vehicle.start_date|date("d F Y") }}</div>
+									<div>Finish Date: {{ vehicle.end_date|date("d F Y") }}</div>
+									<div class="flexbox finish">Rental completed: {{ currentDate > vehicle.end_date ? 'true' : 'false' }}</div>
+								</div>
+							</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+
+
+					{% if not anyVehicleFound %}
+						<p>Vous n'avez actuellement pas de véhicules loués.</p>
+					{% endif %}
 				</div>
 
-				<div class="input-container">
-					<label for="lastname">Lastname</label>
-					<input type="text" name="lastname" class="input" value="{{userData[0]['lastname']}}">
-				</div>
-
-				<div class="input-container">
-					<label for="email">Email</label>
-					<input type="text" name="email" class="input" value="{{userData[0]['email']}}">
-				</div>
-
-				<div class="input-container">
-					<label for="phone">Phone</label>
-					<input type="text" name="phone" class="input" value="{{userData[0]['phone']}}">
-				</div>
-
-				<div class="input-container">
-					<label for="password">Password</label>
-					<input type="password" name="password" class="input" value="{{userData[0]['password']}}">
-				</div>
-
-				<div class="flexbox">
-					<button type="submit" class="button-container">Edit Profile</button>
-				</div>
-			</form>
-		</div>
-
-		{# Display All Booking#}
-		<div class="display-all-booking-container spacebox">
-			{% if bookingData is empty %}
-			<div class="flexbox">Vous n'avez pas encore pris de reservation</div>
-			{% else %}
-			<div class="all-cars">
-				{# Current Booking #}
-				<div class="current-booking spacebox">
-					<a class="time-title">🆕 Current Booking</a>
-					{% set anyVehicleFound = false %}
-
+				{# Past Booking #}
+				<div class="past-booking spacebox">
+					<a class="time-title">⌛ Past Booking</a>
+					{% set hasValidPastBooking = false %}
 					{% for vehicle in bookingData %}
-					{% if currentDate < vehicle.end_date %} {% set anyVehicleFound=true %} <div class="booking-area flexbox">
+					{% if currentDate > vehicle.end_date %}
+					<div class="booking-area flexbox">
 						<div class="cars-area">
 							{# Déplacer les calculs à l'intérieur de la boucle #}
 							{% set start_date_obj = vehicle.start_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
@@ -67,79 +105,44 @@
 
 							{% include '/templates/components/profile-booking-card.twig' with {'bookingData': vehicle, 'userData': userData, 'days_diff': days_diff} %}
 						</div>
-
 						<div class="book-infos spacebox">
 							<div class="date spacebox">
 								<div>Start Date: {{ vehicle.start_date|date("d F Y") }}</div>
 								<div>Finish Date: {{ vehicle.end_date|date("d F Y") }}</div>
 								<div class="flexbox finish">Rental completed: {{ currentDate > vehicle.end_date ? 'true' : 'false' }}</div>
 							</div>
+
+							{% if currentDate > vehicle.end_date %}
+							<form class="feedback spacebox" method="post" action="/profil?vehicle_id={{vehicle.vehicle_id}}">
+								<div class="title flexbox">Feedback ?</div>
+								<div>
+									<label for="score">Score</label>
+									<input type="number" value="4" class="input" name="score" id="" min="1" max="5">
+								</div>
+
+								<div>
+									<label for="description">Feedback</label>
+									<input type="text" value="Merci Rusteze !" class="input" name="description">
+								</div>
+
+								<div class="flexbox">
+									<button class="button-submit" type="submit">Send</button>
+								</div>
+							</form>
+							{% endif %}
 						</div>
-				</div>
-				{% endif %}
-				{% endfor %}
-
-
-				{% if not anyVehicleFound %}
-					<p>Vous n'avez actuellement pas de véhicules loués.</p>
-				{% endif %}
-			</div>
-
-			{# Past Booking #}
-			<div class="past-booking spacebox">
-				<a class="time-title">⌛ Past Booking</a>
-				{% set hasValidPastBooking = false %}
-				{% for vehicle in bookingData %}
-				{% if currentDate > vehicle.end_date %}
-				<div class="booking-area flexbox">
-					<div class="cars-area">
-						{# Déplacer les calculs à l'intérieur de la boucle #}
-						{% set start_date_obj = vehicle.start_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
-						{% set finish_date_obj = vehicle.end_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
-						{% set date_diff = finish_date_obj.diff(start_date_obj) %}
-						{% set days_diff = date_diff.days %}
-
-						{% include '/templates/components/profile-booking-card.twig' with {'bookingData': vehicle, 'userData': userData, 'days_diff': days_diff} %}
 					</div>
-					<div class="book-infos spacebox">
-						<div class="date spacebox">
-							<div>Start Date: {{ vehicle.start_date|date("d F Y") }}</div>
-							<div>Finish Date: {{ vehicle.end_date|date("d F Y") }}</div>
-							<div class="flexbox finish">Rental completed: {{ currentDate > vehicle.end_date ? 'true' : 'false' }}</div>
-						</div>
+					{% set hasValidPastBooking = true %}
+					{% endif %}
+					{% endfor %}
 
-						{% if currentDate > vehicle.end_date %}
-						<form class="feedback spacebox" method="post" action="/profil?vehicle_id={{vehicle.vehicle_id}}">
-							<div class="title flexbox">Feedback ?</div>
-							<div>
-								<label for="score">Score</label>
-								<input type="number" value="4" class="input" name="score" id="" min="1" max="5">
-							</div>
-
-							<div>
-								<label for="description">Feedback</label>
-								<input type="text" value="Merci Rusteze !" class="input" name="description">
-							</div>
-
-							<div class="flexbox">
-								<button class="button-submit" type="submit">Send</button>
-							</div>
-						</form>
-						{% endif %}
-					</div>
+					{% if not hasValidPastBooking %}
+						<p>Vous n'avez actuellement pas de réservations passées</p>
+					{% endif %}
 				</div>
-				{% set hasValidPastBooking = true %}
-				{% endif %}
-				{% endfor %}
 
-				{% if not hasValidPastBooking %}
-					<p>Vous n'avez actuellement pas de réservations passées</p>
-				{% endif %}
 			</div>
-
+			{% endif %}
 		</div>
-		{% endif %}
 	</div>
-</div>
-</div>
 {% endblock %}
