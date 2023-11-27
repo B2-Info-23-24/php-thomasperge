@@ -102,11 +102,60 @@ a {
 
 /* === Filter ===*/
 .filter-container {
-  padding: 2.2rem 2.2rem 1rem 2.2rem;
+  padding: 1.8rem 2.2rem 1rem 2.2rem;
+
+  .filter-icon-container {
+    margin: 0 0 .2rem 0;
+    .filter-icon {
+      cursor: pointer;
+      padding: .3rem;
+    }
+
+    .filter-icon:hover {
+      background-color: rgb(226, 226, 226);
+      border-radius: 6px;
+      padding: .3rem;
+    }
+  }
 
   .filter-title {
     font-size: 1.6rem;
     font-family: "MornDemiBold";
+  }
+
+  .all-filter-container {
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin: 0 0 2rem 0;
+
+    .item-filter-container {
+      gap: .5rem;
+      flex-wrap: wrap;
+
+      .title {
+        font-size: 1.5rem;
+        font-family: "MornDemiBold";
+      }
+
+      .item-filter-area {
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap;
+
+        .item-filter {
+          width: fit-content;
+          padding: .2rem .5rem;
+          border: 1.15px solid rgb(197, 197, 197);
+          border-radius: .3rem;
+          cursor: pointer;
+        }
+
+        .item-filter:hover {
+          border: 1.15px solid rgb(255, 0, 0);
+        }
+      }
+    }
   }
 
   .filter-input-container {
@@ -1189,6 +1238,7 @@ a {
   }
 }
 
+/* === Profil container ===*/
 .profil-container {
   padding: 1rem 1.5rem;
   gap: 1.2rem;

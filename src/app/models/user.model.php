@@ -52,7 +52,7 @@ class UserModel
 
     if (password_verify($password, $hashedPassword)) {
       // Mot de passe correct
-      setcookie('userId', $userId, time() + (86400 * 30), "/");
+      setcookie('userId', $userId);
 
       if ($isOwner) {
         header('Location: /dashboard');
@@ -99,7 +99,7 @@ class UserModel
       return false;
     }
 
-    setcookie('userId', $id, time() + (86400 * 30), "/");
+    setcookie('userId', $id);
 
     if ($isOwner) {
       $this->addGarage($id, $garageName, $garageAdress);
@@ -184,11 +184,13 @@ class UserModel
     $sql = "SELECT is_garage_owner FROM users WHERE id = CAST('$userId' AS CHAR)";
     $result = $this->conn->query($sql);
 
-    if ($result && $result->num_rows > 0) {
+    if ($userId == null) {
+      return null;
+    } else if ($result && $result->num_rows > 0) {
       $row = $result->fetch_assoc();
       return $row['is_garage_owner'] == 1;
     }
 
-    return false;
+    return null;
   }
 }

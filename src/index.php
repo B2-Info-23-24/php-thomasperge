@@ -30,7 +30,7 @@ $routes = [
 ];
 
 // Manage cookies
-$userId = $_COOKIE['userId'];
+$userId = $_COOKIE['userId'] ?? null;
 $currentUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $parsedUrl = parse_url($currentUrl);
 $currentPath = $parsedUrl['path'];
@@ -38,7 +38,7 @@ $currentPath = $parsedUrl['path'];
 $userModel;
 global $conn;
 $userModel = new UserModel($conn);
-$isAdmin = $userModel->isUserAdmin($userId);
+$isAdmin = $userModel->isUserAdmin($userId) ?? null;
 
 if ($isAdmin) {
   $restrictedRoutes = ['/', '/home', '/vehicle', '/cars', '/book', '/profil'];

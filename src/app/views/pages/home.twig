@@ -5,9 +5,11 @@
 {% endblock %}
 
 {% block content %}
+	{# NavBar #}
+	{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil', 'isAdmin': isAdmin} %}
 
 	{# Filter #}
-	{% include '/templates/components/brand-filter.twig' %}
+	{% include '/templates/components/filter.twig' %}
 
 	{# Popular Cars #}
 	{% include '/templates/components/popular-cars.twig' %}

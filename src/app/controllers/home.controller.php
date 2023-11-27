@@ -2,10 +2,13 @@
 
 require_once __DIR__ . '/../core/render.php';
 require_once __DIR__ . '/../models/vehicle.model.php';
+require_once __DIR__ . '/../models/user.model.php';
+require_once __DIR__ . '/../core/admin.php';
 
 class HomeController
 {
   private $renderManager;
+  private $adminManager;
   private $vehicleModel;
 
   public function __construct()
@@ -13,6 +16,7 @@ class HomeController
     global $conn;
     $this->vehicleModel = new VehicleModel($conn);
 
+    $this->adminManager = new AdminManager();
     $this->renderManager = new RenderManager();
   }
 
@@ -21,6 +25,8 @@ class HomeController
     $currentRoute = $_SERVER['REQUEST_URI'];
     $vehicles = $this->vehicleModel->getAllVehicles();
 
-    $this->renderManager->render('/pages/home.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehicles]);
+    $isAdmin = $this->adminManager->isAdmin();
+
+    $this->renderManager->render('/pages/home.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehicles, 'isAdmin' => $isAdmin]);
   }
 }

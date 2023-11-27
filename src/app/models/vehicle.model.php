@@ -72,6 +72,7 @@ class VehicleModel
   {
     if (empty($vehicleId)) {
       throw new Exception("ID du véhicule non valide.");
+      return false;
     }
 
     $stmt = $this->conn->prepare('UPDATE vehicle SET brand=?, model=?, price=?, url_picture=?, petrol=?, nb_seats=?, colors=?, gearbox=?, brand_logo=?, information=? WHERE id=?');
@@ -91,7 +92,6 @@ class VehicleModel
     return true;
   }
 
-
   public function addVehicle($id_garage, $brand, $model, $price, $url_picture, $petrol, $nb_seats, $color, $gearbox, $brand_logo, $information)
   {
     $stmt = $this->conn->prepare('INSERT INTO vehicle (id_garage, brand, model, price, url_picture, petrol, nb_seats, colors, gearbox, brand_logo, information) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
@@ -110,5 +110,69 @@ class VehicleModel
 
     $stmt->close();
     return true;
+  }
+
+  // Filter
+  public function filterVehiclePerSeats($nbSeats)
+  {
+    
+    $sql = "SELECT * FROM vehicle WHERE nb_seats = $nbSeats";
+    $result = $this->conn->query($sql);
+
+    $data = [];
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+      }
+    }
+    return $data;
+  }
+
+  public function filterVehiclePerPetrol($fuel)
+  {
+    $fuel = mysqli_real_escape_string($this->conn, $fuel);
+    $sql = "SELECT * FROM vehicle WHERE LOWER(petrol) = LOWER('$fuel')";
+    $result = $this->conn->query($sql);
+
+    $vehicles = [];
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $vehicles[] = $row;
+      }
+    }
+
+    return $vehicles;
+  }
+
+  public function filterVehiclePerColors($color)
+  {
+    $color = mysqli_real_escape_string($this->conn, $color);
+    $sql = "SELECT * FROM vehicle WHERE LOWER(colors) = LOWER('$color')";
+    $result = $this->conn->query($sql);
+
+    $vehicles = [];
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $vehicles[] = $row;
+      }
+    }
+
+    return $vehicles;
+  }
+
+  public function filterVehiclePerGearbox($gearbox)
+  {
+    $gearbox = mysqli_real_escape_string($this->conn, $gearbox);
+    $sql = "SELECT * FROM vehicle WHERE LOWER(gearbox) = LOWER('$gearbox')";
+    $result = $this->conn->query($sql);
+
+    $vehicles = [];
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $vehicles[] = $row;
+      }
+    }
+
+    return $vehicles;
   }
 }
