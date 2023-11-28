@@ -16,6 +16,7 @@ class SigninController
     $this->userModel = new UserModel($conn);
 
     $this->renderManager = new RenderManager();
+    $this->adminManager = new AdminManager();
   }
 
   public function signinRouter()
@@ -26,16 +27,18 @@ class SigninController
 
       $signinUser = $this->userModel->signinUser($email, $password);
 
+      var_dump($signinUser);
       if ($signinUser) {
         header('Location: /home');
         exit;
       } else {
-        echo "Erreur dans le formulaire...";
+        header('Location: /failed');
+        exit;
       }
     } else {
       $isAdmin = $this->adminManager->isAdmin();
 
       $this->renderManager->render('/pages/signin.twig', ['isAdmin' => $isAdmin]);
-      }
+    }
   }
 }

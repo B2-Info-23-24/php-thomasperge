@@ -43,7 +43,7 @@ class SubmitController
         header('Location: /sucess');
         exit;
       } else {
-        echo "Erreur dans le formulaire...";
+        header('Location: /failed');
       }
     } else {
       $isAdmin = $this->adminManager->isAdmin();

@@ -1238,6 +1238,27 @@ a {
   }
 }
 
+/* === Failed container ===*/
+.failed-container {
+  width: 100%;
+  height: 80vh;
+  gap: 1.5rem;
+  flex-direction: column;
+
+  .title {
+    font-size: 2rem;
+    font-family: "MornDemiBold";
+  }
+
+  .back {
+    font-size: 1.1rem;
+  }
+
+  .back:hover {
+    text-decoration: underline;
+  }
+}
+
 /* === Profil container ===*/
 .profil-container {
   padding: 1rem 1.5rem;

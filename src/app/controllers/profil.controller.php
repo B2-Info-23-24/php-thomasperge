@@ -46,6 +46,8 @@ class ProfilController
         if ($updateUser) {
           header('Location: /profil');
           exit;
+        } else {
+          header('Location: /failed');
         }
       }
 
@@ -59,6 +61,8 @@ class ProfilController
         if ($newrating) {
           header('Location: /profil');
           exit;
+        } else {
+          header('Location: /failed');
         }
       }
     } else {
