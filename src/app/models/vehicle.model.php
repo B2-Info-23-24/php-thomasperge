@@ -25,7 +25,16 @@ class VehicleModel
 
   public function getUniqueVehicle($vehicle_id)
   {
-    $sql = "SELECT * FROM vehicle WHERE id = $vehicle_id";
+    $user_id = $_COOKIE['userId'] ?? null;
+
+    $sql = "SELECT vehicle.*, favorite.id AS favorite_id FROM vehicle";
+
+    if ($user_id !== null) {
+      $sql .= " LEFT JOIN favorite ON vehicle.id = favorite.id_vehicle AND favorite.id_user = '$user_id'";
+    }
+
+    $sql .= " WHERE vehicle.id = $vehicle_id";
+
     $result = $this->conn->query($sql);
 
     $vehicles = [];
@@ -37,6 +46,8 @@ class VehicleModel
 
     return $vehicles;
   }
+
+
 
   public function getAllVehicleFromBrand($brand)
   {
@@ -115,7 +126,7 @@ class VehicleModel
   // Filter
   public function filterVehiclePerSeats($nbSeats)
   {
-    
+
     $sql = "SELECT * FROM vehicle WHERE nb_seats = $nbSeats";
     $result = $this->conn->query($sql);
 
@@ -173,6 +184,32 @@ class VehicleModel
       }
     }
 
+    return $vehicles;
+  }
+
+  public function filterVehiclePerPrice($startPrice, $endPrice)
+  {
+    $sql = "SELECT * FROM vehicle WHERE price BETWEEN ? AND ?";
+    $stmt = $this->conn->prepare($sql);
+
+    if ($stmt === false) {
+      return [];
+    }
+
+    $stmt->bind_param("ii", $startPrice, $endPrice);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $vehicles = [];
+
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $vehicles[] = $row;
+      }
+    }
+
+    $stmt->close();
     return $vehicles;
   }
 }

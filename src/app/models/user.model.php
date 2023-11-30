@@ -90,11 +90,6 @@ class UserModel
       return false;
     }
 
-<<<<<<< HEAD
-    $id = "1";
-
-=======
->>>>>>> fix-cookie
     $stmt->bind_param('ssssssi', $id, $firstname, $lastname, $email, $phone, $hashedPassword, $isOwner);
 
     if (!$stmt->execute()) {
@@ -102,13 +97,7 @@ class UserModel
       return false;
     }
 
-<<<<<<< HEAD
-    $newUserId = $stmt->insert_id;
-
-    setcookie('userId', $newUserId, time() + (86400 * 30), "/");
-=======
     setcookie('userId', $id);
->>>>>>> fix-cookie
 
     if ($isOwner) {
       $this->addGarage($id, $garageName, $garageAdress);
@@ -124,20 +113,16 @@ class UserModel
       throw new Exception("Tous les champs sont obligatoires.");
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      throw new Exception("Adresse e-mail non valide.");
-    }
-
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $this->conn->prepare('UPDATE users SET firstname=?, lastname=?, email=?, phone=?, password=? WHERE id=?');
+    $stmt = $this->conn->prepare('UPDATE users SET id=?, firstname=?, lastname=?, email=?, phone=?, password=? WHERE id=?');
 
     if ($stmt === false) {
       throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
       return false;
     }
 
-    $stmt->bind_param('sssssi', $firstname, $lastname, $email, $phone, $hashedPassword, $userId);
+    $stmt->bind_param('sssssss', $userId, $firstname, $lastname, $email, $phone, $hashedPassword, $userId);
 
     if (!$stmt->execute()) {
       throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
@@ -190,27 +175,16 @@ class UserModel
 
   public function isUserAdmin($userId)
   {
-<<<<<<< HEAD
-    $sql = "SELECT is_garage_owner FROM users WHERE id = $userId";
-    $result = $this->conn->query($sql);
-
-    if ($result && $result->num_rows > 0) {
-=======
     $sql = "SELECT is_garage_owner FROM users WHERE id = CAST('$userId' AS CHAR)";
     $result = $this->conn->query($sql);
 
-    if ($userId == null) {
+    if ($userId == null || $userId == '') {
       return null;
     } else if ($result && $result->num_rows > 0) {
->>>>>>> fix-cookie
       $row = $result->fetch_assoc();
       return $row['is_garage_owner'] == 1;
     }
 
-<<<<<<< HEAD
-    return false;
-=======
     return null;
->>>>>>> fix-cookie
   }
 }

@@ -13,7 +13,7 @@
     {# 3 popular car #}
     <div class="all-cars-area" id="all-cars-area">
       {% if vehicles is empty %}
-        <p>Aucun véhicule n'est enregistrée sous cette marque</p>
+        <p>Aucun véhicule n'est enregistrée</p>
       {% else %}
         {% for vehicle in vehicles %}
           {% include '/templates/components/vehicle.twig' with {'id': vehicle.id, 'brand': vehicle.brand, 'model': vehicle.model, 'logo': vehicle.brand_logo, 'modelImage': vehicle.url_picture, 'seats': vehicle.nb_seats, 'petrol': vehicle.petrol, 'gear': vehicle.gearbox, 'price': vehicle.price} %}

@@ -28,16 +28,21 @@ class CarsController
     $color = $params['color'] ?? null;
     $gearbox = $params['gearbox'] ?? null;
 
+    $pricestart = $params['pricestart'] ?? null;
+    $priceend = $params['priceend'] ?? null;
+
+
     $vehicles = $this->vehicleModel->getAllVehicles();
     $vehiclesFilterByBrand = $this->vehicleModel->getAllVehicleFromBrand($brand) ?? null;
     $vehiclesFilterBySeats = $this->vehicleModel->filterVehiclePerSeats($seats) ?? null;
     $vehiclesFilterByFuel = $this->vehicleModel->filterVehiclePerPetrol($fuel) ?? null;
     $vehiclesFilterByColor = $this->vehicleModel->filterVehiclePerColors($color) ?? null;
     $vehiclesFilterByGearbox = $this->vehicleModel->filterVehiclePerGearbox($gearbox) ?? null;
-
+    $vehiclesFilterByPrice = $this->vehicleModel->filterVehiclePerPrice($pricestart, $priceend) ?? null;
     $isAdmin = $this->adminManager->isAdmin();
 
-    if ($vehicles !== null && $brand === null && $fuel === null && $seats === null && $color === null) {
+
+    if ($vehicles !== null && $brand === null && $fuel === null && $seats === null && $color === null && $pricestart == null && $priceend == null) {
       $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehicles, 'isAdmin' => $isAdmin]);
     } elseif ($vehiclesFilterByBrand !== null && $brand !== null) {
       $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehiclesFilterByBrand, 'isAdmin' => $isAdmin]);
@@ -49,6 +54,8 @@ class CarsController
       $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehiclesFilterByColor, 'isAdmin' => $isAdmin]);
     } elseif ($vehiclesFilterByGearbox !== null && $gearbox !== null) {
       $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehiclesFilterByGearbox, 'isAdmin' => $isAdmin]);
+    } elseif ($vehiclesFilterByPrice !== null && $pricestart !== null && $priceend !== null) {
+      $this->renderManager->render('/pages/cars.twig', ['currentRoute' => $currentRoute, 'vehicles' => $vehiclesFilterByPrice, 'isAdmin' => $isAdmin]);
     } else {
       $this->renderManager->render('/pages/404.twig', ['currentRoute' => $currentRoute]);
     }
