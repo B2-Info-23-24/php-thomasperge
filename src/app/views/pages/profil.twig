@@ -139,25 +139,24 @@
 						<p>Vous n'avez actuellement pas de réservations passées</p>
 					{% endif %}
 				</div>
-
-				{# Favorite Cars #}
-				<div class="past-booking spacebox">
-					<a class="time-title">💖 Favorite Cars</a>
-					{% if favoriteData is empty %}
-						<p>Vous n'avez actuellement pas vehicule favori ...</p>
-					{% else %}
-						<div class="booking-area flexbox" style="flex-wrap: wrap">
-							{% for vehicle in favoriteData %}
-								<div class="cars-area" style="width: 32%">
-									{% include '/templates/components/vehicle.twig' with {'id': vehicle.id, 'brand': vehicle.brand, 'model': vehicle.model, 'logo': vehicle.brand_logo, 'modelImage': vehicle.url_picture, 'seats': vehicle.nb_seats, 'petrol': vehicle.petrol, 'gear': vehicle.gearbox, 'price': vehicle.price} %}
-								</div>
-							{% endfor %}
-						</div>
-					{% endif %}
-				</div>
-
 			</div>
 			{% endif %}
+
+			{# Favorite Cars #}
+			<div class="past-booking spacebox">
+				<a class="time-title">💖 Favorite Cars</a>
+				{% if favoriteData is empty %}
+					<p>Vous n'avez actuellement pas vehicule favori ...</p>
+				{% else %}
+					<div class="booking-area flexbox" style="flex-wrap: wrap">
+						{% for vehicle in favoriteData %}
+							<div class="cars-area" style="width: 32%">
+								{% include '/templates/components/vehicle.twig' with {'id': vehicle.id, 'brand': vehicle.brand, 'model': vehicle.model, 'logo': vehicle.brand_logo, 'modelImage': vehicle.url_picture, 'seats': vehicle.nb_seats, 'petrol': vehicle.petrol, 'gear': vehicle.gearbox, 'price': vehicle.price} %}
+							</div>
+						{% endfor %}
+					</div>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 {% endblock %}

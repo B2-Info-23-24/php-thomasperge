@@ -42,7 +42,7 @@ class VehicleController
       // Id vehicle favorite
       $id_vehicle = $_POST['id_vehicle'] ?? null;
 
-      if ($startDate && $endDate && $price && $id_vehicle === null) {
+      if ($startDate && $endDate && $price && $id_vehicle === null && $startDate < $endDate) {
         $addBooking = $this->bookingModel->addBooking($params['id'], $_COOKIE['userId'], $startDate, $endDate, $price);
 
         if ($addBooking) {
