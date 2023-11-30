@@ -146,13 +146,13 @@
 					{% if favoriteData is empty %}
 						<p>Vous n'avez actuellement pas vehicule favori ...</p>
 					{% else %}
-						{% for vehicle in favoriteData %}
-						<div class="booking-area">
-							<div class="cars-area">
-								{% include '/templates/components/vehicle.twig' with {'id': vehicle.id, 'brand': vehicle.brand, 'model': vehicle.model, 'logo': vehicle.brand_logo, 'modelImage': vehicle.url_picture, 'seats': vehicle.nb_seats, 'petrol': vehicle.petrol, 'gear': vehicle.gearbox, 'price': vehicle.price} %}
-							</div>
+						<div class="booking-area flexbox" style="flex-wrap: wrap">
+							{% for vehicle in favoriteData %}
+								<div class="cars-area" style="width: 32%">
+									{% include '/templates/components/vehicle.twig' with {'id': vehicle.id, 'brand': vehicle.brand, 'model': vehicle.model, 'logo': vehicle.brand_logo, 'modelImage': vehicle.url_picture, 'seats': vehicle.nb_seats, 'petrol': vehicle.petrol, 'gear': vehicle.gearbox, 'price': vehicle.price} %}
+								</div>
+							{% endfor %}
 						</div>
-						{% endfor %}
 					{% endif %}
 				</div>
 
