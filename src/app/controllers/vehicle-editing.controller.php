@@ -45,7 +45,7 @@ class VehicleEditingController
         header('Location: /dashboard');
         exit;
       } else {
-        echo "Erreur dans le formulaire...";
+        header('Location: /failed');
       }
     } else {
       $idUrl = $params['id'] ?? null;

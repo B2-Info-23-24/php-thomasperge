@@ -43,20 +43,17 @@ class UserModel
     $stmt->store_result();
 
     if ($stmt->num_rows === 0) {
+      $stmt->close();
       return false;
     }
 
     $stmt->bind_result($userId, $hashedPassword, $isOwner);
 
     $stmt->fetch();
+    $stmt->close();
 
     if (password_verify($password, $hashedPassword)) {
-      // Mot de passe correct
-<<<<<<< HEAD
-      setcookie('userId', $userId, time() + (86400 * 30), "/");
-=======
       setcookie('userId', $userId);
->>>>>>> fix-cookie
 
       if ($isOwner) {
         header('Location: /dashboard');
@@ -65,15 +62,12 @@ class UserModel
         header('Location: /home');
         exit;
       }
-
-      $stmt->close();
-      return true;
     } else {
-      // Mot de passe incorrect
-      $stmt->close();
       return false;
     }
   }
+
+
 
   public function addUser($firstname, $lastname, $email, $phone, $password, $isOwner, $garageName, $garageAdress)
   {

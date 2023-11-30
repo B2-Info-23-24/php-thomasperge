@@ -31,18 +31,23 @@ class VehicleController
   public function vehicleRouter($params)
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $params['id'] !== null) {
-      $startDate = $_POST['startDate'] ?? '';
-      $endDate = $_POST['returnDate'] ?? '';
+      $startDate = $_POST['startDate'] ?? null;
+      $endDate = $_POST['returnDate'] ?? null;
       $price = $_POST['price'] ?? 0;
 
-      $addBooking = $this->bookingModel->addBooking($params['id'], $_COOKIE['userId'], $startDate, $endDate, $price);
+      if ($startDate && $endDate && $price) {
+        $addBooking = $this->bookingModel->addBooking($params['id'], $_COOKIE['userId'], $startDate, $endDate, $price);
 
-      if ($addBooking) {
-        header('Location: /sucess');
-        exit;
+        if ($addBooking) {
+          header('Location: /sucess');
+          exit;
+        } else {
+          header('Location: /failed');
+        }
       } else {
-        echo "Erreur dans le formulaire...";
+        header('Location: /failed');
       }
+
     } else {
       $vehicles = $this->vehicleModel->getUniqueVehicle($params['id'] ?? null);
       $garage = $this->garageModel->getGarageDataFromId($vehicles[0]['id_garage'] ?? null);
