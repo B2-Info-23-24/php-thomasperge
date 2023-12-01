@@ -67,8 +67,6 @@ class UserModel
     }
   }
 
-
-
   public function addUser($firstname, $lastname, $email, $phone, $password, $isOwner, $garageName, $garageAdress)
   {
     $id = $this->generateUUID16();
@@ -186,5 +184,19 @@ class UserModel
     }
 
     return null;
+  }
+
+  public function getAllUsers()
+  {
+    $sql = "SELECT * FROM users WHERE is_garage_owner = 0";
+    $result = $this->conn->query($sql);
+
+    $data = [];
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+      }
+    }
+    return $data;
   }
 }

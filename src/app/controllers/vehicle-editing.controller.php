@@ -28,24 +28,40 @@ class VehicleEditingController
   public function vehicleEditingRouter($params)
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $brand = $_POST['brand'] ?? '';
-      $model = $_POST['model'] ?? '';
-      $price = $_POST['price'] ?? '';
-      $image = $_POST['image'] ?? '';
-      $petrol = $_POST['petrol'] ?? '';
-      $nb_seats = $_POST['nb_seats'] ?? '';
-      $color = $_POST['color'] ?? '';
-      $gearbox = $_POST['gearbox'] ?? '';
-      $brandlogo = $_POST['brandlogo'] ?? '';
-      $information = $_POST['information'] ?? '';
+      if (isset($_POST['edit-vehicle'])) {
+        // Form 1 - Change Informations
+        $brand = $_POST['brand'] ?? '';
+        $model = $_POST['model'] ?? '';
+        $price = $_POST['price'] ?? '';
+        $image = $_POST['image'] ?? '';
+        $petrol = $_POST['petrol'] ?? '';
+        $nb_seats = $_POST['nb_seats'] ?? '';
+        $color = $_POST['color'] ?? '';
+        $gearbox = $_POST['gearbox'] ?? '';
+        $brandlogo = $_POST['brandlogo'] ?? '';
+        $information = $_POST['information'] ?? '';
+  
+        $updateVehicle = $this->vehicleModel->editVehicle($brand, $model, $price, $image, $petrol, $nb_seats, $color, $gearbox, $brandlogo, $information, $params['id']);
+  
+        if ($updateVehicle) {
+          header('Location: /dashboard');
+          exit;
+        } else {
+          header('Location: /failed');
+          exit;
+        }
+      } elseif (isset($_POST['edit-review'])) {
+        // Form 2 - Change reviews
+        $newDesc = $_POST['review_input'] ?? '';
+        $id_vehicle = $_POST['id_vehicle'] ?? '';
+        $userId = $_POST['user_id_review'] ?? '';
 
-      $updateVehicle = $this->vehicleModel->editVehicle($brand, $model, $price, $image, $petrol, $nb_seats, $color, $gearbox, $brandlogo, $information, $params['id']);
+        $updateVehicle = $this->ratingModel->updateRating($userId, $id_vehicle, $newDesc);
 
-      if ($updateVehicle) {
-        header('Location: /dashboard');
-        exit;
-      } else {
-        header('Location: /failed');
+        if ($updateVehicle) {
+          header("Location: /vehicle-editing?id=" . $id_vehicle);
+          exit;
+        }
       }
     } else {
       $idUrl = $params['id'] ?? null;

@@ -30,7 +30,7 @@ $routes = [
   '/profil'   => ['controller' => 'ProfilController', 'method' => 'profilRouter'],
   '/sucess'   => ['controller' => 'SucessController', 'method' => 'sucessRouter'],
   '/failed'   => ['controller' => 'FailedController', 'method' => 'failedRouter'],
-];
+]; 
 
 // Manage cookies
 $userId = $_COOKIE['userId'] ?? null;

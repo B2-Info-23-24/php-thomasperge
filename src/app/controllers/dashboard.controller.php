@@ -36,9 +36,10 @@ class DashboardController
     $garageData = $this->garageModel->getGarageDataFromUserId($userId);
     $allVehicleFromGarage = $this->vehicleModel->getAllVehicleFromGarageID($garageData[0]['id']);
     $allBooking = $this->bookingModel->getAllBookingFromGarage($garageData[0]['id']);
+    $allUsers = $this->userModel->getAllUsers();
 
     $isAdmin = $this->adminManager->isAdmin();
 
-    $this->renderManager->render('/pages/dashboard.twig', ['userData' => $userData, 'garageData' => $garageData, 'vehicles' => $allVehicleFromGarage, 'allBooking' => $allBooking, 'isAdmin' => $isAdmin]);
+    $this->renderManager->render('/pages/dashboard.twig', ['userData' => $userData, 'garageData' => $garageData, 'vehicles' => $allVehicleFromGarage, 'allBooking' => $allBooking, 'isAdmin' => $isAdmin, 'allUsers' => $allUsers]);
   }
 }

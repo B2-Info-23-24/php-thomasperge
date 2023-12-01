@@ -40,6 +40,12 @@ a {
   justify-content: center;
 }
 
+.betweenbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .spacebox {
   display: flex;
   flex-direction: column;
@@ -990,6 +996,42 @@ a {
       flex-wrap: wrap;
     }
   }
+
+  .all-users {
+    .all-users-area {
+      .users-table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .user-th,
+      .user-td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+      }
+      
+      .user-td {
+        background-color: #f2f2f2;
+      }
+
+      .button-edit-user {
+        cursor: pointer;
+      }
+      
+      .input-user {
+        width: fit-content;
+        outline: none;
+        border: 1px solid rgb(200, 200, 200);
+        border-radius: .25rem;
+        padding: 0 0 0 .25rem;
+        background-color: transparent;
+        font-family: "MornMedium";
+        font-size: 1rem;
+      }
+    }
+  }
 }
 
 /* === Vehicle detail ===*/
@@ -1178,6 +1220,30 @@ a {
       padding: .8rem;
       background-color: #ebedff;
       border-radius: 1.2rem;
+
+      .formReview {
+        gap: .6rem;
+
+        .review-input {
+          border: 1.5px solid rgb(186, 186, 186);
+          outline: none;
+          background-color: transparent;
+          font-family: "MornMedium";
+          font-size: 1rem;
+          padding: 0 .25rem;
+          border-radius: .25rem;
+        }
+
+        .button-review {
+          background-color: transparent;
+          border: none;
+          outline: none;
+
+          .editReview:hover {
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 
