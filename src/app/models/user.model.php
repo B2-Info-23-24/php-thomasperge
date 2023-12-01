@@ -131,6 +131,30 @@ class UserModel
     return true;
   }
 
+  public function updateUserForAdmin($userId, $created_at, $firstname, $lastname, $email, $phone, $is_garage_owner)
+  {
+    if (empty($userId) || empty($created_at) || empty($firstname) || empty($lastname) || empty($email) || empty($phone) || !isset($is_garage_owner)) {
+      throw new Exception("Tous les champs sont obligatoires.");
+    }
+
+    $stmt = $this->conn->prepare('UPDATE users SET id=?, created_at=?, firstname=?, lastname=?, email=?, phone=?, is_garage_owner=? WHERE id=?');
+
+    if ($stmt === false) {
+      throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
+      return false;
+    }
+
+    $stmt->bind_param('ssssssis', $userId, $created_at, $firstname, $lastname, $email, $phone, $is_garage_owner, $userId);
+
+    if (!$stmt->execute()) {
+      throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
+      return false;
+    }
+
+    $stmt->close();
+    return true;
+  }
+
   public function addGarage($id_owner, $name, $adress)
   {
     if (empty($id_owner) || empty($name) || empty($adress)) {
