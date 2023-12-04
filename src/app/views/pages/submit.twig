@@ -22,75 +22,102 @@
 
 		{# Editing #}
 		<div class="all-information-container">
-				{# Information #}
-				<div class="info-area">
-					<div class="title">Edit Vehicle Information</div>
-				</div>
-				<form action="/submit" method="post" class="form-editing-container spacebox">
-					<div class="editing-container">
-						{# Edit Brand #}
-						<div class="editing-item">
-							<label class="label" for="brand">Brand : </label>
-							<input type="text" class="input" name="brand">
-						</div>
-
-						{# Edit Model #}
-						<div class="editing-item">
-							<label class="label" for="model">Model : </label>
-							<input type="text" class="input" name="model">
-						</div>
-
-						{# Edit Price #}
-						<div class="editing-item">
-							<label class="label" for="price">Price : </label>
-							<input type="number" class="input" name="price">
-						</div>
-
-						{# Edit Url Picture #}
-						<div class="editing-item">
-							<label class="label" for="image">Image : </label>
-							<input type="text" class="input" name="image">
-						</div>
-
-						{# Edit Petrol #}
-						<div class="editing-item">
-							<label class="label" for="petrol">Petrol : </label>
-							<input type="text" class="input" name="petrol">
-						</div>
-
-						{# Edit NbSeats #}
-						<div class="editing-item">
-							<label class="label" for="seats">Seats : </label>
-							<input type="number" class="input" name="seats">
-						</div>
-
-						{# Edit Color #}
-						<div class="editing-item">
-							<label class="label" for="color">Color : </label>
-							<input type="text" class="input" name="color">
-						</div>
-
-						{# Edit Gearbox #}
-						<div class="editing-item">
-							<label class="label" for="gearbox">GearBox : </label>
-							<input type="text" class="input" name="gearbox">
-						</div>
-
-						{# Edit BrandLogo #}
-						<div class="editing-item">
-							<label class="label" for="brandlogo">Brand Logo : </label>
-							<input type="text" class="input" name="brandlogo">
-						</div>
-
-						{# Edit BrandLogo #}
-						<div class="editing-item">
-							<label class="label" for="information">Information : </label>
-							<input type="text" class="input" name="information">
-						</div>
-					</div>
-					<button type="submit" class="button-submit">Submit new vehicle</button>
-				</form>
+			{# Information #}
+			<div class="info-area">
+				<div class="title">Submit Vehicle Information</div>
 			</div>
+
+			{# Submit Vehicle #}
+			<form action="/submit" method="post" class="form-editing-container spacebox">
+				<div class="editing-container">
+					{# Edit Brand #}
+					<div class="editing-item">
+						<label class="label" for="brand">Brand : </label>
+						<input type="text" class="input" name="brand">
+					</div>
+
+					{# Edit Model #}
+					<div class="editing-item">
+						<label class="label" for="model">Model : </label>
+						<input type="text" class="input" name="model">
+					</div>
+
+					{# Edit Price #}
+					<div class="editing-item">
+						<label class="label" for="price">Price : </label>
+						<input type="number" class="input" name="price">
+					</div>
+
+					{# Edit Url Picture #}
+					<div class="editing-item">
+						<label class="label" for="image">Image : </label>
+						<input type="text" class="input" name="image">
+					</div>
+
+					{# Edit Petrol #}
+					<div class="editing-item">
+						<label class="label" for="petrol">Petrol : </label>
+						<input type="text" class="input" name="petrol">
+					</div>
+
+					{# Edit NbSeats #}
+					<div class="editing-item">
+						<label class="label" for="seats">Seats : </label>
+						<input type="number" class="input" name="seats">
+					</div>
+
+					{# Edit Color #}
+					<div class="editing-item">
+						<label class="label" for="color">Color : </label>
+						<input type="text" class="input" name="color">
+					</div>
+
+					{# Edit Gearbox #}
+					<div class="editing-item">
+						<label class="label" for="gearbox">GearBox : </label>
+						<input type="text" class="input" name="gearbox">
+					</div>
+
+					{# Edit BrandLogo #}
+					<div class="editing-item">
+						<label class="label" for="brandlogo">Brand Logo : </label>
+						<input type="text" class="input" name="brandlogo">
+					</div>
+
+					{# Edit BrandLogo #}
+					<div class="editing-item">
+						<label class="label" for="information">Information : </label>
+						<input type="text" class="input" name="information">
+					</div>
+				</div>
+				<button type="submit" name="submit-vehicle" class="button-submit">Submit new vehicle</button>
+			</form>
+		</div>
+
+		<div class="all-information-container">
+			{# Submit Colors #}
+			<form action="/submit" method="post" class="form-editing-container spacebox">
+				<div class="editing-container">
+					{# Edit Colors #}
+					<div class="editing-item">
+						<label class="label" for="brand">Colors : </label>
+						<input type="text" class="input" name="color">
+					</div>
+					<button type="submit" name="submit-colors" class="button-submit">Submit new color</button>
+				</div>
+			</form>
+
+			{# Submit Brand #}
+			<form action="/submit" method="post" class="form-editing-container spacebox">
+				<div class="editing-container">
+					{# Edit Brand #}
+					<div class="editing-item">
+						<label class="label" for="brand">Brand : </label>
+						<input type="text" class="input" name="brand">
+					</div>
+					<button type="submit" name="submit-brand" class="button-submit">Submit new color</button>
+				</div>
+			</form>
 		</div>
 	</div>
 {% endblock %}

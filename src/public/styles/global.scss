@@ -1337,6 +1337,63 @@ a {
       cursor: pointer;
     }
   }
+
+  .other-container {
+    display: flex;
+    justify-content: start;
+    gap: 2rem;
+
+    .info-area {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+
+      .title {
+        font-family: "MornBold";
+        font-size: 1.6rem;
+      }
+    }
+
+    .form-editing-container {
+      gap: 1.1rem;
+
+      .editing-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .editing-item {
+          .label {
+            font-family: "MornMedium";
+            font-size: 1.15rem;
+          }
+
+          .input {
+            font-family: "MornRegular";
+            font-size: 1.05rem;
+            outline: none;
+            border: none;
+            border-radius: .8rem;
+            border: 2px solid rgba(194, 194, 194, 0.336);
+            padding: .3rem .7rem;
+          }
+        }
+      }
+    }
+
+    .button-submit {
+      width: fit-content;
+      background-color: blue;
+      border: none;
+      outline: none;
+      color: white;
+      font-family: "MornDemiBold";
+      padding: 1rem 1.5rem;
+      border-radius: 15px;
+      font-size: .95rem;
+      cursor: pointer;
+    }
+  }
 }
 
 /* === Sucess container ===*/

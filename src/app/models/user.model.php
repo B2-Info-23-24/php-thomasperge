@@ -55,13 +55,13 @@ class UserModel
     if (password_verify($password, $hashedPassword)) {
       setcookie('userId', $userId);
 
-      if ($isOwner) {
-        header('Location: /dashboard');
-        exit;
-      } else {
-        header('Location: /home');
-        exit;
-      }
+      // if ($isOwner) {
+      //   return true;
+      //   header('Location: /dashboard');
+      // } else {
+      //   header('Location: /home');
+      // }
+      return true;
     } else {
       return false;
     }
@@ -137,14 +137,14 @@ class UserModel
       throw new Exception("Tous les champs sont obligatoires.");
     }
 
-    $stmt = $this->conn->prepare('UPDATE users SET id=?, created_at=?, firstname=?, lastname=?, email=?, phone=?, is_garage_owner=? WHERE id=?');
+    $stmt = $this->conn->prepare('UPDATE users SET created_at=?, firstname=?, lastname=?, email=?, phone=?, is_garage_owner=? WHERE id=?');
 
     if ($stmt === false) {
       throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
       return false;
     }
 
-    $stmt->bind_param('ssssssis', $userId, $created_at, $firstname, $lastname, $email, $phone, $is_garage_owner, $userId);
+    $stmt->bind_param('sssssis', $created_at, $firstname, $lastname, $email, $phone, $is_garage_owner, $userId);
 
     if (!$stmt->execute()) {
       throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);

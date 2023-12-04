@@ -4,6 +4,7 @@ require_once __DIR__ . '/../core/render.php';
 require_once __DIR__ . '/../core/admin.php';
 require_once __DIR__ . '/../models/vehicle.model.php';
 require_once __DIR__ . '/../models/garage.model.php';
+require_once __DIR__ . '/../models/other.model.php';
 
 class SubmitController
 {
@@ -11,12 +12,14 @@ class SubmitController
   private $adminManager;
   private $garageModel;
   private $vehicleModel;
+  private $otherModel;
 
   public function __construct()
   {
     global $conn;
     $this->garageModel = new GarageModel($conn);
     $this->vehicleModel = new VehicleModel($conn);
+    $this->otherModel = new OtherModel($conn);
 
     $this->adminManager = new AdminManager();
     $this->renderManager = new RenderManager();
@@ -25,25 +28,49 @@ class SubmitController
   public function submitRouter($params)
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $brand = $_POST['brand'] ?? '';
-      $model = $_POST['model'] ?? '';
-      $price = $_POST['price'] ?? '';
-      $image = $_POST['image'] ?? '';
-      $petrol = $_POST['petrol'] ?? '';
-      $nb_seats = $_POST['seats'] ?? '';
-      $color = $_POST['color'] ?? '';
-      $gearbox = $_POST['gearbox'] ?? '';
-      $brandlogo = $_POST['brandlogo'] ?? '';
-      $information = $_POST['information'] ?? '';
+      if (isset($_POST['submit-vehicle'])) {
+        $brand = $_POST['brand'] ?? '';
+        $model = $_POST['model'] ?? '';
+        $price = $_POST['price'] ?? '';
+        $image = $_POST['image'] ?? '';
+        $petrol = $_POST['petrol'] ?? '';
+        $nb_seats = $_POST['seats'] ?? '';
+        $color = $_POST['color'] ?? '';
+        $gearbox = $_POST['gearbox'] ?? '';
+        $brandlogo = $_POST['brandlogo'] ?? '';
+        $information = $_POST['information'] ?? '';
 
-      $garageData = $this->garageModel->getGarageDataFromUserId($_COOKIE['userId']);
-      $updateVehicle = $this->vehicleModel->addVehicle($garageData[0]['id'], $brand, $model, $price, $image, $petrol, $nb_seats, $color, $gearbox, $brandlogo, $information);
+        $garageData = $this->garageModel->getGarageDataFromUserId($_COOKIE['userId']);
+        $updateVehicle = $this->vehicleModel->addVehicle($garageData[0]['id'], $brand, $model, $price, $image, $petrol, $nb_seats, $color, $gearbox, $brandlogo, $information);
 
-      if ($updateVehicle) {
-        header('Location: /sucess');
-        exit;
-      } else {
-        header('Location: /failed');
+        if ($updateVehicle) {
+          header('Location: /sucess');
+          exit;
+        } else {
+          header('Location: /failed');
+        }
+      } else if (isset($_POST['submit-colors'])) {
+        $color = $_POST['color'] ?? '';
+
+        $updateVehicle = $this->otherModel->addColors($color);
+
+        if ($updateVehicle) {
+          header('Location: /sucess');
+          exit;
+        } else {
+          header('Location: /failed');
+        }
+      } else if (isset($_POST['submit-brand'])) {
+        $brand = $_POST['brand'] ?? '';
+
+        $updateVehicle = $this->otherModel->addBrand($brand);
+
+        if ($updateVehicle) {
+          header('Location: /sucess');
+          exit;
+        } else {
+          header('Location: /failed');
+        }
       }
     } else {
       $isAdmin = $this->adminManager->isAdmin();

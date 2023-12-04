@@ -27,13 +27,12 @@ class SigninController
 
       $signinUser = $this->userModel->signinUser($email, $password);
 
-      var_dump($signinUser);
       if ($signinUser) {
         header('Location: /home');
         exit;
       } else {
-        header('Location: /failed');
-        exit;
+        var_dump($signinUser);
+        // header('Location: /failed');
       }
     } else {
       $isAdmin = $this->adminManager->isAdmin();
