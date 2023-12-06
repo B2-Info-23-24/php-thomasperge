@@ -558,7 +558,8 @@ class DefaultTableManager
 
     if ($rowCount == 0) {
       $sql = "INSERT INTO `users` (`created_at`, `email`, `firstname`, `id`, `is_garage_owner`, `lastname`, `password`, `phone`) VALUES 
-        ('2023-11-23 16:14:36', 'user@gmail.com', 'user', '8128907ad81345ef', 0, 'user', '$2y$10\$JeGNlgedenDlhXaw2cso1O./mzNOqbb8I9VbjDof1ktHHjE3I3Cn6', '007'), 
+        ('2023-11-23 16:14:36', 'user@gmail.com', 'user', '8128907ad81345ef', 0, 'user', '$2y$10\$JeGNlgedenDlhXaw2cso1O./mzNOqbb8I9VbjDof1ktHHjE3I3Cn6', '007'),
+         
         ('2023-11-24 13:12:58', 'admin@gmail.com', 'admin', 'bb644479943345e2', 1, 'admin', '$2y$10$/gvWrFvD3xcapHMpXhGgK.YwMm/0WnV3BUOXTKTKLrjRQhro6tFgi', '007')";
 
       $this->conn->query($sql);
@@ -567,11 +568,58 @@ class DefaultTableManager
 
   public function createDefaultGarage()
   {
-    $sql = "insert into `garage` (`adress`, `created_at`, `id`, `id_owner`, `name`) values 
-    ('admin', '2023-11-23 16:00:27', '554532111ae342ba', 'bb644479943345e2', 'admin')";
+    $checkQuery = "SELECT COUNT(*) as count FROM `garage`";
+    $result = $this->conn->query($checkQuery);
+    $rowCount = $result->fetch_assoc()['count'];
 
-    $this->conn->query($sql);
+    if ($rowCount == 0) {
+      $sql = "INSERT INTO `garage` (`adress`, `created_at`, `id`, `id_owner`, `name`) VALUES
+        ('admin', '2023-11-23 16:00:27', '554532111ae342ba', 'bb644479943345e2', 'admin')";
+
+      $this->conn->query($sql);
+    }
   }
+
+
+  public function createDefaultColors()
+  {
+    $checkQuery = "SELECT COUNT(*) as count FROM `colors`";
+    $result = $this->conn->query($checkQuery);
+    $rowCount = $result->fetch_assoc()['count'];
+
+    if ($rowCount == 0) {
+      $sql = "INSERT INTO `colors` (`color`, `created_at`, `id`) VALUES
+        ('green', '2023-12-04 10:11:55', 'i9j0k1l2m3n4o5p6'),
+        ('black', '2023-12-04 10:11:55', '559faf6b415944fe'),
+        ('red', '2023-12-01 11:02:11', '94e0d5bc937e4c53'),
+        ('blue', '2023-12-01 11:02:11', '94e9d5bc937e4c57'),
+        ('white', '2023-12-04 10:11:55', 'a1b2c3d4e5f6g7h8')";
+
+      $this->conn->query($sql);
+    }
+  }
+
+  public function createDefaultBrands()
+  {
+    $checkQuery = "SELECT COUNT(*) as count FROM `brands`";
+    $result = $this->conn->query($checkQuery);
+    $rowCount = $result->fetch_assoc()['count'];
+
+    if ($rowCount == 0) {
+      $sql = "INSERT INTO `brands` (`brand`, `created_at`, `id`) VALUES 
+        ('tesla', '2023-12-04 10:11:55', 'd6e7f8g9h0i1j2k3'),
+        ('renault', '2023-12-04 10:11:55', 'G3H4I5J6K7L8M9N0'),
+        ('volvo', '2023-12-04 10:11:55', 'l4m5n6o7p8q9r0s1'),
+        ('porsche', '2023-12-04 10:11:55', 'O1P2Q3R4S5T6U7V8'),
+        ('ferrari', '2023-12-04 10:11:55', 'q7r8s9t0u1v2w3x4'),
+        ('nissan', '2023-12-04 10:11:55', 't2u3v4w5x6y7z8A9'),
+        ('mclaren', '2023-12-04 10:11:55', 'W9X0Y1Z2a3b4c5'),
+        ('peugeot', '2023-12-04 10:11:55', 'y5z6A7B8C9D0E1F2')";
+
+      $this->conn->query($sql);
+    }
+  }
+
 
   private function executeQuery($query)
   {

@@ -74,6 +74,9 @@ $defaultTableManager = new DefaultTableManager($conn);
 $defaultTableManager->createDefaultTables();
 $defaultTableManager->createDefaultInsert();
 $defaultTableManager->createDefaultUser();
+$defaultTableManager->createDefaultGarage();
+$defaultTableManager->createDefaultColors();
+$defaultTableManager->createDefaultBrands();
 
 // Router
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
