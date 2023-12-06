@@ -580,7 +580,6 @@ class DefaultTableManager
     }
   }
 
-
   public function createDefaultColors()
   {
     $checkQuery = "SELECT COUNT(*) as count FROM `colors`";
@@ -619,7 +618,6 @@ class DefaultTableManager
       $this->conn->query($sql);
     }
   }
-
 
   private function executeQuery($query)
   {

@@ -31,8 +31,7 @@ class SigninController
         header('Location: /home');
         exit;
       } else {
-        var_dump($signinUser);
-        // header('Location: /failed');
+        header('Location: /failed');
       }
     } else {
       $isAdmin = $this->adminManager->isAdmin();

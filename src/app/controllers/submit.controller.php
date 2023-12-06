@@ -74,7 +74,12 @@ class SubmitController
       }
     } else {
       $isAdmin = $this->adminManager->isAdmin();
-      $this->renderManager->render('/pages/submit.twig', ['isAdmin' => $isAdmin]);
+
+      $allColors = $this->otherModel->getAllColors();
+      $allBrands = $this->otherModel->getAllBrands();
+
+
+      $this->renderManager->render('/pages/submit.twig', ['isAdmin' => $isAdmin, 'allColors' => $allColors, 'allBrands' => $allBrands]);
     }
   }
 }

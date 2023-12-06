@@ -31,7 +31,7 @@ $routes = [
   '/profil'   => ['controller' => 'ProfilController', 'method' => 'profilRouter'],
   '/sucess'   => ['controller' => 'SucessController', 'method' => 'sucessRouter'],
   '/failed'   => ['controller' => 'FailedController', 'method' => 'failedRouter'],
-]; 
+];
 
 // Manage cookies
 $userId = $_COOKIE['userId'] ?? null;
@@ -52,7 +52,7 @@ if ($isAdmin) {
     header('Location: /dashboard');
     exit;
   }
-} elseif ($isAdmin === false)  {
+} elseif ($isAdmin === false) {
   $restrictedRoutes = ['/dashboard', '/submit', '/vehicle-editing'];
 
   if (in_array($currentPath, $restrictedRoutes)) {
@@ -60,7 +60,6 @@ if ($isAdmin) {
     exit;
   }
 } else {
-  var_dump("==> null");
   $restrictedRoutes = ['/profil', '/dashboard', '/vehicle-editing'];
 
   if (in_array($currentPath, $restrictedRoutes)) {
