@@ -13,6 +13,7 @@ require_once __DIR__ . '/app/controllers/404.controller.php';
 require_once __DIR__ . '/app/controllers/cars.controller.php';
 require_once __DIR__ . '/app/controllers/sucess.controller.php';
 require_once __DIR__ . '/app/controllers/failed.controller.php';
+require_once __DIR__ . '/app/core/default-table.php';
 require_once __DIR__ . '/config.php';
 
 // Définir les routes
@@ -67,6 +68,12 @@ if ($isAdmin) {
     exit;
   }
 }
+
+// Create default Table
+$defaultTableManager = new DefaultTableManager($conn);
+$defaultTableManager->createDefaultTables();
+$defaultTableManager->createDefaultInsert();
+$defaultTableManager->createDefaultUser();
 
 // Router
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
