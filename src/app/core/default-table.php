@@ -82,10 +82,12 @@ class DefaultTableManager
     // Garage
     $queryGarage = "
       CREATE TABLE
-      `favorite` (
+      `garage` (
         `id` varchar(255) NOT NULL,
-        `id_vehicle` varchar(255) NOT NULL,
-        `id_user` varchar(255) NOT NULL,
+        `adress` varchar(255) NOT NULL,
+        `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `id_owner` varchar(255) NOT NULL,
+        `name` varchar(255) NOT NULL,
         PRIMARY KEY (`id`)
       ) ENGINE = InnoDB DEFAULT CHARSET = latin1
     ";
