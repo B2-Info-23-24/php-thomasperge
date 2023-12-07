@@ -99,6 +99,10 @@ composer install
 docker-compose up --build
 ```
 
+### MVC architecture
+
+![App Screenshot](https://cdn.discordapp.com/attachments/1085669963605491753/1182387825925169254/image.png?ex=65848379&is=65720e79&hm=b3e202b391f102ab35db0fc729d38da53c1125ac8bedcc09622c17c4d87fb5e4&)
+
 The project should run on your locahost
 
 Thomas Kauffmant
