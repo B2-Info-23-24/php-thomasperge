@@ -1,18 +1,23 @@
 <?php
-require 'vendor/autoload.php';
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+require_once __DIR__ . '/../core/render.php';
+require_once __DIR__ . '/../core/admin.php';
 
 class ErrorController
 {
-  private $twig;
+  private $renderManager;
+  private $adminManager;
+
+  public function __construct()
+  {
+    $this->renderManager = new RenderManager();
+    $this->adminManager = new AdminManager();
+  }
 
   public function errorRouter()
   {
-    $loader = new FilesystemLoader(__DIR__ . '/../views');
-    $this->twig = new Environment($loader);
+    $isAdmin = $this->adminManager->isAdmin();
 
-    echo $this->twig->render('/pages/404.twig');
+    $this->renderManager->render('/pages/404.twig', ['isAdmin' => $isAdmin]);
   }
 }

@@ -1,18 +1,23 @@
 <?php
-require 'vendor/autoload.php';
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+require_once __DIR__ . '/../core/render.php';
+require_once __DIR__ . '/../core/admin.php';
 
 class BookController
 {
-  private $twig;
+  private $renderManager;
+  private $adminManager;
 
-  public function bookRouter()
+  public function __construct()
   {
-    $loader = new FilesystemLoader(__DIR__ . '/../views');
-    $this->twig = new Environment($loader);
+    $this->adminManager = new AdminManager();
+    $this->renderManager = new RenderManager();
+  }
 
-    echo $this->twig->render('/pages/book.twig');
+  public function bookRouter($params)
+  {
+    $isAdmin = $this->adminManager->isAdmin();
+
+    $this->renderManager->render('/pages/book.twig', ['isAdmin' => $isAdmin]);
   }
 }

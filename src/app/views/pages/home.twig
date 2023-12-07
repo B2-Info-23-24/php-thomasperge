@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+	{# NavBar #}
+	{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil', 'isAdmin': isAdmin} %}
 
 	{# Filter #}
 	{% include '/templates/components/filter.twig' %}
@@ -13,5 +15,5 @@
 	{% include '/templates/components/popular-cars.twig' %}
 
 	{# All Cars #}
-	{% include '/templates/components/all-cars.twig' %}
+	{% include '/templates/components/all-cars.twig' with {'data': vehicles } %}
 {% endblock %}

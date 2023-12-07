@@ -19,20 +19,36 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   padding: 0;
   margin: 0;
   font-family: "MornMedium";
-  background-color: #060b20;
+  background-color: white;
+  min-height: 100vh;
+  flex: 1;
 }
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 .flexbox {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.betweenbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spacebox {
+  display: flex;
+  flex-direction: column;
 }
 
 #content {
@@ -51,7 +67,7 @@ a {
   background-color: #060b20;
 
   .website-logo {
-    width: 3.4rem;
+    width: 3.5rem;
 
     .logo {
       width: 100%;
@@ -68,6 +84,7 @@ a {
       background-color: white;
       padding: 0.55rem 0.85rem;
       border-radius: 1.2rem;
+      font-size: .97rem;
     }
 
     .nav-area-unselected {
@@ -78,22 +95,100 @@ a {
       border-radius: 1.2rem;
       color: white;
       fill: white;
+      font-size: .97rem;
     }
   }
 
-  .notification-container,
   .profile-container {
     cursor: pointer;
+    padding: .35rem;
+  }
+
+  .profile-container:hover {
+    background-color: #384162;
+    border-radius: 50%;
   }
 }
 
 /* === Filter ===*/
 .filter-container {
-  padding: 2.2rem 2.2rem 1rem 2.2rem;
+  padding: 1.8rem 2.2rem 1rem 2.2rem;
+
+  .filter-icon-container {
+    margin: 0 0 .2rem 0;
+
+    .filter-icon {
+      cursor: pointer;
+      padding: .3rem;
+    }
+
+    .filter-icon:hover {
+      background-color: rgb(226, 226, 226);
+      border-radius: 6px;
+      padding: .3rem;
+    }
+  }
 
   .filter-title {
     font-size: 1.6rem;
     font-family: "MornDemiBold";
+  }
+
+  .all-filter-container {
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin: 0 0 2rem 0;
+
+    .item-filter-container {
+      gap: .5rem;
+      flex-wrap: wrap;
+
+      .title {
+        font-size: 1.5rem;
+        font-family: "MornDemiBold";
+      }
+
+      .item-filter-area {
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap;
+
+        .item-filter {
+          width: fit-content;
+          padding: .2rem .5rem;
+          border: 1.15px solid rgb(197, 197, 197);
+          border-radius: .3rem;
+          cursor: pointer;
+        }
+
+        .item-filter:hover {
+          border: 1.15px solid rgb(255, 0, 0);
+        }
+
+        .item-filter-input {
+          max-width: 3rem;
+          min-width: 2.5rem;
+          padding: .2rem .5rem;
+          border: 1.15px solid rgb(197, 197, 197);
+          border-radius: .3rem;
+          font-family: "MornDemiBold";
+          cursor: pointer;
+        }
+
+        .item-filter-button {
+          outline: none;
+          border: none;
+          padding: .2rem .5rem;
+          // border: 1.15px solid rgb(197, 197, 197);
+          background-color: rgb(130, 130, 255);
+          color: white;
+          border-radius: .3rem;
+          font-family: "MornDemiBold";
+          cursor: pointer;
+        }
+      }
+    }
   }
 
   .filter-input-container {
@@ -174,8 +269,6 @@ a {
   width: 100%;
 
   .car-container {
-    // background-color: #eef1fa;
-
     .car-info {
       display: flex;
       align-items: center;
@@ -309,7 +402,7 @@ a {
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
     padding: 1rem 0 0 0;
     gap: 1.5rem;
     flex-wrap: wrap;
@@ -335,7 +428,7 @@ a {
     .infos-container {
       display: flex;
       align-items: center;
-      justify-content: space-between; 
+      justify-content: space-between;
 
       .name-container {
         display: flex;
@@ -359,7 +452,7 @@ a {
       padding: 1rem;
       height: 8rem;
       width: 100%;
-    
+
       .car-img {
         width: 90%;
         object-fit: contain;
@@ -375,12 +468,8 @@ a {
     padding: 1rem;
     background-color: #eeeeee;
 
-    .stats {
-      gap: 1rem;
-
-      .stats-items {
-        gap: 0.3rem
-      }
+    .stats-items {
+      gap: 0.3rem;
     }
 
     .price-container {
@@ -395,4 +484,1239 @@ a {
       }
     }
   }
+}
+
+/* === Vehicle detail ===*/
+.detail-container {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+
+  .book-container {
+    display: flex;
+    flex-direction: column;
+    width: 32%;
+    gap: 2rem;
+
+    .path-container {
+      display: flex;
+      gap: .6rem;
+
+      .path {
+        font-size: .95rem;
+      }
+
+      .brand-path {
+        padding: .2rem .5rem .2rem .5rem;
+        border-radius: 2rem;
+        background-color: #e5f3fa;
+        color: #214ddf;
+      }
+    }
+
+    .path-container>a:hover {
+      text-decoration: underline;
+    }
+
+    .booking-container {
+      display: flex;
+      flex-direction: column;
+
+      .select-date-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .5rem;
+
+        .date-container {
+          display: flex;
+          flex-direction: column;
+          gap: .6rem;
+          width: 50%;
+
+          #startDate,
+          #returnDate {
+            padding: .5rem 1.2rem;
+            outline: none;
+            border: rgb(196, 196, 196) 1.5px solid;
+            border-radius: 10px;
+            font-family: "MornMedium";
+          }
+        }
+      }
+    }
+
+    .rental-box {
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+
+      .rental-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .rental-title {
+          font-size: 1.2rem;
+          font-family: "MornDemiBold"
+        }
+
+        .rental-data-container {
+          width: 100%;
+
+          .rental-data-area hr {
+            width: 100%;
+            margin: .72rem 0;
+          }
+
+          .rental-data-area {
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+            width: 95%;
+            background-color: #edf2f9;
+            border-radius: 16px 16px 0 0;
+            padding: 1rem;
+
+            .rent-per-day-container {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              .rent-per {
+                font-size: .92rem;
+                color: rgb(115, 115, 115);
+              }
+
+              .price {
+                font-size: .96rem;
+                color: black;
+                font-family: "MornDemiBold";
+              }
+            }
+          }
+
+          .rental-user-area {
+            background-color: #edf2f9;
+            border-radius: 0 0 16px 16px;
+          }
+        }
+      }
+
+      .reserve-now-container {
+        width: 100%;
+        background-color: blue;
+        color: white;
+        padding: 1rem 0;
+        border-radius: 15px;
+        font-family: "MornMedium";
+        font-size: 1rem;
+        cursor: pointer;
+        outline: none;
+        border: none;
+      }
+    }
+  }
+
+  .information-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    width: 100%;
+    height: fit-content;
+
+    .car-stats-container {
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.65rem;
+      overflow: hidden;
+      box-sizing: border-box;
+      height: fit-content;
+
+      .car-container {
+        flex-direction: column;
+        padding: 1rem 1rem 1rem 1rem;
+        border-radius: 1.65rem;
+        background-color: #eceff8db;
+
+        .infos-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+
+          .favorite-like {
+            .button-favorite-like {
+              border: none;
+              outline: none;
+              background-color: transparent;
+            }
+
+            .button-favorite-like:hover {
+              cursor: pointer;
+            }
+          }
+
+          .name-container {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+
+            .brand {
+              font-size: 1.5rem;
+              font-family: "MornDemiBold";
+            }
+
+            .model {
+              font-size: 1rem;
+              font-family: "MornRegular";
+            }
+          }
+        }
+
+        .car-img-container {
+          height: auto;
+          max-height: 12rem;
+          width: 70%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+
+          .backgroundTitle {
+            position: absolute;
+            display: flex;
+            align-items: start;
+            white-space: nowrap;
+            justify-content: start;
+            transform: translateY(-25px) translateX(10px);
+            font-size: 7rem;
+            font-size: "MornBold";
+            background: -webkit-linear-gradient(-90deg, rgba(0, 0, 0, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 5;
+          }
+
+          .car-img {
+            width: 95%;
+            object-fit: contain;
+            z-index: 6;
+            margin: 0 0 0 1.6rem;
+          }
+        }
+      }
+    }
+
+    .car-information-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1rem;
+      width: 60%;
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(156, 83, 224);
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        color: white;
+        font-size: 1.35rem;
+      }
+
+      .garagetitle {
+        font-family: "MornDemiBold";
+        font-size: 1.2rem;
+      }
+
+    }
+
+    .all-information-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      gap: 2rem;
+
+      .info-area {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        .title {
+          font-family: "MornBold";
+          font-size: 1.6rem;
+        }
+
+        .information {
+          text-wrap: wrap;
+          font-family: "MornRegular";
+          font-family: 1rem;
+        }
+      }
+
+      .stats-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        .stats-item {
+          width: 25%;
+          padding: 1rem;
+          background-color: rgb(235, 237, 255);
+          border-radius: 1.2rem;
+          gap: .5rem;
+
+          .svg-container {
+            .icon {
+              padding: .35rem;
+              border-radius: 2rem;
+            }
+          }
+        }
+      }
+    }
+
+    .all-booking-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      gap: 2rem;
+
+      .info-area {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        .title {
+          font-family: "MornBold";
+          font-size: 1.6rem;
+        }
+
+        .information {
+          text-wrap: wrap;
+          font-family: "MornRegular";
+          font-family: 1rem;
+        }
+      }
+
+      .all-reviews-container {
+        display: flex;
+        gap: 1rem;
+
+        .review-container {
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          gap: .6rem;
+          padding: .8rem;
+          background-color: #ebedff;
+          border-radius: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+/* === Signup ===*/
+.signup-container {
+  width: 100%;
+  height: 100%;
+  padding: 4rem 0;
+
+  .user-container-form {
+    align-items: center;
+    justify-content: center;
+
+    .signin {
+      margin-top: 1.2rem;
+    }
+
+    .signin:hover {
+      text-decoration: underline;
+    }
+
+    .user-form {
+      gap: 1rem;
+
+      >.spacebox>.title {
+        font-size: 1.2rem;
+        font-family: "MornDemiBold";
+      }
+
+      >.spacebox>.input {
+        font-size: 1rem;
+        font-family: "MornMedium";
+        outline: none;
+        border-radius: .3rem;
+        border: 1.8px solid rgb(206, 206, 206);
+        padding: .25rem .35rem;
+      }
+
+      >.flexbox>.title {
+        font-size: 1.2rem;
+        font-family: "MornDemiBold";
+      }
+
+      >.flexbox>.input {
+        width: 21px;
+        height: 21px;
+      }
+
+      .button-submit {
+        background-color: blue;
+        border: none;
+        outline: none;
+        color: white;
+        font-family: "MornDemiBold";
+        padding: 1rem 0;
+        border-radius: 15px;
+        font-size: .95rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .owner-container-form {}
+}
+
+/* === Signin ===*/
+.signin-container {
+  width: 100%;
+  height: 100%;
+  padding: 4rem 0;
+
+  .signup {
+    margin-top: 1.2rem;
+  }
+
+  .signup:hover {
+    text-decoration: underline;
+  }
+
+  .user-container-form {
+    align-items: center;
+    justify-content: center;
+
+
+    .user-form {
+      gap: 1rem;
+
+      >.spacebox>.title {
+        font-size: 1.2rem;
+        font-family: "MornDemiBold";
+      }
+
+      >.spacebox>.input {
+        font-size: 1rem;
+        font-family: "MornMedium";
+        outline: none;
+        border-radius: .3rem;
+        border: 1.8px solid rgb(206, 206, 206);
+        padding: .25rem .35rem;
+      }
+
+      >.flexbox>.title {
+        font-size: 1.2rem;
+        font-family: "MornDemiBold";
+      }
+
+      >.flexbox>.input {
+        width: 21px;
+        height: 21px;
+      }
+
+      .button-submit {
+        background-color: blue;
+        border: none;
+        outline: none;
+        color: white;
+        font-family: "MornDemiBold";
+        padding: 1rem 0;
+        border-radius: 15px;
+        font-size: .95rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .owner-container-form {}
+}
+
+/* === Dasboard ===*/
+.dasboard-container {
+  padding: 1.5rem;
+  gap: 3rem;
+
+  .editor-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    >.spacebox>.title {
+      font-size: 1.2rem;
+      font-family: "MornRegular";
+    }
+
+    >.spacebox>.username {
+      font-size: 1.55rem;
+      font-family: "MornBold";
+    }
+
+    .submit-button {
+      background-color: blue;
+      border: none;
+      outline: none;
+      color: white;
+      font-family: "MornDemiBold";
+      padding: 1rem 1.5rem;
+      border-radius: 15px;
+      font-size: .95rem;
+      cursor: pointer;
+    }
+  }
+
+  .all-cars-title {
+    font-size: 1.6rem;
+    font-family: "MornDemiBold";
+  }
+
+  .all-cars {
+    .all-cars-area {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: start;
+      padding: 1rem 0 0 0;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+  }
+
+  .all-users {
+    .all-users-area {
+      .users-table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .user-th,
+      .user-td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+      }
+
+      .user-td {
+        background-color: #f2f2f2;
+      }
+
+      .button-edit-user {
+        cursor: pointer;
+      }
+
+      .input-user {
+        width: 100%;
+        outline: none;
+        border: 1px solid rgb(200, 200, 200);
+        border-radius: .25rem;
+        padding: 0 0 0 .25rem;
+        background-color: transparent;
+        font-family: "MornMedium";
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+/* === Vehicle detail ===*/
+.editing-vehicle-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+
+  .path-container {
+    display: flex;
+    gap: .6rem;
+
+    >a:hover {
+      text-decoration: underline;
+    }
+
+    .path {
+      font-size: .95rem;
+    }
+
+    .brand-path {
+      padding: .2rem .5rem .2rem .5rem;
+      border-radius: 2rem;
+      background-color: #e5f3fa;
+      color: #214ddf;
+    }
+  }
+
+  .information-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    width: 100%;
+    height: fit-content;
+
+    .car-stats-container {
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.65rem;
+      overflow: hidden;
+      box-sizing: border-box;
+      height: fit-content;
+
+      .car-container {
+        flex-direction: column;
+        padding: 1rem 1rem 1rem 1rem;
+        border-radius: 1.65rem;
+        background-color: #eceff8db;
+
+        .infos-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+
+          .name-container {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+
+            .brand {
+              font-size: 1.5rem;
+              font-family: "MornDemiBold";
+            }
+
+            .model {
+              font-size: 1rem;
+              font-family: "MornRegular";
+            }
+          }
+        }
+
+        .car-img-container {
+          height: auto;
+          max-height: 12rem;
+          width: 70%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+
+          .backgroundTitle {
+            position: absolute;
+            display: flex;
+            align-items: start;
+            white-space: nowrap;
+            justify-content: start;
+            transform: translateY(-25px) translateX(10px);
+            font-size: 7rem;
+            font-size: "MornBold";
+            background: -webkit-linear-gradient(-90deg, rgba(0, 0, 0, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 5;
+          }
+
+          .car-img {
+            width: 95%;
+            object-fit: contain;
+            z-index: 6;
+            margin: 0 0 0 1.6rem;
+          }
+        }
+      }
+    }
+
+    .car-information-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1rem;
+      width: 60%;
+    }
+
+    .all-information-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      gap: 2rem;
+
+      .info-area {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        .title {
+          font-family: "MornBold";
+          font-size: 1.6rem;
+        }
+      }
+
+      .form-editing-container {
+        gap: 1.1rem;
+
+        .editing-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+
+          .editing-item {
+            .label {
+              font-family: "MornMedium";
+              font-size: 1.15rem;
+            }
+
+            .input {
+              font-family: "MornRegular";
+              font-size: 1.05rem;
+              outline: none;
+              border: none;
+              border-radius: .8rem;
+              border: 2px solid rgba(194, 194, 194, 0.336);
+              padding: .3rem .7rem;
+            }
+          }
+        }
+      }
+
+      .button-submit {
+        width: fit-content;
+        background-color: blue;
+        border: none;
+        outline: none;
+        color: white;
+        font-family: "MornDemiBold";
+        padding: 1rem 1.5rem;
+        border-radius: 15px;
+        font-size: .95rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .all-rating-container {
+    display: flex;
+    gap: 1rem;
+
+    .review-container {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      gap: .6rem;
+      padding: .8rem;
+      background-color: #ebedff;
+      border-radius: 1.2rem;
+
+      .formReview {
+        gap: .6rem;
+
+        .review-input {
+          border: 1.5px solid rgb(186, 186, 186);
+          outline: none;
+          background-color: transparent;
+          font-family: "MornMedium";
+          font-size: 1rem;
+          padding: 0 .25rem;
+          border-radius: .25rem;
+        }
+
+        .button-review {
+          background-color: transparent;
+          border: none;
+          outline: none;
+
+          .editReview:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .title {
+    font-size: 1.6rem;
+    font-family: "MornBold"
+  }
+}
+
+/* === Submit new Vehicle ===*/
+.submit-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+
+  .path-container {
+    display: flex;
+    gap: .6rem;
+
+    >a:hover {
+      text-decoration: underline;
+    }
+
+    .path {
+      font-size: .95rem;
+    }
+
+    .brand-path {
+      padding: .2rem .5rem .2rem .5rem;
+      border-radius: 2rem;
+      background-color: #e5f3fa;
+      color: #214ddf;
+    }
+  }
+
+  .all-information-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 2rem;
+
+    .info-area {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+
+      .title {
+        font-family: "MornBold";
+        font-size: 1.6rem;
+      }
+    }
+
+    .form-editing-container {
+      gap: 1.1rem;
+
+      .editing-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .editing-item {
+          .label {
+            font-family: "MornMedium";
+            font-size: 1.15rem;
+          }
+
+          .input {
+            font-family: "MornRegular";
+            font-size: 1.05rem;
+            outline: none;
+            border: none;
+            border-radius: .8rem;
+            border: 2px solid rgba(194, 194, 194, 0.336);
+            padding: .3rem .7rem;
+          }
+        }
+      }
+    }
+
+    .button-submit {
+      width: fit-content;
+      background-color: blue;
+      border: none;
+      outline: none;
+      color: white;
+      font-family: "MornDemiBold";
+      padding: .65rem 1rem;
+      border-radius: 15px;
+      font-size: .95rem;
+      cursor: pointer;
+    }
+  }
+
+  .other-container {
+    display: flex;
+    justify-content: start;
+    gap: 2rem;
+
+    .info-area {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+
+      .title {
+        font-family: "MornBold";
+        font-size: 1.6rem;
+      }
+    }
+
+    .form-editing-container {
+      gap: 1.1rem;
+
+      .editing-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .editing-item {
+          .label {
+            font-family: "MornMedium";
+            font-size: 1.15rem;
+          }
+
+          .input {
+            font-family: "MornRegular";
+            font-size: 1.05rem;
+            outline: none;
+            border: none;
+            border-radius: .8rem;
+            border: 2px solid rgba(194, 194, 194, 0.336);
+            padding: .3rem .7rem;
+          }
+        }
+      }
+    }
+
+    .button-submit {
+      width: fit-content;
+      background-color: blue;
+      border: none;
+      outline: none;
+      color: white;
+      font-family: "MornDemiBold";
+      padding: 1rem 1.5rem;
+      border-radius: 15px;
+      font-size: .95rem;
+      cursor: pointer;
+    }
+  }
+}
+
+/* === Sucess container ===*/
+.sucess-container {
+  width: 100%;
+  height: 80vh;
+  gap: 1.5rem;
+  flex-direction: column;
+
+  .title {
+    font-size: 2rem;
+    font-family: "MornDemiBold";
+  }
+
+  .back {
+    font-size: 1.1rem;
+  }
+
+  .back:hover {
+    text-decoration: underline;
+  }
+}
+
+/* === Failed container ===*/
+.failed-container {
+  width: 100%;
+  height: 80vh;
+  gap: 1.5rem;
+  flex-direction: column;
+
+  .title {
+    font-size: 2rem;
+    font-family: "MornDemiBold";
+  }
+
+  .back {
+    font-size: 1.1rem;
+  }
+
+  .back:hover {
+    text-decoration: underline;
+  }
+}
+
+/* === Booking Failed container ===*/
+.booking-failed-container {
+  width: 100%;
+  height: 80vh;
+  gap: 1.5rem;
+  flex-direction: column;
+
+  .title {
+    font-size: 2rem;
+    font-family: "MornDemiBold";
+  }
+
+  .back {
+    font-size: 1.1rem;
+  }
+
+  .back:hover {
+    text-decoration: underline;
+  }
+}
+
+/* === Profil container ===*/
+.profil-container {
+  padding: 1rem 1.5rem;
+  gap: 1.2rem;
+
+  .welcome-title {
+    padding: 1rem 0;
+    font-size: 1.55rem;
+    gap: .35rem;
+    font-family: "MornDemiBold";
+  }
+
+  .profile_area {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+
+    .editing-container {
+      width: 30%;
+      height: 100%;
+      background-color: rgb(214, 237, 255);
+      border-radius: .9rem;
+      padding: 1rem;
+      gap: 2rem;
+
+      .edit-title {
+        font-size: 1.25rem;
+      }
+
+      .form-container {
+        gap: .6rem;
+
+        .input-container {
+          display: flex;
+          gap: .5rem;
+
+          .input {
+            border: 1.5px solid black;
+            outline: none;
+            border-radius: 1.2rem;
+            padding: .15rem .45rem;
+            font-family: "MornRegular";
+          }
+        }
+
+        .button-container {
+          background-color: blue;
+          width: fit-content;
+          border: none;
+          outline: none;
+          color: white;
+          font-family: "MornDemiBold";
+          padding: 1rem 1.8rem;
+          border-radius: 15px;
+          font-size: .95rem;
+          cursor: pointer;
+          margin-top: 1rem;
+        }
+      }
+    }
+
+    .display-all-booking-container {
+      width: 70%;
+      gap: 1rem;
+
+      .title {
+        font-size: 1.7rem;
+        font-family: "MornDemiBold";
+        transform: translateX(-6px);
+      }
+
+
+      .all-cars {
+        .past-booking {
+          margin-top: 2rem;
+        }
+
+        .time-title {
+          font-size: 1.4rem;
+          font-family: "MornDemiBold";
+          background-color: rgb(231, 231, 231);
+          padding: .15rem;
+          border-radius: .3rem;
+        }
+
+        .time-title:hover {
+          text-decoration: underline;
+        }
+
+        .booking-area {
+          gap: 1rem;
+
+          .cars-area {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            align-items: center;
+            justify-content: start;
+            padding: 1rem 0 0 0;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+          }
+
+          .book-infos {
+            width: 50%;
+            gap: 1.5rem;
+
+            .date {
+              padding: .5rem 1rem;
+              width: fit-content;
+              gap: .3rem;
+              background-color: rgb(255, 221, 221);
+              border-radius: .8rem;
+
+              .finish {
+                margin-top: .6rem;
+                font-family: "MornDemiBold";
+              }
+            }
+
+            .feedback {
+              padding: .4rem .6rem;
+              width: fit-content;
+              gap: .5rem;
+              background-color: rgb(255, 255, 234);
+              border-radius: .8rem;
+
+              .title {
+                font-size: 1rem;
+                font-family: "MornDemiBold";
+              }
+
+              .input {
+                font-size: .8rem;
+                font-family: "MornMedium";
+                outline: none;
+                border-radius: .3rem;
+                border: 1.8px solid rgb(206, 206, 206);
+                padding: .25rem .35rem;
+              }
+
+              .button-submit {
+                background-color: blue;
+                border: none;
+                outline: none;
+                color: white;
+                width: fit-content;
+                font-family: "MornDemiBold";
+                padding: .3rem .7rem;
+                border-radius: 15px;
+                font-size: .95rem;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+
+      .past-booking {
+        margin-top: 2rem;
+      }
+
+      .time-title {
+        font-size: 1.4rem;
+        font-family: "MornDemiBold";
+        background-color: rgb(231, 231, 231);
+        padding: .15rem;
+        border-radius: .3rem;
+      }
+
+      .time-title:hover {
+        text-decoration: underline;
+      }
+
+      .booking-area {
+        gap: 1rem;
+
+        .cars-area {
+          display: flex;
+          flex-direction: column;
+          width: 50%;
+          align-items: center;
+          justify-content: start;
+          padding: 1rem 0 0 0;
+          gap: 1.5rem;
+          flex-wrap: wrap;
+        }
+
+        .book-infos {
+          width: 50%;
+          gap: 1.5rem;
+
+          .date {
+            padding: .5rem 1rem;
+            width: fit-content;
+            gap: .3rem;
+            background-color: rgb(255, 221, 221);
+            border-radius: .8rem;
+
+            .finish {
+              margin-top: .6rem;
+              font-family: "MornDemiBold";
+            }
+          }
+
+          .feedback {
+            padding: .4rem .6rem;
+            width: fit-content;
+            gap: .5rem;
+            background-color: rgb(255, 255, 234);
+            border-radius: .8rem;
+
+            .title {
+              font-size: 1rem;
+              font-family: "MornDemiBold";
+            }
+
+            .input {
+              font-size: .8rem;
+              font-family: "MornMedium";
+              outline: none;
+              border-radius: .3rem;
+              border: 1.8px solid rgb(206, 206, 206);
+              padding: .25rem .35rem;
+            }
+
+            .button-submit {
+              background-color: blue;
+              border: none;
+              outline: none;
+              color: white;
+              width: fit-content;
+              font-family: "MornDemiBold";
+              padding: .3rem .7rem;
+              border-radius: 15px;
+              font-size: .95rem;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.error-container {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+/* === Footer ===*/
+.footer-container {
+  padding: 2rem 2rem;
+  margin-top: auto;
+  color: black;
+  background-color: #e6e9f3;
 }

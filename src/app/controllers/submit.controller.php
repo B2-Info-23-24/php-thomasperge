@@ -1,18 +1,85 @@
 <?php
-require 'vendor/autoload.php';
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+require_once __DIR__ . '/../core/render.php';
+require_once __DIR__ . '/../core/admin.php';
+require_once __DIR__ . '/../models/vehicle.model.php';
+require_once __DIR__ . '/../models/garage.model.php';
+require_once __DIR__ . '/../models/other.model.php';
 
 class SubmitController
 {
-  private $twig;
+  private $renderManager;
+  private $adminManager;
+  private $garageModel;
+  private $vehicleModel;
+  private $otherModel;
 
-  public function submitRouter()
+  public function __construct()
   {
-    $loader = new FilesystemLoader(__DIR__ . '/../views');
-    $this->twig = new Environment($loader);
+    global $conn;
+    $this->garageModel = new GarageModel($conn);
+    $this->vehicleModel = new VehicleModel($conn);
+    $this->otherModel = new OtherModel($conn);
 
-    echo $this->twig->render('/pages/submit.twig');
+    $this->adminManager = new AdminManager();
+    $this->renderManager = new RenderManager();
+  }
+
+  public function submitRouter($params)
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      if (isset($_POST['submit-vehicle'])) {
+        $brand = $_POST['brand'] ?? '';
+        $model = $_POST['model'] ?? '';
+        $price = $_POST['price'] ?? '';
+        $image = $_POST['image'] ?? '';
+        $petrol = $_POST['petrol'] ?? '';
+        $nb_seats = $_POST['seats'] ?? '';
+        $color = $_POST['color'] ?? '';
+        $gearbox = $_POST['gearbox'] ?? '';
+        $brandlogo = $_POST['brandlogo'] ?? '';
+        $information = $_POST['information'] ?? '';
+
+        $garageData = $this->garageModel->getGarageDataFromUserId($_COOKIE['userId']);
+        $updateVehicle = $this->vehicleModel->addVehicle($garageData[0]['id'], $brand, $model, $price, $image, $petrol, $nb_seats, $color, $gearbox, $brandlogo, $information);
+
+        if ($updateVehicle) {
+          header('Location: /sucess');
+          exit;
+        } else {
+          header('Location: /failed');
+        }
+      } else if (isset($_POST['submit-colors'])) {
+        $color = $_POST['color'] ?? '';
+
+        $updateVehicle = $this->otherModel->addColors($color);
+
+        if ($updateVehicle) {
+          header('Location: /sucess');
+          exit;
+        } else {
+          header('Location: /failed');
+        }
+      } else if (isset($_POST['submit-brand'])) {
+        $brand = $_POST['brand'] ?? '';
+
+        $updateVehicle = $this->otherModel->addBrand($brand);
+
+        if ($updateVehicle) {
+          header('Location: /sucess');
+          exit;
+        } else {
+          header('Location: /failed');
+        }
+      }
+    } else {
+      $isAdmin = $this->adminManager->isAdmin();
+
+      $allColors = $this->otherModel->getAllColors();
+      $allBrands = $this->otherModel->getAllBrands();
+
+
+      $this->renderManager->render('/pages/submit.twig', ['isAdmin' => $isAdmin, 'allColors' => $allColors, 'allBrands' => $allBrands]);
+    }
   }
 }

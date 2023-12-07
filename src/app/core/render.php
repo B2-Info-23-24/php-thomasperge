@@ -1,13 +1,18 @@
 <?php
+require __DIR__ . '/../../vendor/autoload.php';
 
-class RenderManager
+class RenderManager 
 {
     private $twig;
 
     public function __construct()
     {
         $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
-        $this->twig = new \Twig\Environment($loader);
+        $this->twig = new \Twig\Environment($loader, [
+            'debug' => true,
+        ]);
+
+        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 
     public function render($template, $variables = [])

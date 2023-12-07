@@ -5,5 +5,9 @@
 {% endblock %}
 
 {% block content %}
-	<h1>404 CONTENT</h1>
+	{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil', 'isAdmin': isAdmin} %}
+
+	<div class="error-container">
+		❌ 404 Error, path not found
+	</div>
 {% endblock %}

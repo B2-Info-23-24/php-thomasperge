@@ -5,5 +5,201 @@
 {% endblock %}
 
 {% block content %}
-	<h1>dashboard CONTENT</h1>
+	{# NavBar #}
+	{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil', 'isAdmin': isAdmin} %}
+
+	<div class="dasboard-container spacebox">
+		{# Good Morning #}
+		<div class="editor-container">
+			<div class="spacebox">
+				<div class="title">Good Morning,</div>
+				<div class="username">{{ userData[0]['firstname'] }} {{ userData[0]['lastname'] }}</div>
+			</div>
+
+			<div class="spacebox">
+				<a href="/submit" class="submit-button">Submit new car</a>
+			</div>
+		</div>
+
+		{# All Collections #}
+		<div class="all-cars">
+			<div class="all-cars-title">🔥 All your cars - Dashboard</div>
+			<div class="all-cars-area">
+				{% if vehicles is empty %}
+					<div>Vous n'avez aucun vehicule</div>
+				{% else %}
+					{% for vehicle in vehicles %}
+						{% include '/templates/components/card-vehicle-editing.twig' with {'id': vehicle.id, 'brand': vehicle.brand, 'model': vehicle.model, 'logo': vehicle.brand_logo, 'modelImage': vehicle.url_picture, 'seats': vehicle.nb_seats, 'petrol': vehicle.petrol, 'gear': vehicle.gearbox, 'price': vehicle.price} %}
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+
+		{# All Booking #}
+		<div class="all-cars">
+			<div class="all-cars-title">🎫 All your booking - Dashboard</div>
+			<div class="all-cars-area">
+				{% if allBooking is empty %}
+					<div>Vous n'avez aucune reservation</div>
+				{% else %}
+					{% for booking in allBooking %}
+						{% set start_date_obj = booking.start_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
+						{% set finish_date_obj = booking.end_date|date("Y-m-d H:i:s")|date_modify('midnight') %}
+						{% set date_diff = finish_date_obj.diff(start_date_obj) %}
+						{% set days_diff = date_diff.days %}
+
+						{% include '/templates/components/booking-car-card.twig' with {'bookingData': booking, 'days_diff': days_diff} %}
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+
+		{# All Users #}
+		<div class="all-users">
+			<div class="all-cars-title">👤 All users - Dashboard</div>
+			<div class="all-users-area">
+				{% if allUsers is empty %}
+					<div>Aucun utilisateurs n'est inscrit sur le site</div>
+				{% else %}
+						<table class="users-table">
+							<thead>
+								<tr>
+									<th class="user-th">ID</th>
+									<th class="user-th">Created At</th>
+									<th class="user-th">First Name</th>
+									<th class="user-th">Last Name</th>
+									<th class="user-th">Email</th>
+									<th class="user-th">Phone</th>
+									<th class="user-th">Is Admin</th>
+									<th class="user-th">Edit</th>
+									<th class="user-th">Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for user in allUsers %}
+									<tr>
+										<form action="/dashboard?id={{user.id}}" method="post">
+											<td class="user-td">{{user.id}}</td>
+											<input class="flexbox input-user" type="hidden" name="id" id="" value="{{user.id}}">
+											<td class="user-td"><input class="flexbox input-user" type="text" name="created_at" id="" value="{{user.created_at}}"></td>
+											<td class="user-td"><input class="flexbox input-user" type="text" name="firstname" id="" value="{{user.firstname}}"></td>
+											<td class="user-td"><input class="flexbox input-user" type="text" name="lastname" id="" value="{{user.lastname}}"></td>
+											<td class="user-td"><input class="flexbox input-user" type="text" name="email" id="" value="{{user.email}}"></td>
+											<td class="user-td"><input class="flexbox input-user" type="text" name="phone" id="" value="{{user.phone}}"></td>
+											<td class="user-td"><input class="flexbox input-user" type="number" name="is_garage_owner" id="" value="{{user.is_garage_owner}}"></td>
+
+											<td class="user-td">
+												<button type="submit" name="update-user" class="flexbox">
+													<svg width="24px" height="24px" class="button-edit-user" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V12M9 15V12.5L17.75 3.75C18.4404 3.05964 19.5596 3.05964 20.25 3.75V3.75C20.9404 4.44036 20.9404 5.55964 20.25 6.25L15.5 11L11.5 15H9Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+												</button>
+											</td>
+
+											<td class="user-td">
+												<button type="submit" name="delete-user" class="flexbox">
+													<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 10L15 14M11 14L15 10M2.7716 13.5185L7.43827 17.5185C7.80075 17.8292 8.26243 18 8.73985 18H18C19.1046 18 20 17.1046 20 16V8C20 6.89543 19.1046 6 18 6H8.73985C8.26243 6 7.80075 6.17078 7.43827 6.48149L2.7716 10.4815C1.84038 11.2797 1.84038 12.7203 2.7716 13.5185Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+												</button>
+											</td>
+										</form>
+									</tr>
+								{% endfor %}
+							</tbody>
+					</table>
+				{% endif %}
+			</div>
+		</div>
+
+		<div style ="display: flex; justify-center: space-between; gap: 1rem">
+			{# Colors Submit #}
+			<div class="all-users">
+				<div class="all-cars-title">🔴 All Colors - Dashboard</div>
+				<div class="all-users-area">
+					{% if allColors is empty %}
+						<div>Aucune couleurs n'est inscrite sur le site</div>
+					{% else %}
+							<table class="users-table">
+								<thead>
+									<tr>
+										<th class="user-th">ID</th>
+										<th class="user-th">Colors</th>
+										<th class="user-th">Created At</th>
+										<th class="user-th">Edit</th>
+										<th class="user-th">Delete</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for color in allColors %}
+										<tr>
+											<form action="/dashboard?id={{color.id}}" method="post">
+												<td class="user-td">{{color.id}}</td>
+												<input class="flexbox input-user" type="hidden" name="id" id="" value="{{color.id}}">
+												<td class="user-td"><input class="flexbox input-user" type="text" name="color" id="" value="{{color.color}}"></td>
+												<td class="user-td"><input class="flexbox input-user" type="text" name="created_at" id="" value="{{color.created_at}}"></td>
+
+												<td class="user-td flexbox">
+													<button type="submit" name="update-color" class="flexbox">
+														<svg width="24px" height="24px" class="button-edit-user" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V12M9 15V12.5L17.75 3.75C18.4404 3.05964 19.5596 3.05964 20.25 3.75V3.75C20.9404 4.44036 20.9404 5.55964 20.25 6.25L15.5 11L11.5 15H9Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+													</button>
+												</td>
+
+												<td class="user-td">
+													<button type="submit" name="delete-color" class="flexbox">
+														<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 10L15 14M11 14L15 10M2.7716 13.5185L7.43827 17.5185C7.80075 17.8292 8.26243 18 8.73985 18H18C19.1046 18 20 17.1046 20 16V8C20 6.89543 19.1046 6 18 6H8.73985C8.26243 6 7.80075 6.17078 7.43827 6.48149L2.7716 10.4815C1.84038 11.2797 1.84038 12.7203 2.7716 13.5185Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+													</button>
+												</td>
+											</form>
+										</tr>
+									{% endfor %}
+								</tbody>
+						</table>
+					{% endif %}
+				</div>
+			</div>
+
+			{# Brands Submit #}
+			<div class="all-users">
+				<div class="all-cars-title">🚗 All Brands - Dashboard</div>
+				<div class="all-users-area">
+					{% if allBrands is empty %}
+						<div>Aucune couleurs n'est inscrite sur le site</div>
+					{% else %}
+							<table class="users-table">
+								<thead>
+									<tr>
+										<th class="user-th">ID</th>
+										<th class="user-th">Colors</th>
+										<th class="user-th">Created At</th>
+										<th class="user-th">Edit</th>
+										<th class="user-th">Delete</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for brand in allBrands %}
+										<tr>
+											<form action="/dashboard?id={{brand.id}}" method="post">
+												<td class="user-td">{{brand.id}}</td>
+												<input class="flexbox input-user" type="hidden" name="id" id="" value="{{brand.id}}">
+												<td class="user-td"><input class="flexbox input-user" type="text" name="brand" id="" value="{{brand.brand}}"></td>
+												<td class="user-td"><input class="flexbox input-user" type="text" name="created_at" id="" value="{{brand.created_at}}"></td>
+
+												<td class="user-td flexbox">
+													<button type="submit" name="update-brand" class="flexbox">
+														<svg width="24px" height="24px" class="button-edit-user" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V12M9 15V12.5L17.75 3.75C18.4404 3.05964 19.5596 3.05964 20.25 3.75V3.75C20.9404 4.44036 20.9404 5.55964 20.25 6.25L15.5 11L11.5 15H9Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+													</button>
+												</td>
+
+												<td class="user-td">
+													<button type="submit" name="delete-brand" class="flexbox">
+														<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 10L15 14M11 14L15 10M2.7716 13.5185L7.43827 17.5185C7.80075 17.8292 8.26243 18 8.73985 18H18C19.1046 18 20 17.1046 20 16V8C20 6.89543 19.1046 6 18 6H8.73985C8.26243 6 7.80075 6.17078 7.43827 6.48149L2.7716 10.4815C1.84038 11.2797 1.84038 12.7203 2.7716 13.5185Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+													</button>
+												</td>
+											</form>
+										</tr>
+									{% endfor %}
+								</tbody>
+						</table>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

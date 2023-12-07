@@ -1,18 +1,48 @@
 <?php
-require 'vendor/autoload.php';
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+require_once __DIR__ . '/../core/render.php';
+require_once __DIR__ . '/../core/admin.php';
+require_once __DIR__ . '/../models/user.model.php';
 
 class SignupController
 {
-  private $twig;
+  private $renderManager;
+  private $adminManager;
+  private $userModel;
+
+  public function __construct()
+  {
+    global $conn;
+    $this->userModel = new UserModel($conn);
+
+    $this->adminManager = new AdminManager();
+    $this->renderManager = new RenderManager();
+  }
 
   public function signupRouter()
   {
-    $loader = new FilesystemLoader(__DIR__ . '/../views');
-    $this->twig = new Environment($loader);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $firstname = $_POST['form'] ?? '';
+      $lastname = $_POST['lastname'] ?? '';
+      $email = $_POST['email'] ?? '';
+      $phone = $_POST['phone'] ?? '';
+      $password = $_POST['password'] ?? '';
+      $isOwner = isset($_POST['isowner']) && $_POST['isowner'] == 'on' ? 1 : 0;
+      $nameGarage = $_POST['nameGarage'] ?? null;
+      $adressGarage = $_POST['adressGarage'] ?? null;
 
-    echo $this->twig->render('/pages/signup.twig');
+      $adduser = $this->userModel->addUser($firstname, $lastname, $email, $phone, $password, $isOwner, $nameGarage, $adressGarage);
+
+      if ($adduser) {
+        header('Location: /sucess');
+        exit;
+      } else {
+        header('Location: /failed');
+      }
+    } else {
+      $isAdmin = $this->adminManager->isAdmin();
+
+      $this->renderManager->render('/pages/signup.twig', ['isAdmin' => $isAdmin]);
+    }
   }
 }

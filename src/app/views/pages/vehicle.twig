@@ -5,5 +5,258 @@
 {% endblock %}
 
 {% block content %}
-	<h1>Vehicle CONTENT</h1>
+	{# NavBar #}
+	{% include '/templates/components/navbar.twig' with {'homeUrl': '/', 'dashboardUrl': '/dashboard', 'profilUrl': '/profil', 'isAdmin': isAdmin} %}
+
+	<div class="detail-container">
+		{# Book Container #}
+		<form class="book-container" method="post" action"/vehicle?id={{ vehicle[0]['id'] }}">
+			{# Path Container #}
+			<div class="path-container">
+				<a href="/home">
+					<svg width="24px" height="24px" class="flexbox" viewBox="0 -0.5 25 25" fill="black" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.35 19.0001C9.35 19.4143 9.68579 19.7501 10.1 19.7501C10.5142 19.7501 10.85 19.4143 10.85 19.0001H9.35ZM10.1 16.7691L9.35055 16.7404C9.35018 16.75 9.35 16.7595 9.35 16.7691H10.1ZM12.5 14.5391L12.4736 15.2886C12.4912 15.2892 12.5088 15.2892 12.5264 15.2886L12.5 14.5391ZM14.9 16.7691H15.65C15.65 16.7595 15.6498 16.75 15.6495 16.7404L14.9 16.7691ZM14.15 19.0001C14.15 19.4143 14.4858 19.7501 14.9 19.7501C15.3142 19.7501 15.65 19.4143 15.65 19.0001H14.15ZM10.1 18.2501C9.68579 18.2501 9.35 18.5859 9.35 19.0001C9.35 19.4143 9.68579 19.7501 10.1 19.7501V18.2501ZM14.9 19.7501C15.3142 19.7501 15.65 19.4143 15.65 19.0001C15.65 18.5859 15.3142 18.2501 14.9 18.2501V19.7501ZM10.1 19.7501C10.5142 19.7501 10.85 19.4143 10.85 19.0001C10.85 18.5859 10.5142 18.2501 10.1 18.2501V19.7501ZM9.5 19.0001V18.2501C9.4912 18.2501 9.4824 18.2502 9.4736 18.2505L9.5 19.0001ZM5.9 15.6541H5.15C5.15 15.6635 5.15018 15.673 5.15054 15.6825L5.9 15.6541ZM6.65 8.94807C6.65 8.53386 6.31421 8.19807 5.9 8.19807C5.48579 8.19807 5.15 8.53386 5.15 8.94807H6.65ZM3.0788 9.95652C2.73607 10.1891 2.64682 10.6555 2.87944 10.9983C3.11207 11.341 3.57848 11.4302 3.9212 11.1976L3.0788 9.95652ZM6.3212 9.56863C6.66393 9.336 6.75318 8.86959 6.52056 8.52687C6.28793 8.18415 5.82152 8.09489 5.4788 8.32752L6.3212 9.56863ZM5.47883 8.3275C5.13609 8.5601 5.04682 9.02651 5.27942 9.36924C5.51203 9.71198 5.97844 9.80125 6.32117 9.56865L5.47883 8.3275ZM11.116 5.40807L10.7091 4.77804C10.7043 4.78114 10.6995 4.78429 10.6948 4.7875L11.116 5.40807ZM13.884 5.40807L14.3052 4.7875C14.3005 4.78429 14.2957 4.78114 14.2909 4.77804L13.884 5.40807ZM18.6788 9.56865C19.0216 9.80125 19.488 9.71198 19.7206 9.36924C19.9532 9.02651 19.8639 8.5601 19.5212 8.3275L18.6788 9.56865ZM14.9 18.2501C14.4858 18.2501 14.15 18.5859 14.15 19.0001C14.15 19.4143 14.4858 19.7501 14.9 19.7501V18.2501ZM15.5 19.0001L15.5264 18.2505C15.5176 18.2502 15.5088 18.2501 15.5 18.2501V19.0001ZM19.1 15.6541L19.8495 15.6825C19.8498 15.673 19.85 15.6635 19.85 15.6541L19.1 15.6541ZM19.85 8.94807C19.85 8.53386 19.5142 8.19807 19.1 8.19807C18.6858 8.19807 18.35 8.53386 18.35 8.94807H19.85ZM21.079 11.1967C21.4218 11.4293 21.8882 11.3399 22.1207 10.9971C22.3532 10.6543 22.2638 10.1879 21.921 9.9554L21.079 11.1967ZM19.521 8.3274C19.1782 8.09487 18.7119 8.18426 18.4793 8.52705C18.2468 8.86984 18.3362 9.33622 18.679 9.56875L19.521 8.3274ZM10.85 19.0001V16.7691H9.35V19.0001H10.85ZM10.8495 16.7977C10.8825 15.9331 11.6089 15.2581 12.4736 15.2886L12.5264 13.7895C10.8355 13.73 9.41513 15.0497 9.35055 16.7404L10.8495 16.7977ZM12.5264 15.2886C13.3911 15.2581 14.1175 15.9331 14.1505 16.7977L15.6495 16.7404C15.5849 15.0497 14.1645 13.73 12.4736 13.7895L12.5264 15.2886ZM14.15 16.7691V19.0001H15.65V16.7691H14.15ZM10.1 19.7501H14.9V18.2501H10.1V19.7501ZM10.1 18.2501H9.5V19.7501H10.1V18.2501ZM9.4736 18.2505C7.96966 18.3035 6.70648 17.1294 6.64946 15.6257L5.15054 15.6825C5.23888 18.0125 7.19612 19.8317 9.5264 19.7496L9.4736 18.2505ZM6.65 15.6541V8.94807H5.15V15.6541H6.65ZM3.9212 11.1976L6.3212 9.56863L5.4788 8.32752L3.0788 9.95652L3.9212 11.1976ZM6.32117 9.56865L11.5372 6.02865L10.6948 4.7875L5.47883 8.3275L6.32117 9.56865ZM11.5229 6.0381C12.1177 5.65397 12.8823 5.65397 13.4771 6.0381L14.2909 4.77804C13.2008 4.07399 11.7992 4.07399 10.7091 4.77804L11.5229 6.0381ZM13.4628 6.02865L18.6788 9.56865L19.5212 8.3275L14.3052 4.7875L13.4628 6.02865ZM14.9 19.7501H15.5V18.2501H14.9V19.7501ZM15.4736 19.7496C17.8039 19.8317 19.7611 18.0125 19.8495 15.6825L18.3505 15.6257C18.2935 17.1294 17.0303 18.3035 15.5264 18.2505L15.4736 19.7496ZM19.85 15.6541V8.94807H18.35V15.6541H19.85ZM21.921 9.9554L19.521 8.3274L18.679 9.56875L21.079 11.1967L21.921 9.9554Z" fill="{{ svgHomeColors }}"></path> </g></svg>
+				</a>
+				<div class="flexbox path">/</div>
+				<a href="/cars" class="flexbox path">All vehicles</a>
+				<div class="flexbox path">/</div>
+				<div class="flexbox path brand-path">{{ vehicle[0]['brand'] }} {{ vehicle[0]['model'] }}</div>
+			</div>
+
+			{# Booking Container #}
+			<div class="booking-container">
+				<div class="select-date-container">
+					<div class="date-container">
+						<label for="startDate" style="font-size: .98rem">Pick up Date & Time*</label>
+						<input type="date" name="startDate" id="startDate" onchange="calculateDays()">
+					</div>
+
+					<div class="date-container">
+						<label for="returnDate" style="font-size: .98rem">Return Date & Time*</label>
+						<input type="date" name="returnDate" id="returnDate" onchange="calculateDays()">
+					</div>
+				</div>
+			</div>
+
+			{# Rental Container #}
+			<div class="rental-box">
+				<div class="rental-container">
+					<div class="rental-title">Rental Info</div>
+					<div class="rental-data-container flexbox">
+						<div class="rental-data-area">
+							<div class="rent-per-day-container">
+								<div class="rent-per">Rent Per Day</div>
+								<div class="price">${{ vehicle[0]['price'] }}</div>
+							</div>
+							<div class="rent-per-day-container">
+								<div class="rent-per">Rent Per Hour</div>
+								<div class="price">${{ (vehicle[0]['price'] / 24) | number_format(0, '.', '') }}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="rental-container">
+					<div class="rental-data-container flexbox">
+						<div class="rental-data-area rental-user-area">
+							<div class="rent-per-day-container">
+								<div class="rent-per">Price per day</div>
+								<div class="price">${{ vehicle[0]['price'] }} x <span id="result">1</span> days</div>
+							</div>
+							<div class="rent-per-day-container">
+								<div class="rent-per">Price per hour</div>
+								<div class="price">${{ (vehicle[0]['price'] / 24) | number_format(0, '.', '') }} x 2 Hours</div>
+							</div>
+
+							<hr>
+
+							<div class="rent-per-day-container">
+								<div class="rent-per">Number of days:</div>
+								<div class="price" id="totalDays">1 days</div>
+							</div>
+							<div class="rent-per-day-container">
+								<div class="rent-per">In-Total:</div>
+								<div class="price" id="totalPrice">${{ vehicle[0]['price'] * 1 }}</div>
+							</div>
+							<div class="rent-per-day-container">
+								<div class="rent-per">Rental Fee</div>
+								<div class="price">$40</div>
+							</div>
+
+							<hr>
+
+							<div class="rent-per-day-container">
+								<div class="price">In-Total</div>
+								<div class="price" id="total">${{ (vehicle[0]['price'] * 1) + 40 }}</div>
+								<input type="number" name="price" id="input-price" value="{{ (vehicle[0]['price'] * 1) + 40 }}" style="display: none">
+							</div>	
+						</div>
+					</div>
+				</div>
+
+				{# Reserve Now #}
+				<button class="reserve-now-container flexbox" type="submit">
+					Reserve now
+				</button>
+			</div>
+		</form>
+
+		{# Car Detail Container #}
+		<div class="information-container">
+			{# Top info #}
+			<div class="flexbox">
+				{# Car #}
+				<div class="car-stats-container">
+					<div class="car-container">
+						{# Infos #}
+						<div class="infos-container">
+							<div class="flexbox" style="gap: 0.6rem">
+								<img src="{{ vehicle[0]['brand_logo'] }}" alt="">
+								<div class="name-container">
+									<div class="brand">{{ vehicle[0]['brand'] }}</div>
+									<div class="model">{{ vehicle[0]['model'] }}</div>
+								</div>
+							</div>
+
+							<div class="flexbox favorite-like">
+								{% if userLiked %}
+									<form action"/vehicle?id={{ vehicle[0]['id'] }}" method="post">
+										<input type="hidden" name="id_vehicle" value="{{vehicle[0]['id']}}">
+										<button type="submit" class="button-favorite-like flexbox">
+											<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="red"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z" fill="red"></path> </g></svg>
+										</button>
+									</form>
+								{% else %}
+									<form action"/vehicle?id={{ vehicle[0]['id'] }}" method="post">
+										<input type="hidden" name="id_vehicle" value="{{vehicle[0]['id']}}">
+										<button type="submit" class="button-favorite-like flexbox">
+											<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="0.312"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M5.62436 4.4241C3.96537 5.18243 2.75 6.98614 2.75 9.13701C2.75 11.3344 3.64922 13.0281 4.93829 14.4797C6.00072 15.676 7.28684 16.6675 8.54113 17.6345C8.83904 17.8642 9.13515 18.0925 9.42605 18.3218C9.95208 18.7365 10.4213 19.1004 10.8736 19.3647C11.3261 19.6292 11.6904 19.7499 12 19.7499C12.3096 19.7499 12.6739 19.6292 13.1264 19.3647C13.5787 19.1004 14.0479 18.7365 14.574 18.3218C14.8649 18.0925 15.161 17.8642 15.4589 17.6345C16.7132 16.6675 17.9993 15.676 19.0617 14.4797C20.3508 13.0281 21.25 11.3344 21.25 9.13701C21.25 6.98614 20.0346 5.18243 18.3756 4.4241C16.7639 3.68739 14.5983 3.88249 12.5404 6.02065C12.399 6.16754 12.2039 6.25054 12 6.25054C11.7961 6.25054 11.601 6.16754 11.4596 6.02065C9.40166 3.88249 7.23607 3.68739 5.62436 4.4241ZM12 4.45873C9.68795 2.39015 7.09896 2.10078 5.00076 3.05987C2.78471 4.07283 1.25 6.42494 1.25 9.13701C1.25 11.8025 2.3605 13.836 3.81672 15.4757C4.98287 16.7888 6.41022 17.8879 7.67083 18.8585C7.95659 19.0785 8.23378 19.292 8.49742 19.4998C9.00965 19.9036 9.55954 20.3342 10.1168 20.6598C10.6739 20.9853 11.3096 21.2499 12 21.2499C12.6904 21.2499 13.3261 20.9853 13.8832 20.6598C14.4405 20.3342 14.9903 19.9036 15.5026 19.4998C15.7662 19.292 16.0434 19.0785 16.3292 18.8585C17.5898 17.8879 19.0171 16.7888 20.1833 15.4757C21.6395 13.836 22.75 11.8025 22.75 9.13701C22.75 6.42494 21.2153 4.07283 18.9992 3.05987C16.901 2.10078 14.3121 2.39015 12 4.45873Z" fill="#1C274C"></path> </g></svg>
+										</button>
+									</form>
+								{% endif %}
+							</div>
+						</div>
+
+						{# Image Car #}
+						<div class="car-img-container flexbox">
+							<img src="{{ vehicle[0]['url_picture'] }}" class="car-img flexbox" alt="">
+							<div class="backgroundTitle flexbox">{{ vehicle[0]['brand'] }}</div>
+						</div>
+					</div>
+				</div>
+
+				{# Informations #}
+				<div class="car-information-container" style="gap: .3rem">
+					<div class="logo flexbox">{{ garage[0]['name']|slice(0, 1)|upper }}</div>
+					<div class="garagetitle">{{ garage[0]['name'] }} - Car rental service</div>
+
+					<div class="flexbox" style="gap: .5rem">
+						{% set sum = 0 %}
+						{% set count = 0 %}
+
+						{% for score in rating %}
+								{% set sum = sum + score.rating %}
+								{% set count = count + 1 %}
+						{% endfor %}
+
+						{% if count > 0 %}
+								{% set average = sum / count %}
+								<div class="flexbox">
+									{% include '/templates/components/rating.twig' with {'average': average} %}
+								</div>
+								<div>({{count}} rating)</div>
+						{% else %}
+								<div>Ce vehicle n'as pas encore de notes</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		
+			{# Bottom Infos #}
+			<div class="all-information-container">
+				{# Information #}
+				<div class="info-area">
+					<div class="title">Vehicle Information</div>
+					<div class="information">{{ vehicle[0]['information'] }}</div>
+				</div>
+
+				{# Stats #}
+				<div class="stats-container">
+					{# Petrol #}
+					<div class="stats-item spacebox">
+						<div class="svg-container flexbox">
+							<svg fill="#000000" class="icon" style="background-color: rgb(255, 200, 200);" height="32px" width="32px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 467.721 467.721" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M450.762,286.516h-296.59c-2.727,0-4.28-0.623-4.447-1.242V151.248l-0.156-0.609c-1.608-6.291-7.254-10.685-13.73-10.685 h-7.063c-5.008,0-9.105-0.051-9.18-0.051H76.313c-13.177,0-18.89,7.521-23.059,15.572C47.803,165.563,0,254.546,0,272.697v33.241 c0,12.404,10.092,22.496,22.497,22.496h18.327c-0.012,0.413-0.032,0.824-0.032,1.239c0,22.703,18.469,41.174,41.17,41.174 c22.702,0,41.171-18.471,41.171-41.174c0-0.415-0.019-0.827-0.031-1.239h88.166c-0.012,0.413-0.031,0.824-0.031,1.239 c0,22.703,18.47,41.174,41.172,41.174c21.937,0,39.918-17.249,41.104-38.897c1.186,21.648,19.168,38.897,41.106,38.897 c22.701,0,41.17-18.471,41.17-41.174c0-0.415-0.019-0.827-0.031-1.239h75.005c9.51,0,16.959-5.821,16.959-13.252v-15.415 C467.721,292.337,460.272,286.516,450.762,286.516z M81.963,349.199c-10.782,0-19.523-8.742-19.523-19.523 c0-10.782,8.741-19.522,19.523-19.522c10.782,0,19.523,8.74,19.523,19.522C101.486,340.457,92.744,349.199,81.963,349.199z M125.018,177.594c-0.1,1.954-0.203,3.975-0.203,5.862v41.858c0,4.961-4.036,8.997-8.997,8.997H50.104 c-1.959,0-2.787-0.435-2.951-0.664c-0.221-0.308-0.557-1.794,0.517-4.936c7.566-22.148,19.128-50.202,21.782-55.624 c5.007-10.23,10.716-11.02,18.235-11.02h31.909c2.754,0,3.574,0.862,3.844,1.146C125.633,165.521,125.292,172.215,125.018,177.594z M252.408,349.199c-10.781,0-19.521-8.742-19.521-19.523c0-10.782,8.74-19.522,19.521-19.522c10.782,0,19.522,8.74,19.522,19.522 C271.93,340.457,263.19,349.199,252.408,349.199z M334.618,349.199c-10.782,0-19.522-8.742-19.522-19.523 c0-10.782,8.74-19.522,19.522-19.522c10.781,0,19.522,8.74,19.522,19.522C354.14,340.457,345.4,349.199,334.618,349.199z"></path> <path d="M222.645,271.504h184.643c14.781,0,28.541-8.256,38.746-23.246c9.804-14.401,15.203-33.458,15.203-53.658 c0-20.199-5.399-39.254-15.203-53.654c-10.205-14.989-23.965-23.244-38.746-23.244l-0.608,0.037 c-4.078,0.499-8.207,3.771-8.207,9.062v57.389c0,5.665-1.12,6.666-1.168,6.706c-0.578,0.483-2.88,0.582-4.729,0.662 c-0.813,0.035-1.658,0.072-2.529,0.132c-2.517,0.174-3.898,0.316-4.763,0.459c-0.718-0.063-2.041-0.161-4.551-0.296 c-9.86-0.527-11.116-0.987-11.116-7.663v-57.547c0-3.257-1.361-5.3-2.504-6.439c-2.38-2.376-5.426-2.501-6.026-2.501 c-0.003,0-0.006,0-0.009,0h-61.579c2.452-2.186,3.998-5.365,3.998-8.899c0-6.577-5.352-11.929-11.929-11.929h-50.068 c-6.577,0-11.929,5.352-11.929,11.929c0,3.534,1.546,6.714,3.998,8.899h-10.924c-14.781,0-28.541,8.255-38.746,23.244 c-9.804,14.4-15.203,33.455-15.203,53.654c0,20.2,5.399,39.257,15.203,53.658C194.104,263.248,207.863,271.504,222.645,271.504z M245.31,202.846c0-8.896,12.881-26.37,22.825-37.539c9.943,11.169,22.82,28.641,22.82,37.539c0,12.583-10.237,22.819-22.82,22.819 C255.549,225.665,245.31,215.429,245.31,202.846z"></path> </g> </g></svg>
+						</div>
+						<div class="flexbox" style="font-size: 1.15rem">{{ vehicle[0]['petrol'] }}</div>
+					</div>
+					{# Seats #}
+					<div class="stats-item spacebox">
+						<div class="svg-container flexbox">
+							<svg fill="#000000" style="background-color: rgb(200, 255, 228);" class="icon" height="32px" width="32px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 353.926 353.926" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M210.286,344.926c0,4.971-4.029,9-9,9h-48.65c-4.971,0-9-4.029-9-9s4.029-9,9-9h48.65 C206.257,335.926,210.286,339.955,210.286,344.926z M289.677,258.958v25.928c0,19.259-15.67,34.928-34.931,34.928H99.177 c-19.259,0-34.928-15.668-34.928-34.928v-25.928c0-4.971,4.029-9,9-9h2.394c-0.021-0.258-0.033-0.52-0.033-0.784v-24.118 c-0.013-0.535,0.023-1.066,0.105-1.588c0.204-1.329,0.699-2.561,1.418-3.631c0.705-1.055,1.639-1.969,2.767-2.659 c0.457-0.281,0.94-0.522,1.446-0.719c3.564-1.483,7.107-3.016,10.605-4.586V101.909c0-17.877,11.375-33.581,27.599-39.623 c-0.019-0.492-0.028-0.984-0.028-1.48V38.578C119.521,17.306,136.827,0,158.098,0h37.725C217.095,0,234.4,17.306,234.4,38.578 v22.229c0,0.495-0.01,0.988-0.028,1.478c6.395,2.378,12.129,6.28,16.702,11.351c0.16-0.3,0.318-0.599,0.478-0.899 c2.318-4.396,7.761-6.081,12.16-3.76c4.396,2.319,6.079,7.764,3.76,12.16c-16.845,31.926-41.307,61.508-72.707,87.923 c-25.063,21.083-53.512,39.294-84.813,54.313v26.586h134.02V141.64c0-4.971,4.029-9,9-9s9,4.029,9,9v108.318h18.706 C285.647,249.958,289.677,253.987,289.677,258.958z M137.521,60.807c0,1.842,0.243,3.629,0.699,5.33 c0.073,0.22,0.138,0.444,0.193,0.672c2.574,8.428,10.424,14.576,19.684,14.576h37.725c9.259,0,17.109-6.146,19.685-14.573 c0.057-0.231,0.122-0.458,0.195-0.68c0.455-1.699,0.698-3.484,0.698-5.325V38.578C216.4,27.231,207.169,18,195.822,18h-37.725 c-11.346,0-20.576,9.231-20.576,20.578V60.807z M109.951,203.272c56.184-28.521,102.335-68.15,131.162-112.739 c-2.612-4.871-6.75-8.658-11.666-10.83c-6.622,11.738-19.213,19.681-33.625,19.681h-37.725c-14.411,0-27.002-7.944-33.624-19.682 c-8.604,3.8-14.522,12.438-14.522,22.207V203.272z M271.677,267.958h-18.57c-0.046,0-0.091,0.001-0.136,0.001h-152.02 c-0.045,0-0.09,0-0.136-0.001H82.249v16.928c0,9.334,7.594,16.928,16.928,16.928h155.569c9.336,0,16.931-7.594,16.931-16.928 V267.958z"></path> </g></svg>
+						</div>
+						<div class="flexbox" style="font-size: 1.15rem">{{ vehicle[0]['nb_seats'] }}</div>
+					</div>
+					{# Colors #}
+					<div class="stats-item spacebox">
+						<div class="svg-container flexbox">
+							<svg width="32px" height="32px" style="background-color: rgb(255, 200, 247);" class="icon" viewBox="0 0 73 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>fundamentals/css/colors</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="fundamentals/css/colors" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <rect id="mask" stroke="#ffffff" stroke-width="2" fill="#FFFFFF" fill-rule="nonzero" x="1" y="1" width="71" height="71" rx="14"> </rect> <g id="color-wheel" transform="translate(37.000000, 37.000000) rotate(-255.000000) translate(-37.000000, -37.000000) translate(11.000000, 11.000000)" fill-rule="nonzero"> <path d="M26,0 L22.953125,5.05273438 L26,9.2421875 L37.8440156,14.1559844 L43.6623281,11.3845469 L44.3044063,7.69559375 C39.6149609,3.00594531 33.1403516,0 26,0 Z" id="Shape" fill="#FF4B00"> </path> <path d="M44.3045078,7.69549219 L37.8440156,14.1559844 L42.7578125,26 L47.6138203,29.046875 L52,26 C52,18.8596484 48.9940547,12.3850391 44.3045078,7.69549219 Z" id="Shape" fill="#FF9F00"> </path> <path d="M42.7578125,26 L37.8440156,37.8440156 L38.1398672,44.2336172 L44.3045078,44.3045078 C48.9940547,39.6149609 52,33.1403516 52,26 L42.7578125,26 Z" id="Shape" fill="#66BB00"> </path> <path d="M37.8440156,37.8440156 L26,42.7578125 L22.953125,47.80425 L26,52 C33.1403516,52 39.6149609,48.9940547 44.3045078,44.3045078 L37.8440156,37.8440156 Z" id="Shape" fill="#00CC71"> </path> <path d="M14.1559844,37.8440156 L8.14724219,37.7590078 L7.69549219,44.3045078 C12.3850391,48.9940547 18.8596484,52 26,52 L26,42.7578125 L14.1559844,37.8440156 Z" id="Shape" fill="#0095FF"> </path> <path d="M9.2421875,26 L4.76703906,22.953125 L0,26 C0,33.1403516 3.00594531,39.6149609 7.69549219,44.3045078 L14.1559844,37.8440156 L9.2421875,26 Z" id="Shape" fill="#6B77E8"> </path> <path d="M11.5751797,8.52810156 L7.69559375,7.69549219 C3.00594531,12.3850391 0,18.8596484 0,26 L9.2421875,26 L14.1559844,14.1559844 L11.5751797,8.52810156 Z" id="Shape" fill="#B760EA"> </path> <path d="M26,9.2421875 L26,0 C18.8596484,0 12.3850391,3.00594531 7.69549219,7.69549219 L14.1559844,14.1559844 C17.1903672,11.1216016 21.3798203,9.2421875 26,9.2421875 Z" id="Shape" fill="#FF193D"> </path> <path d="M26,9.2421875 L22.953125,13.8125 L26,18.3828125 L31.3835234,20.6164766 L37.4257812,17.6210938 L37.8440156,14.1559844 C34.8096328,11.1216016 30.6201797,9.2421875 26,9.2421875 Z" id="Shape" fill="#FF7816"> </path> <path d="M37.8440156,14.1559844 L31.3835234,20.6164766 L33.6171875,26 L37.8440156,29.046875 L42.7578125,26 C42.7578125,21.3798203 40.8783984,17.1903672 37.8440156,14.1559844 Z" id="Shape" fill="#FDBF00"> </path> <path d="M33.6171875,26 L31.3835234,31.3835234 L32.1052266,35.1521016 L37.8440156,37.8440156 C40.8783984,34.8096328 42.7578125,30.6201797 42.7578125,26 L33.6171875,26 Z" id="Shape" fill="#77DD00"> </path> <path d="M31.3835234,31.3835234 L26,33.6171875 L22.953125,38.3779297 L26,42.7578125 C30.6201797,42.7578125 34.8096328,40.8783984 37.8440156,37.8440156 L31.3835234,31.3835234 Z" id="Shape" fill="#00DD7B"> </path> <path d="M20.6164766,31.3835234 L14.1299844,31.7762656 L14.1559844,37.8440156 C17.1903672,40.8783984 21.3798203,42.7578125 26,42.7578125 L26,33.6171875 L20.6164766,31.3835234 Z" id="Shape" fill="#3AAAFF"> </path> <path d="M18.3828125,26 L14.1299844,22.953125 L9.2421875,26 C9.2421875,30.6201797 11.1216016,34.8096328 14.1559844,37.8440156 L20.6164766,31.3835234 L18.3828125,26 Z" id="Shape" fill="#7984EB"> </path> <path d="M20.2871094,14.1933594 L14.1559844,14.1559844 C11.1216016,17.1903672 9.2421875,21.3798203 9.2421875,26 L18.3828125,26 L20.6164766,20.6164766 L20.2871094,14.1933594 Z" id="Shape" fill="#CB75F6"> </path> <path d="M14.1559844,14.1559844 L20.6164766,20.6164766 L26,18.3828125 L26,9.2421875 C21.3798203,9.2421875 17.1903672,11.1216016 14.1559844,14.1559844 Z" id="Shape" fill="#FF4949"> </path> <path d="M31.3835234,20.6164766 C30.0042031,19.2371563 28.0999062,18.3828125 26,18.3828125 L22.953125,21.3820547 L26,26 L31.7386875,23.3081875 L31.3835234,20.6164766 Z" id="Shape" fill="#FF9F00"> </path> <path d="M33.6171875,26 C33.6171875,23.9000938 32.7628438,21.9957969 31.3835234,20.6164766 L26,26 L30.8559063,29.046875 L33.6171875,26 Z" id="Shape" fill="#FFD400"> </path> <path d="M31.3835234,31.3835234 C32.7628438,30.0042031 33.6171875,28.0999062 33.6171875,26 L26,26 L28.6918125,31.7386875 L31.3835234,31.3835234 Z" id="Shape" fill="#89F900"> </path> <path d="M26,26 L22.953125,30.2846172 L26,33.6171875 C28.0999063,33.6171875 30.0042031,32.7628438 31.3835234,31.3835234 L26,26 Z" id="Shape" fill="#00EE84"> </path> <path d="M26,26 L21.4296875,27.5234375 L20.6164766,31.3835234 C21.9957969,32.7628438 23.9000938,33.6171875 26,33.6171875 L26,26 Z" id="Shape" fill="#73BCFF"> </path> <path d="M18.3828125,26 C18.3828125,28.0999063 19.2371563,30.0042031 20.6164766,31.3835234 L26,26 L21.5249531,24.4765625 L18.3828125,26 Z" id="Shape" fill="#979FEF"> </path> <path d="M20.6164766,20.6164766 C19.2371563,21.9957969 18.3828125,23.9000938 18.3828125,26 L26,26 L24.4765625,21.4296875 L20.6164766,20.6164766 Z" id="Shape" fill="#DA90F8"> </path> <path d="M26,18.3828125 C23.9000938,18.3828125 21.9957969,19.2371563 20.6164766,20.6164766 L26,26 L26,18.3828125 Z" id="Shape" fill="#FF6C6C"> </path> </g> </g> </g></svg>
+						</div>
+						<div class="flexbox" style="font-size: 1.15rem">{{ vehicle[0]['colors'] }}</div>
+					</div>
+					{# Gearbox #}
+					<div class="stats-item spacebox">
+						<div class="svg-container flexbox">
+							<svg fill="#000000" style="background-color: rgb(255, 200, 247);" class="icon" height="32px" width="32px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.998 511.998" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M298.776,132.17v-8.514h39.461c24.269,0,44.015-19.745,44.015-44.015V44.015C382.252,19.745,362.507,0,338.237,0H226.335 c-24.269,0-44.015,19.745-44.015,44.015V78.83c0,24.716,20.109,44.825,44.825,44.825h38.411v8.514h-37.692H206.71 c-49.588,0-89.93,40.343-89.93,89.93v199.969c0,49.588,40.343,89.93,89.93,89.93h98.578c49.588,0,89.93-40.343,89.93-89.93 V233.231C395.219,197.428,380.483,132.17,298.776,132.17z M227.147,90.437c-6.292-0.001-11.607-5.315-11.607-11.607V44.015 c0-5.952,4.842-10.795,10.795-10.795h111.902c5.952,0,10.795,4.842,10.795,10.795v35.627c0,5.952-4.842,10.795-10.795,10.795 H227.147z M265.556,165.391v176.482c0,9.173,7.437,16.61,16.61,16.61c9.173,0,16.61-7.437,16.61-16.61V165.39 c0,0,11.311-0.911,20.937,1.865l0.145,194.112c0.008,10.052-3.901,19.503-11.006,26.614c-7.104,7.111-16.554,11.027-26.605,11.027 c-20.723,0-37.597-16.86-37.612-37.583l-0.146-196.033H265.556z M361.999,422.07L361.999,422.07 c0,31.271-25.441,56.71-56.71,56.71h-98.578c-31.271,0-56.71-25.441-56.71-56.71V222.1c0-31.271,25.441-56.71,56.71-56.71h4.557 l0.146,196.057c0.03,39.027,31.804,70.779,70.832,70.779c18.93,0,36.724-7.375,50.104-20.764 c13.381-13.391,20.741-31.19,20.728-50.119l-0.127-169.913c5.715,8.85,9.049,19.376,9.049,30.673V422.07z"></path> </g> </g> <g> <g> <circle cx="177.248" cy="241.783" r="19.976"></circle> </g> </g> <g> <g> <circle cx="177.248" cy="302.109" r="19.976"></circle> </g> </g> <g> <g> <circle cx="177.248" cy="365.481" r="19.976"></circle> </g> </g> </g></svg>
+						</div>
+						<div class="flexbox" style="font-size: 1.15rem">{{ vehicle[0]['gearbox'] }}</div>
+					</div>
+				</div>
+			</div>
+
+			{# Booking Container #}
+			<div class="all-booking-container">
+				<div class="info-area">
+					<div class="title">Last Booking & Reviews</div>
+				</div>
+
+				<div class="all-reviews-container">
+					{% if rating is empty %}
+						<p>Aucun avis disponible pour le moment</p>
+					{% else %}
+						{% for review in rating %}
+							<div class="review-container">
+								<div class="flexbox" style="width: fit-content;">
+									{% include '/templates/components/rating.twig' with {'average': review.rating} %}
+								</div>
+								{{review.description}}
+							</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# Script #}
+	<script>
+		function calculateDays() {
+			var startDate = document.getElementById('startDate').value;
+			var returnDate = document.getElementById('returnDate').value;
+
+			if (startDate && returnDate) {
+				var startDateTime = new Date(startDate);
+				var returnDateTime = new Date(returnDate);
+				var numberOfDays = Math.floor((returnDateTime - startDateTime) / (1000 * 60 * 60 * 24));
+
+				document.getElementById('result').innerHTML = numberOfDays;
+				document.getElementById('totalDays').innerHTML = numberOfDays + ' days';
+
+				var pricePerDay = {{ vehicle[0]['price'] }};
+				var totalPrice = pricePerDay * numberOfDays;
+
+				document.getElementById('totalPrice').innerHTML = '$' + totalPrice;
+				document.getElementById('total').innerHTML = '$' + (totalPrice + 40);
+				document.getElementById('input-price').value = (totalPrice + 40);
+			}
+		}
+	</script>
 {% endblock %}
