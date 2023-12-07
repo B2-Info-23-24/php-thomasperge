@@ -1,16 +1,23 @@
 
-# Rust-eze  - Vehicle booking
+# ⛽ Rust-eze  - Vehicle booking
 
 Welcome to Rust-Eze, your destination for simple, hassle-free car hire. Whether you're planning a road trip, a move or a last-minute getaway, Rust-Eze is here to make your life easier.
 
-# Technologies used
+## Technologies used
 
 - PHP
 - MySQL
 - Twig/CSS
 - Docker
 
-# Installation
+## User & Admin (Signin)
+user: ``user@gmail.com`` \
+password: ``user``
+
+admin: ``admin@gmail.com`` \
+password: ``admin``
+
+## Installation
 
 
 
@@ -98,10 +105,10 @@ sudo chmod 777 -R src
 
 ### Install all depencies (in src folder)
 ```bash
+cd src
 composer install
 ```
 
 The project should run on your locahost
 
 Thomas Kauffmant
-
