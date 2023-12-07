@@ -28,7 +28,7 @@ To deploy this project run :
 git clone https://github.com/B2-Info-23-24/php-thomasperge.git
 ```
 
-#### Create a docker-compose.yml
+#### Create a docker-compose.yml (if not exists)
 ```bash
 version: '3'
 
@@ -56,7 +56,7 @@ volumes:
   db_data:
 ```
 
-#### Create a Dockerfile
+#### Create a Dockerfile (if not exists)
 ```bash
 FROM php:8.0-apache
 
@@ -67,7 +67,7 @@ RUN a2enmod rewrite
 RUN service apache2 restart
 ```
 
-#### Create a .htaccess
+#### Create a .htaccess (in src folder, if not exists)
 ```bash
 RewriteEngine On
 RewriteBase /
@@ -76,22 +76,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php [QSA,L]
 ```
 
-### Start Docker
-```bash
-sudo service docker start
-```
-
-### Get your ip adress
-```bash
-ip addr show eth0
-```
-
-### Put all authorization on you src folder
-```bash
-sudo chmod 777 -R src
-```
-
-### Create a composer.json in your vendor folder (if composer.json doesn't not exist)
+### Create a composer.json in your src/vendor folder (if composer.json does not exist)
 ```bash
 {
     "require": {
@@ -107,6 +92,11 @@ sudo chmod 777 -R src
 ```bash
 cd src
 composer install
+```
+
+### Build Docker
+```bash
+docker-compose up --build
 ```
 
 The project should run on your locahost
