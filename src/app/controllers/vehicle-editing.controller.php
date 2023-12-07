@@ -40,9 +40,9 @@ class VehicleEditingController
         $gearbox = $_POST['gearbox'] ?? '';
         $brandlogo = $_POST['brandlogo'] ?? '';
         $information = $_POST['information'] ?? '';
-  
+
         $updateVehicle = $this->vehicleModel->editVehicle($brand, $model, $price, $image, $petrol, $nb_seats, $color, $gearbox, $brandlogo, $information, $params['id']);
-  
+
         if ($updateVehicle) {
           header('Location: /dashboard');
           exit;
@@ -60,6 +60,16 @@ class VehicleEditingController
 
         if ($updateVehicle) {
           header("Location: /vehicle-editing?id=" . $id_vehicle);
+          exit;
+        }
+      } elseif (isset($_POST['delete-vehicle'])) {
+        // Form 2 - Change reviews
+        $id_vehicle = $_POST['id'] ?? '';
+
+        $updateVehicle = $this->vehicleModel->deleteVehicle($id_vehicle);
+
+        if ($updateVehicle) {
+          header("Location: /sucess");
           exit;
         }
       }

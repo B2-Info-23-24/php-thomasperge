@@ -85,6 +85,9 @@
 				{# Editing #}
         <form action="/vehicle-editing?id={{vehicle[0]['id']}}" method="post" class="form-editing-container spacebox">
           <div class="editing-container">
+						{# Id #}
+						<input type="hidden" name="id" value="{{vehicle[0]['id']}}">
+
             {# Edit Brand #}
             <div class="editing-item">
               <label class="label" for="brand">Brand : </label>
@@ -145,7 +148,11 @@
               <input type="text" class="input" name="information" value="{{vehicle[0]['information']}}">
             </div>
           </div>
-          <button type="submit" class="button-submit" name="edit-vehicle">Edit vehicle</button>
+
+					<div>
+						<button type="submit" class="button-submit" name="edit-vehicle">Edit vehicle</button>
+						<button type="submit" class="button-submit" name="delete-vehicle">Delete vehicle</button>
+					</div>
         </form>
 			</div>
 		</div>

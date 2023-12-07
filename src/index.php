@@ -31,6 +31,7 @@ $routes = [
   '/profil'   => ['controller' => 'ProfilController', 'method' => 'profilRouter'],
   '/sucess'   => ['controller' => 'SucessController', 'method' => 'sucessRouter'],
   '/failed'   => ['controller' => 'FailedController', 'method' => 'failedRouter'],
+  '/booking-failed'   => ['controller' => 'FailedController', 'method' => 'bookingFailedRouter'],
 ];
 
 // Manage cookies

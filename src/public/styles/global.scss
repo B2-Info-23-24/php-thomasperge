@@ -1331,7 +1331,7 @@ a {
       outline: none;
       color: white;
       font-family: "MornDemiBold";
-      padding: 1rem 1.5rem;
+      padding: .65rem 1rem;
       border-radius: 15px;
       font-size: .95rem;
       cursor: pointer;
@@ -1419,6 +1419,27 @@ a {
 
 /* === Failed container ===*/
 .failed-container {
+  width: 100%;
+  height: 80vh;
+  gap: 1.5rem;
+  flex-direction: column;
+
+  .title {
+    font-size: 2rem;
+    font-family: "MornDemiBold";
+  }
+
+  .back {
+    font-size: 1.1rem;
+  }
+
+  .back:hover {
+    text-decoration: underline;
+  }
+}
+
+/* === Booking Failed container ===*/
+.booking-container {
   width: 100%;
   height: 80vh;
   gap: 1.5rem;

@@ -14,6 +14,13 @@ class FailedController
     $this->renderManager = new RenderManager();
   }
 
+  public function bookingFailedRouter()
+  {
+    $isAdmin = $this->adminManager->isAdmin();
+    
+    $this->renderManager->render('/pages/booking-failed.twig', ['isAdmin' => $isAdmin]);
+  }
+
   public function failedRouter()
   {
     $isAdmin = $this->adminManager->isAdmin();

@@ -123,6 +123,27 @@ class VehicleModel
     return true;
   }
 
+  public function deleteVehicle($vehicleId)
+  {
+    $stmt = $this->conn->prepare('DELETE FROM vehicle WHERE id=?');
+
+    if ($stmt === false) {
+      throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
+      return false;
+    }
+
+    $stmt->bind_param('s', $vehicleId);
+
+    if (!$stmt->execute()) {
+      throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
+      return false;
+    }
+
+    $stmt->close();
+    return true;
+  }
+
+
   // Filter
   public function filterVehiclePerSeats($nbSeats)
   {
