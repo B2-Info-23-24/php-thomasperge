@@ -195,6 +195,26 @@ class UserModel
     return $data;
   }
 
+  public function deleteUser($userId)
+  {
+    $stmt = $this->conn->prepare('DELETE FROM users WHERE id=?');
+
+    if ($stmt === false) {
+      throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
+      return false;
+    }
+
+    $stmt->bind_param('s', $userId);
+
+    if (!$stmt->execute()) {
+      throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
+      return false;
+    }
+
+    $stmt->close();
+    return true;
+  }
+
   public function isUserAdmin($userId)
   {
     $sql = "SELECT is_garage_owner FROM users WHERE id = CAST('$userId' AS CHAR)";

@@ -34,6 +34,46 @@ class OtherModel
     return $data;
   }
 
+  public function deleteColors($colorId)
+  {
+    $stmt = $this->conn->prepare('DELETE FROM colors WHERE id=?');
+
+    if ($stmt === false) {
+      throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
+      return false;
+    }
+
+    $stmt->bind_param('s', $colorId);
+
+    if (!$stmt->execute()) {
+      throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
+      return false;
+    }
+
+    $stmt->close();
+    return true;
+  }
+
+  public function deleteBrands($brandId)
+  {
+    $stmt = $this->conn->prepare('DELETE FROM brands WHERE id=?');
+
+    if ($stmt === false) {
+      throw new Exception('Erreur de préparation de la requête : ' . $this->conn->error);
+      return false;
+    }
+
+    $stmt->bind_param('s', $brandId);
+
+    if (!$stmt->execute()) {
+      throw new Exception('Erreur lors de l\'exécution de la requête : ' . $stmt->error);
+      return false;
+    }
+
+    $stmt->close();
+    return true;
+  }
+
   public function getAllBrands()
   {
     $sql = "SELECT * FROM brands";

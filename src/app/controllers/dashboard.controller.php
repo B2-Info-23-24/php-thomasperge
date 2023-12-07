@@ -100,6 +100,60 @@ class DashboardController
             exit;
           }
         }
+      } else if (isset($_POST['delete-user'])) {
+        // Change profile
+        $id = $_POST['id'] ?? '';
+
+        if (empty($id)) {
+          header('Location: /failed');
+          exit;
+        } else {
+          $deleteUsers = $this->userModel->deleteUser($id);
+
+          if ($deleteUsers) {
+            header('Location: /dashboard');
+            exit;
+          } else {
+            header('Location: /failed');
+            exit;
+          }
+        }
+      } else if (isset($_POST['delete-color'])) {
+        // Change profile
+        $id = $_POST['id'] ?? '';
+
+        if (empty($id)) {
+          header('Location: /failed');
+          exit;
+        } else {
+          $deleteUsers = $this->otherModel->deleteColors($id);
+
+          if ($deleteUsers) {
+            header('Location: /dashboard');
+            exit;
+          } else {
+            header('Location: /failed');
+            exit;
+          }
+        }
+      } else if (isset($_POST['delete-brand'])) {
+        // Change profile
+        $id = $_POST['id'] ?? '';
+
+        if (empty($id)) {
+          header('Location: /failed');
+          exit;
+        } else {
+          $deleteUsers = $this->otherModel->deleteBrands($id);
+
+          if ($deleteUsers) {
+            header('Location: /dashboard');
+            exit;
+          } else {
+            header('Location: /failed');
+            exit;
+          }
+        }
       }
     } else {
       $userData = $this->userModel->getUserDataFromId($userId);
