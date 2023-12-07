@@ -96,8 +96,9 @@ sudo chmod 777 -R src
 
 ```
 
-### Install all depencies
+### Install all depencies (in src folder)
 ```bash
+cd src
 composer install
 ```
 
